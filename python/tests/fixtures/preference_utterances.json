@@ -1,0 +1,182 @@
+[
+  {
+    "id": "sample_requirement",
+    "text": "国庆想和朋友从上海出去玩五天，预算一万五，不想太累，喜欢拍照和吃东西。",
+    "expected": {"departure_city": "上海", "budget": 15000.0, "duration_days": 5, "pace": "relaxed", "interests": ["摄影", "美食"]}
+  },
+  {
+    "id": "complete_comfort",
+    "text": "从北京出发，预算两万，共3人，舒适游，2026年10月1日到2026年10月6日，喜欢历史。",
+    "expected": {"departure_city": "北京", "budget": 20000.0, "num_travelers": 3, "travel_style": "comfort", "start_date": "2026-10-01", "end_date": "2026-10-06", "duration_days": 5, "interests": ["历史"]}
+  },
+  {
+    "id": "iso_budget_trip",
+    "text": "上海出发，预算8000元，1人，穷游，2026-11-01到2026-11-04，想吃美食。",
+    "expected": {"departure_city": "上海", "budget": 8000.0, "num_travelers": 1, "travel_style": "budget", "start_date": "2026-11-01", "end_date": "2026-11-04", "duration_days": 3, "interests": ["美食"]}
+  },
+  {
+    "id": "relative_tomorrow",
+    "text": "明天从深圳出发玩三天，预算1.5万，两个人，休闲游，想去海边。",
+    "expected": {"departure_city": "深圳", "budget": 15000.0, "num_travelers": 2, "travel_style": "relaxation", "start_date": "2026-09-25", "end_date": "2026-09-28", "duration_days": 3, "interests": ["海滩"]}
+  },
+  {
+    "id": "relative_after_tomorrow",
+    "text": "后天从广州出发玩2天，预算6000，2位，经济游。",
+    "expected": {"departure_city": "广州", "budget": 6000.0, "num_travelers": 2, "travel_style": "budget", "start_date": "2026-09-26", "end_date": "2026-09-28", "duration_days": 2}
+  },
+  {
+    "id": "luxury",
+    "text": "从成都出发，预算三万，夫妻二人，豪华游，2026年12月1日到2026年12月5日。",
+    "expected": {"departure_city": "成都", "budget": 30000.0, "num_travelers": 2, "travel_style": "luxury", "duration_days": 4}
+  },
+  {
+    "id": "adventure",
+    "text": "从杭州出发，预算一万五千，4人，探险游，2027年1月2日到2027年1月7日，喜欢徒步。",
+    "expected": {"departure_city": "杭州", "budget": 15000.0, "num_travelers": 4, "travel_style": "adventure", "interests": ["户外"]}
+  },
+  {
+    "id": "cultural",
+    "text": "出发地是南京，预算12000块，三位，文化游，2026-10-10至2026-10-14，想看博物馆和历史。",
+    "expected": {"departure_city": "南京", "budget": 12000.0, "num_travelers": 3, "travel_style": "cultural", "interests": ["历史", "博物馆"]}
+  },
+  {
+    "id": "fast_pace",
+    "text": "从武汉出发，特种兵行程，预算9000，两人。",
+    "expected": {"departure_city": "武汉", "budget": 9000.0, "num_travelers": 2, "pace": "packed"}
+  },
+  {
+    "id": "balanced_pace",
+    "text": "从西安出发，预算一万，节奏适中，3人。",
+    "expected": {"departure_city": "西安", "budget": 10000.0, "num_travelers": 3, "pace": "balanced"}
+  },
+  {
+    "id": "photo_only",
+    "text": "喜欢摄影，预算5000。",
+    "expected": {"budget": 5000.0, "interests": ["摄影"]}
+  },
+  {
+    "id": "food_only",
+    "text": "预算八千，想找好吃的和小吃。",
+    "expected": {"budget": 8000.0, "interests": ["美食"]}
+  },
+  {
+    "id": "art_shopping",
+    "text": "从苏州出发，喜欢艺术、画展和购物。",
+    "expected": {"departure_city": "苏州", "interests": ["艺术", "购物"]}
+  },
+  {
+    "id": "nature_camping",
+    "text": "重庆出发，喜欢自然、森林和露营。",
+    "expected": {"departure_city": "重庆", "interests": ["自然", "户外"]}
+  },
+  {
+    "id": "family",
+    "text": "从天津出发，一家三口，预算两万，亲子游想带孩子。",
+    "expected": {"departure_city": "天津", "budget": 20000.0, "num_travelers": 3, "interests": ["亲子"]}
+  },
+  {
+    "id": "no_interest",
+    "text": "从厦门出发，预算一万，2人，没有特别兴趣。",
+    "expected": {"departure_city": "厦门", "budget": 10000.0, "num_travelers": 2, "interests": []}
+  },
+  {
+    "id": "single_date_duration",
+    "text": "2026年10月20日从青岛出发，玩四天，预算一万五，两人，舒适游。",
+    "expected": {"departure_city": "青岛", "start_date": "2026-10-20", "end_date": "2026-10-24", "duration_days": 4, "budget": 15000.0, "num_travelers": 2, "travel_style": "comfort"}
+  },
+  {
+    "id": "return_and_duration",
+    "text": "2026年12月10日返回，玩五天，从长沙出发，预算一万，1人，经济游。",
+    "expected": {"departure_city": "长沙", "start_date": "2026-12-05", "end_date": "2026-12-10", "duration_days": 5, "budget": 10000.0, "num_travelers": 1, "travel_style": "budget"}
+  },
+  {
+    "id": "relaxed",
+    "text": "从郑州出发，不赶行程，预算7000，2人。",
+    "expected": {"departure_city": "郑州", "budget": 7000.0, "num_travelers": 2, "pace": "relaxed"}
+  },
+  {
+    "id": "hong_kong",
+    "text": "从香港出发，预算两万，2人，度假型，喜欢购物。",
+    "expected": {"departure_city": "香港", "budget": 20000.0, "num_travelers": 2, "travel_style": "relaxation", "interests": ["购物"]}
+  },
+  {
+    "id": "macau",
+    "text": "澳门出发，预算15000，二人，人文游，喜欢历史。",
+    "expected": {"departure_city": "澳门", "budget": 15000.0, "num_travelers": 2, "travel_style": "cultural", "interests": ["历史"]}
+  },
+  {
+    "id": "budget_colloquial",
+    "text": "从北京出发，预算一万五左右。",
+    "expected": {"departure_city": "北京", "budget": 15000.0}
+  },
+  {
+    "id": "budget_decimal",
+    "text": "从上海出发，预算2.5万。",
+    "expected": {"departure_city": "上海", "budget": 25000.0}
+  },
+  {
+    "id": "one_person",
+    "text": "我一个人从成都出发，预算5000，省钱游。",
+    "expected": {"departure_city": "成都", "budget": 5000.0, "num_travelers": 1, "travel_style": "budget"}
+  },
+  {
+    "id": "six_people",
+    "text": "从广州出发，6人，预算三万，舒适型。",
+    "expected": {"departure_city": "广州", "budget": 30000.0, "num_travelers": 6, "travel_style": "comfort"}
+  },
+  {
+    "id": "photo_food_history",
+    "text": "喜欢旅拍、餐厅和古迹。",
+    "expected": {"interests": ["摄影", "美食", "历史"]}
+  },
+  {
+    "id": "beach_relax",
+    "text": "从深圳出发，想去沙滩，悠闲一点，预算一万。",
+    "expected": {"departure_city": "深圳", "budget": 10000.0, "pace": "relaxed", "interests": ["海滩"]}
+  },
+  {
+    "id": "museum",
+    "text": "从南京出发，想逛博物馆，预算9000。",
+    "expected": {"departure_city": "南京", "budget": 9000.0, "interests": ["博物馆"]}
+  },
+  {
+    "id": "exact_two_day",
+    "text": "从杭州出发，2026-11-20到2026-11-22，预算6000，2人，经济游。",
+    "expected": {"departure_city": "杭州", "start_date": "2026-11-20", "end_date": "2026-11-22", "duration_days": 2}
+  },
+  {
+    "id": "today",
+    "text": "今天从北京出发玩一天，预算3000，一个人，穷游。",
+    "expected": {"start_date": "2026-09-24", "end_date": "2026-09-25", "duration_days": 1, "budget": 3000.0, "num_travelers": 1}
+  },
+  {
+    "id": "unknown_text",
+    "text": "最近有点想出去转转。",
+    "expected": {}
+  },
+  {
+    "id": "friends_unknown_count",
+    "text": "想和朋友从上海出去玩。",
+    "expected": {"departure_city": "上海"}
+  },
+  {
+    "id": "holiday_ambiguous",
+    "text": "春节从北京出发，预算一万，舒适游。",
+    "expected": {"departure_city": "北京", "budget": 10000.0, "travel_style": "comfort"}
+  },
+  {
+    "id": "shopping_fast",
+    "text": "从上海出发，行程快一点，喜欢逛街，预算12000，2人。",
+    "expected": {"departure_city": "上海", "budget": 12000.0, "num_travelers": 2, "pace": "packed", "interests": ["购物"]}
+  },
+  {
+    "id": "luxury_art",
+    "text": "北京出发，高端游，预算五万，两位，喜欢美术馆。",
+    "expected": {"departure_city": "北京", "budget": 50000.0, "num_travelers": 2, "travel_style": "luxury", "interests": ["艺术"]}
+  },
+  {
+    "id": "explicit_empty_interest",
+    "text": "从武汉出发，预算8000，2人，都可以。",
+    "expected": {"departure_city": "武汉", "budget": 8000.0, "num_travelers": 2, "interests": []}
+  }
+]

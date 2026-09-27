@@ -1,5 +1,6 @@
 # Python
 __pycache__/
+.pytest_cache/
 *.py[cod]
 *$py.class
 *.so
@@ -26,6 +27,7 @@ pip-delete-this-directory.txt
 .venv/
 venv/
 ENV/
+node_modules/
 
 # Java
 *.class
@@ -69,6 +71,10 @@ data/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local recovery archives and test/browser scratch data
+.stage-backups/
+.test-tmp/
 
 # Go binary
 golang/bin/

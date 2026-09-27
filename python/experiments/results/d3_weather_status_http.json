@@ -1,0 +1,103 @@
+{
+  "endpoint_mode": "explicitly_enabled_fixed_mock_acceptance_only",
+  "records": {
+    "sunny": {
+      "http_status": 200,
+      "planning_state": "completed",
+      "weather_planning_status": "ready",
+      "fallback_used": false,
+      "activity_candidate_ids": [
+        "activity_b7ef1a8a0a753e19",
+        "activity_20391fe699730db7",
+        "activity_cb24da2b15fb727d"
+      ],
+      "final_total_cost": 1550.0,
+      "business_issues": [],
+      "agent_failures": []
+    },
+    "rainy": {
+      "http_status": 200,
+      "planning_state": "completed",
+      "weather_planning_status": "ready",
+      "fallback_used": false,
+      "activity_candidate_ids": [
+        "activity_c00fc07e17c81247",
+        "activity_29e41a4dc2f97fe4",
+        "activity_59bf9bf2ce8c8d62"
+      ],
+      "final_total_cost": 1910.0,
+      "business_issues": [],
+      "agent_failures": []
+    },
+    "unavailable": {
+      "http_status": 200,
+      "planning_state": "completed",
+      "weather_planning_status": "unavailable",
+      "fallback_used": true,
+      "activity_candidate_ids": [
+        "activity_b7ef1a8a0a753e19",
+        "activity_20391fe699730db7",
+        "activity_cb24da2b15fb727d",
+        "activity_b7ef1a8a0a753e19",
+        "activity_20391fe699730db7",
+        "activity_cb24da2b15fb727d"
+      ],
+      "final_total_cost": 2100.0,
+      "business_issues": [],
+      "agent_failures": []
+    },
+    "no_feasible_activity": {
+      "http_status": 200,
+      "planning_state": "activity_constraints_unsatisfied",
+      "weather_planning_status": "ready",
+      "fallback_used": false,
+      "activity_candidate_ids": [],
+      "final_total_cost": null,
+      "business_issues": [
+        "该时间段没有满足天气硬约束的真实候选，未编造活动。",
+        "该时间段没有满足天气硬约束的真实候选，未编造活动。",
+        "该时间段没有满足天气硬约束的真实候选，未编造活动。"
+      ],
+      "agent_failures": []
+    },
+    "provider_timeout": {
+      "http_status": 200,
+      "planning_state": "completed",
+      "weather_planning_status": "degraded_timeout",
+      "fallback_used": true,
+      "activity_candidate_ids": [
+        "activity_b7ef1a8a0a753e19",
+        "activity_20391fe699730db7",
+        "activity_cb24da2b15fb727d"
+      ],
+      "final_total_cost": 1550.0,
+      "business_issues": [],
+      "agent_failures": []
+    },
+    "agent_failure": {
+      "http_status": 200,
+      "planning_state": "failed",
+      "weather_planning_status": "ready",
+      "fallback_used": false,
+      "activity_candidate_ids": [],
+      "final_total_cost": null,
+      "business_issues": [],
+      "agent_failures": [
+        {
+          "agent": "FlightAgent",
+          "code": "agent_execution_error",
+          "error_type": "RuntimeError",
+          "reason": "B3 controlled demo flight provider failure",
+          "required": true
+        }
+      ]
+    }
+  },
+  "assertions": {
+    "sunny_rainy_choices_differ": true,
+    "unavailable_is_not_sunny": true,
+    "timeout_is_explicit_degradation": true,
+    "no_feasible_is_business_state": true,
+    "agent_failure_is_failed": true
+  }
+}

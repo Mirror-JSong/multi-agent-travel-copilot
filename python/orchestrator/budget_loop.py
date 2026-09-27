@@ -1,58 +1,123 @@
-"""
-预算循环控制器 —— 反复执行"并行搜索 → 预算校验"直到预算通过或达到上限。
-
-面试考点（高频!!!）:
-  - 循环终止条件: ① 预算通过 ② 达到最大调整次数 ③ 出现不可恢复错误
-  - 为什么不无限循环？ → 用户体验差、Token 消耗大、可能陷入震荡
-  - 渐进式降级: 第 1 轮砍活动 → 第 2 轮降酒店 → 第 3 轮换航班
-  - 与 LangGraph 的对应: 本质上是 conditional_edge + cycle，状态机的 ADJUSTING 节点
-"""
+"""Cumulative budget loop using one fixed candidate snapshot."""
 
 from __future__ import annotations
 
 from loguru import logger
 
+from agents.base_agent import record_agent_failure
 from agents.budget_agent import BudgetAgent
 from config.settings import settings
-from models.schemas import PlanningState, TravelPlanState
+from models.schemas import FailureCode, PlanningState, TravelPlanState
 
+from .budget_optimizer import (
+    BudgetOptimizer,
+    capture_candidate_snapshot,
+    capture_initial_selection,
+)
 from .parallel import ParallelExecutor
 
 
 class BudgetLoopController:
-    """执行"并行搜索 + 预算校验"循环，最多 max_retries 轮。"""
+    """Search once, then reselect activities, hotel, and flights cumulatively."""
 
     def __init__(
         self,
-        parallel_executor: ParallelExecutor,
+        parallel_executor: ParallelExecutor | None,
         budget_agent: BudgetAgent | None = None,
         max_retries: int | None = None,
-    ):
+        optimizer: BudgetOptimizer | None = None,
+    ) -> None:
         self.parallel_executor = parallel_executor
         self.budget_agent = budget_agent or BudgetAgent()
-        self.max_retries = max_retries or settings.BUDGET_MAX_RETRIES
+        configured_retries = (
+            max_retries if max_retries is not None else settings.BUDGET_MAX_RETRIES
+        )
+        self.max_retries = max(
+            0,
+            min(configured_retries, len(BudgetOptimizer.targets)),
+        )
+        self.optimizer = optimizer or BudgetOptimizer()
 
     async def run(self, state: TravelPlanState) -> TravelPlanState:
         state.max_adjustments = self.max_retries
+        state.adjustment_round = 0
+        state.adjustment_history = []
+        if self.parallel_executor is not None:
+            logger.info("[BudgetLoop] initial provider search and recommendation")
+            state = await self.parallel_executor.run(state)
+            if state.state == PlanningState.FAILED:
+                logger.error("[BudgetLoop] required agent failed; stop before budget evaluation")
+                return state
+        else:
+            logger.info("[BudgetLoop] using provider results supplied by Pipeline")
 
-        for attempt in range(self.max_retries + 1):
-            label = "初始搜索" if attempt == 0 else f"第 {attempt} 轮调整"
-            logger.info(f"[BudgetLoop] ── {label} ──")
+        if state.state in {
+            PlanningState.ACTIVITY_CONSTRAINTS_UNSATISFIED,
+            PlanningState.PACE_CONSTRAINTS_UNSATISFIED,
+        }:
+            return state
 
-            if attempt == 0 or state.state == PlanningState.ADJUSTING:
-                state = await self.parallel_executor.run(state)
+        state.state = PlanningState.BUDGET_CHECKING
+        state = await self.budget_agent.run(state)
+        if state.state == PlanningState.FAILED:
+            return state
+
+        try:
+            state.candidate_snapshot = capture_candidate_snapshot(state)
+            state.initial_selection = capture_initial_selection(state)
+            state.initial_total_cost = state.initial_selection.total_cost
+            state.final_total_cost = state.initial_selection.total_cost
+        except Exception as exc:
+            record_agent_failure(
+                state,
+                agent_name="BudgetOptimizer",
+                code=FailureCode.AGENT_EXECUTION_ERROR,
+                error_type=type(exc).__name__,
+                reason=str(exc) or "failed to capture candidate snapshot",
+                required=True,
+            )
+            return state
+
+        if state.state == PlanningState.COMPLETED:
+            logger.info("[BudgetLoop] initial recommendation already satisfies budget")
+            return state
+
+        targets = self.optimizer.targets[: self.max_retries]
+        for round_number, target in enumerate(targets, start=1):
+            state.adjustment_round = round_number
+            state.state = PlanningState.ADJUSTING
+            logger.info(
+                f"[BudgetLoop] round {round_number}: reselect {target.value} from snapshot"
+            )
+            try:
+                history = self.optimizer.apply(state, target, round_number)
+            except Exception as exc:
+                record_agent_failure(
+                    state,
+                    agent_name="BudgetOptimizer",
+                    code=FailureCode.AGENT_EXECUTION_ERROR,
+                    error_type=type(exc).__name__,
+                    reason=str(exc) or f"failed to optimize {target.value}",
+                    required=True,
+                )
+                return state
+            state.adjustment_history.append(history)
 
             state.state = PlanningState.BUDGET_CHECKING
             state = await self.budget_agent.run(state)
-
-            if state.state == PlanningState.COMPLETED:
-                logger.info(f"[BudgetLoop] 在第 {attempt} 轮完成 (共尝试 {attempt + 1} 次)")
+            if state.state in (PlanningState.COMPLETED, PlanningState.FAILED):
                 return state
 
-            if state.state == PlanningState.FAILED:
-                logger.error("[BudgetLoop] 规划失败，退出循环")
-                return state
-
-        logger.warning(f"[BudgetLoop] 达到最大重试次数 {self.max_retries}")
-        state.state = PlanningState.COMPLETED
+        assert state.budget_breakdown is not None
+        state.state = PlanningState.BUDGET_INFEASIBLE
+        state.final_total_cost = state.budget_breakdown.total_cost
+        state.status_message = (
+            "Planning completed, but the current staged search strategy did not find "
+            f"an eligible budget-compliant plan after {state.adjustment_round} adjustment rounds."
+        )
+        state.error_messages.append(state.status_message)
+        logger.warning(
+            f"[BudgetLoop] budget infeasible: total={state.final_total_cost:.2f}, "
+            f"budget={state.preferences.budget:.2f}"
+        )
         return state

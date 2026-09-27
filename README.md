@@ -6,12 +6,14 @@
 
 ## 这个项目是什么？
 
-这是一个 **6个AI Agent协作** 的智能旅游行程规划系统。你输入预算、出发城市、日期、旅行风格，系统自动帮你规划完整行程——包括目的地推荐、航班比价、酒店匹配、每日活动安排，并且自动控制预算。
+Python 主力版本当前是一个 **7 Agent、Mock First** 的智能旅游规划 MVP。用户既可填写结构化表单，也可用中文自然语言经过多轮澄清和签名确认；系统随后完成目的地、航班、酒店、天气感知活动与预算规划。
 
 **核心亮点**:
-- 6个Agent各司其职，通过 Pipeline + 并行 + 预算循环 协作
-- 航班/酒店/活动 **三Agent并行搜索**，延迟降低67%
-- 超预算自动触发 **渐进式降级循环**（最多3轮调整）
+- 7 个 Agent 各司其职，通过 Pipeline + 并行 + 累积式预算循环协作
+- 航班、酒店、天气并行；活动必须等待天气结果或明确回退状态
+- `relaxed / balanced / packed / 未指定` 旅行节奏进入正式规划；未指定保持旧三时段行为
+- 超预算按活动、酒店、航班顺序从固定候选快照重选，不修改候选原价
+- 所有航班、酒店、活动、天气、时长、强度和价格均为明确标记的确定性 Mock 数据
 - **Python + Java + Go** 三语言完整实现
 - 配套 **面试全套资料**（八股文 + STAR法则 + 面试QA + 架构讲解）
 
@@ -29,6 +31,12 @@
 | **面试QA** | [docs/03-面试QA.md](docs/03-面试QA.md) | 34道常见面试题 |
 | **架构设计** | [docs/04-架构设计详解.md](docs/04-架构设计详解.md) | 架构图 + 设计决策 |
 | **代码讲解** | [docs/05-代码讲解.md](docs/05-代码讲解.md) | 逐模块代码详解 |
+| **最终 PRD** | [docs/25-Multi-Agent-Travel-Copilot最终PRD.md](docs/25-Multi-Agent-Travel-Copilot最终PRD.md) | 已实现范围、状态与后续路线 |
+| **架构与复现** | [docs/26-最终系统架构API与复现指南.md](docs/26-最终系统架构API与复现指南.md) | API、数据流、启动与实验复现 |
+| **AI PM 作品集** | [docs/27-AI产品经理求职作品集.md](docs/27-AI产品经理求职作品集.md) | 产品决策、实验、边界与复盘 |
+| **简历与演示** | [docs/28-AI产品经理简历项目经历与演示脚本.md](docs/28-AI产品经理简历项目经历与演示脚本.md) | 精简经历和 3～5 分钟脚本 |
+| **D3 最终验收** | [docs/29-阶段D3最终产品验收报告.md](docs/29-阶段D3最终产品验收报告.md) | 技术、浏览器、实验与待办结论 |
+| **Classic UI 验收** | [docs/30-ClassicUI前端改造验收报告.md](docs/30-ClassicUI前端改造验收报告.md) | 原版布局复用、双方案、天气与备注澄清验收 |
 
 ---
 
@@ -52,13 +60,14 @@
         ├──────────────────┬──────────────────┐
         ▼                  ▼                  ▼
 ┌──────────────┐  ┌──────────────┐  ┌──────────────┐
-│ Flight Agent │  │ Hotel Agent  │  │ Activity     │  ← 三个Agent并行执行
-│ (航班搜索)    │  │ (酒店搜索)    │  │ Agent(活动)  │
+│ Flight Agent │  │ Hotel Agent  │  │ Weather Agent│  ← 三者并行
 └──────┬───────┘  └──────┬───────┘  └──────┬───────┘
-       │                 │                 │
        └─────────────────┼─────────────────┘
-                         │
                          ▼
+               ┌────────────────┐
+               │ Activity Agent │  天气 + 兴趣 + pace 硬约束后确定性选择
+               └───────┬────────┘
+                       ▼
                ┌────────────────┐
                │ Budget Agent   │  预算校验
                └───────┬────────┘
@@ -68,8 +77,7 @@
              通过？         超预算？
                 │             │
                 ▼             ▼
-            输出行程     调整方案 → 回到并行搜索
-                        (最多3轮)
+            输出行程     固定候选重选（活动→酒店→航班）
 ```
 
 **编排模式**: Pipeline（串行）+ 并行（asyncio.gather）+ 预算循环（while loop）
@@ -101,15 +109,41 @@ python main.py
 # 4. 自定义参数
 python main.py --budget 15000 --departure 上海 --start 2026-06-01 --end 2026-06-07 --style luxury --travelers 2
 
-# 5. 启动 API 服务
-python -m api.app
+# 5. 启动 FastAPI（终端 1）
+python -m uvicorn api.app:app --host 127.0.0.1 --port 8000
 
-# 6. 启动 Streamlit 前端
-streamlit run ui/streamlit_app.py
+# 6. 启动正式 Classic UI（终端 2，默认网页：http://127.0.0.1:8785）
+python -m streamlit run ui/streamlit_classic_app.py --server.address 127.0.0.1 --server.port 8785
+
+# 可选：启动保留的 D2/D3 五步工作台（备选界面：http://127.0.0.1:8501）
+python -m streamlit run ui/streamlit_app.py --server.address 127.0.0.1 --server.port 8501
 
 # 7. 运行测试
 python -m pytest tests/ -v
 ```
+
+Windows PowerShell 如果系统 `python` 没有安装 Streamlit，可直接使用当前已验收的
+`travel-agent` 环境解释器，并分别在两个终端运行：
+
+```powershell
+# 终端 1：FastAPI
+cd E:\Files\Documents\002_Mirror\AI\multi-agent-travel-planner\python
+$TravelPython = "D:\AUSTstudy\anaconda\envs\travel-agent\python.exe"
+& $TravelPython -m uvicorn api.app:app --host 127.0.0.1 --port 8000
+```
+
+```powershell
+# 终端 2：正式 Classic UI
+cd E:\Files\Documents\002_Mirror\AI\multi-agent-travel-planner\python
+$TravelPython = "D:\AUSTstudy\anaconda\envs\travel-agent\python.exe"
+$env:TRAVEL_API_BASE_URL = "http://127.0.0.1:8000"
+& $TravelPython -m streamlit run ui/streamlit_classic_app.py --server.address 127.0.0.1 --server.port 8785
+```
+
+Classic UI 是正式默认网页，保留原版左右分栏、航班/酒店/行程/预算标签，并接入自然语言
+澄清、天气感知活动、预算优化和双方案比较。`ui/streamlit_app.py` 的 D2/D3 五步工作台继续
+作为备选界面保留。两套界面使用同一个正式 FastAPI 后端；当前 Parser、航班、酒店、活动和
+天气数据仍为确定性 Mock，不是实时 LLM、实时价格、库存或天气预报。
 
 ### Java 版本
 
@@ -202,13 +236,14 @@ curl -X POST http://localhost:8080/api/plan \
 │   ├── requirements.txt
 │   ├── config/settings.py       ← 配置管理
 │   ├── models/schemas.py        ← Pydantic 数据模型
-│   ├── agents/                  ← 6个 Agent
+│   ├── agents/                  ← 7 个 Agent
 │   │   ├── base_agent.py        ← Agent 基类（模板方法模式）
 │   │   ├── preference_agent.py  ← 偏好收集
 │   │   ├── destination_agent.py ← 目的地推荐
 │   │   ├── flight_agent.py      ← 航班搜索
 │   │   ├── hotel_agent.py       ← 酒店搜索
 │   │   ├── activity_agent.py    ← 活动推荐
+│   │   ├── weather_agent.py     ← 天气获取与可用性契约
 │   │   └── budget_agent.py      ← 预算校验
 │   ├── orchestrator/            ← 编排层
 │   │   ├── pipeline.py          ← Pipeline 编排器
@@ -216,7 +251,8 @@ curl -X POST http://localhost:8080/api/plan \
 │   │   └── budget_loop.py       ← 预算循环控制
 │   ├── tools/                   ← Mock 搜索工具
 │   ├── api/app.py               ← FastAPI 后端
-│   ├── ui/streamlit_app.py      ← Streamlit 前端
+│   ├── ui/streamlit_classic_app.py ← 正式默认 Classic UI
+│   ├── ui/streamlit_app.py      ← 备选 D2/D3 五步工作台
 │   └── tests/test_agents.py     ← 10个单元测试
 │
 ├── java/                        ← Java Spring Boot 实现
@@ -243,7 +279,7 @@ curl -X POST http://localhost:8080/api/plan \
 
 ---
 
-## 6个Agent详解
+## 7 个 Agent 详解
 
 | # | Agent | 职责 | 输入 | 输出 | 面试重点 |
 |---|-------|------|------|------|---------|
@@ -251,8 +287,9 @@ curl -X POST http://localhost:8080/api/plan \
 | 2 | **Destination** | 推荐目的地 | UserPreferences | Top3 城市 + 推荐理由 | 多维度评分算法设计 |
 | 3 | **Flight** | 航班搜索比价 | 出发城市+目的地+日期 | 航班列表 + 推荐航班 | 并行执行、评分函数 |
 | 4 | **Hotel** | 酒店匹配 | 目的地+入住日期+风格 | 酒店列表 + 推荐酒店 | 风格匹配、房间数计算 |
-| 5 | **Activity** | 生成每日行程 | 目的地+天数+兴趣 | 每日活动计划 | 时间槽分配算法 |
-| 6 | **Budget** | 预算校验与调整 | 所有费用汇总 | 预算明细 + 调整建议 | **渐进式降级循环** |
+| 5 | **Weather** | 提供逐日 Mock 天气 | 目的地+活动日期 | 天气结果/明确不可用状态 | 确定性与降级边界 |
+| 6 | **Activity** | 生成每日行程 | 目的地+兴趣+天气+pace | 活动或显式休息时段 | 天气/节奏硬约束 |
+| 7 | **Budget** | 预算校验与调整 | 所有费用汇总 | 预算明细 + 调整历史 | **候选重选闭环** |
 
 ---
 
@@ -318,6 +355,7 @@ curl -X POST http://localhost:8080/api/plan \
   "start_date": "2026-05-01",
   "end_date": "2026-05-05",
   "travel_style": "comfort",
+  "pace": "relaxed",
   "num_travelers": 1,
   "interests": ["美食", "历史"],
   "notes": ""
@@ -345,8 +383,21 @@ curl -X POST http://localhost:8080/api/plan \
 ### GET /api/health
 
 ```json
-{"status": "ok", "service": "travel-planner", "agents": 6}
+{"status": "ok", "service": "travel-planner", "agents": 7}
 ```
+
+### 双方案比较（Python）
+
+- `POST /api/plans/compare`：结构化 `UserPreferences` → 两套独立方案 → 四维评价与解释。
+- `POST /api/preferences/compare`：验证已签名、完整且显式确认的偏好草稿后执行同一比较服务。
+
+响应保留每套方案各自的业务状态、费用、天气、pace、预算调整历史，以及服务端生成的
+`recommended`、`tie`、`only_feasible` 或 `no_recommendation`。HTTP 200 只表示请求被
+处理，不表示两个旅行方案都成功。当前所有旅行候选、天气、活动时长及强度均为带版本
+标识的确定性 Mock 数据，不是实时价格、库存或预报。
+
+Streamlit 同时保留单方案入口，并在自然语言和结构化模式下提供双方案比较。完整契约、
+实验方法和限制见 [Python README](python/README.md) 与阶段 C 最终验收报告。
 
 ---
 
@@ -364,7 +415,7 @@ export LLM_API_KEY=your-api-key
 
 ### Q: 数据是真实的吗？
 
-Mock 模式下的航班/酒店/活动数据是模拟的，但数据结构和业务逻辑与真实场景一致。
+Mock 模式下的航班、酒店、活动、天气、活动时长和强度均为模拟数据。它们用于验证数据契约与规则，不代表真实市场价格、真实预报或景点实测属性。
 在面试中可以说："系统架构支持接入真实 API（Amadeus/Booking/Google Places），
 当前使用 Mock 数据方便演示和测试。"
 

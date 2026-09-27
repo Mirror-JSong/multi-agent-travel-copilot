@@ -1,0 +1,44 @@
+{
+  "experiment_version": "pace-c0-v1",
+  "activity_dataset_version": "pace-activity-fixture-v1",
+  "weather_source_version": "pace-weather-fixture-v1",
+  "date_semantics": "start inclusive, end exclusive",
+  "base_preferences": {
+    "budget": 50000.0,
+    "departure_city": "北京",
+    "start_date": "2026-10-01",
+    "end_date": "2026-10-03",
+    "num_travelers": 1,
+    "travel_style": "comfort",
+    "interests": ["历史"]
+  },
+  "candidate_templates": [
+    {"candidate_id": "pace_morning_low", "name": "历史室内慢游-上午", "time_slot": "morning", "duration_hours": 2.0, "intensity": "low", "price": 140.0, "rating": 8.0, "environment": "indoor", "weather_sensitivity": "low"},
+    {"candidate_id": "pace_morning_medium", "name": "历史均衡参观-上午", "time_slot": "morning", "duration_hours": 2.5, "intensity": "medium", "price": 100.0, "rating": 9.5, "environment": "indoor", "weather_sensitivity": "low"},
+    {"candidate_id": "pace_morning_high", "name": "历史户外挑战-上午", "time_slot": "morning", "duration_hours": 3.0, "intensity": "high", "price": 60.0, "rating": 7.8, "environment": "outdoor", "weather_sensitivity": "high"},
+    {"candidate_id": "pace_afternoon_low", "name": "历史室内慢游-下午", "time_slot": "afternoon", "duration_hours": 2.0, "intensity": "low", "price": 140.0, "rating": 8.0, "environment": "indoor", "weather_sensitivity": "low"},
+    {"candidate_id": "pace_afternoon_medium", "name": "历史均衡参观-下午", "time_slot": "afternoon", "duration_hours": 2.5, "intensity": "medium", "price": 100.0, "rating": 9.5, "environment": "indoor", "weather_sensitivity": "low"},
+    {"candidate_id": "pace_afternoon_high", "name": "历史户外挑战-下午", "time_slot": "afternoon", "duration_hours": 3.0, "intensity": "high", "price": 60.0, "rating": 7.8, "environment": "outdoor", "weather_sensitivity": "high"},
+    {"candidate_id": "pace_evening_low", "name": "历史室内慢游-晚间", "time_slot": "evening", "duration_hours": 2.0, "intensity": "low", "price": 140.0, "rating": 8.0, "environment": "indoor", "weather_sensitivity": "low"},
+    {"candidate_id": "pace_evening_medium", "name": "历史均衡参观-晚间", "time_slot": "evening", "duration_hours": 2.5, "intensity": "medium", "price": 100.0, "rating": 9.5, "environment": "indoor", "weather_sensitivity": "low"},
+    {"candidate_id": "pace_evening_high", "name": "历史户外挑战-晚间", "time_slot": "evening", "duration_hours": 3.0, "intensity": "high", "price": 60.0, "rating": 7.8, "environment": "outdoor", "weather_sensitivity": "high"}
+  ],
+  "scenarios": [
+    {"id": "legacy_unspecified_sunny", "pace": null, "weather": "sunny", "fixture_variant": "standard", "budget": 50000.0},
+    {"id": "relaxed_sunny", "pace": "relaxed", "weather": "sunny", "fixture_variant": "standard", "budget": 50000.0},
+    {"id": "balanced_sunny", "pace": "balanced", "weather": "sunny", "fixture_variant": "standard", "budget": 50000.0},
+    {"id": "packed_sunny", "pace": "packed", "weather": "sunny", "fixture_variant": "standard", "budget": 50000.0},
+    {"id": "relaxed_rainy", "pace": "relaxed", "weather": "rainy", "fixture_variant": "standard", "budget": 50000.0},
+    {"id": "relaxed_rainy_low_budget", "pace": "relaxed", "weather": "rainy", "fixture_variant": "standard", "budget": 100.0},
+    {"id": "packed_rainy", "pace": "packed", "weather": "rainy", "fixture_variant": "standard", "budget": 50000.0},
+    {"id": "relaxed_unknown_attributes", "pace": "relaxed", "weather": "sunny", "fixture_variant": "unknown_only", "budget": 50000.0},
+    {"id": "balanced_missing_evening", "pace": "balanced", "weather": "sunny", "fixture_variant": "missing_evening", "budget": 50000.0},
+    {"id": "relaxed_high_only", "pace": "relaxed", "weather": "sunny", "fixture_variant": "high_only", "budget": 50000.0},
+    {"id": "relaxed_weather_unavailable", "pace": "relaxed", "weather": "unavailable", "fixture_variant": "standard", "budget": 50000.0}
+  ],
+  "limitations": [
+    "这是确定性规则实验，不是用户舒适度测量。",
+    "活动时长和强度为明确标记的 Mock 属性，不代表真实景点实测数据。",
+    "packed 仅使用现有 morning/afternoon/evening 三时段容量，不宣称增加景点数量。"
+  ]
+}

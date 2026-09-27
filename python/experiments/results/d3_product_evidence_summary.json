@@ -1,0 +1,307 @@
+{
+  "evidence_type": "deterministic_mock_automated_experiments",
+  "stage_a": {
+    "scenario_count": 8,
+    "required_field_collection": {
+      "completed": 8,
+      "total": 8,
+      "rate": 1.0
+    },
+    "supported_field_extraction": {
+      "correct": 51,
+      "labeled": 51,
+      "missing": 0,
+      "incorrect": 0,
+      "false_positive_count": 0,
+      "accuracy": 1.0
+    },
+    "clarification_rounds": {
+      "total": 5,
+      "average": 0.625
+    },
+    "interaction_steps": {
+      "natural_total": 34,
+      "structured_total": 61,
+      "natural_average": 4.25,
+      "structured_average": 7.625
+    },
+    "planning_consistency": {
+      "consistent": 8,
+      "total": 8,
+      "rate": 1.0
+    },
+    "exception_recovery": {
+      "successful": 7,
+      "total": 7,
+      "rate": 1.0
+    }
+  },
+  "stage_b": {
+    "scenario_count": 13,
+    "control": {
+      "weather_conflicts": 33,
+      "weather_evaluable_activities": 63,
+      "weather_conflict_rate": 0.5238095238095238,
+      "interest_matches": 63,
+      "interest_samples": 69,
+      "interest_match_rate": 0.9130434782608695,
+      "budget_compliant": 12,
+      "verified_weather_feasible": 1,
+      "operationally_complete": 13,
+      "scenario_count": 13
+    },
+    "treatment": {
+      "weather_conflicts": 0,
+      "weather_evaluable_activities": 60,
+      "weather_conflict_rate": 0.0,
+      "interest_matches": 48,
+      "interest_samples": 66,
+      "interest_match_rate": 0.7272727272727273,
+      "budget_compliant": 11,
+      "verified_weather_feasible": 11,
+      "operationally_complete": 12,
+      "scenario_count": 13
+    },
+    "weather_change_explanation": {
+      "actual_changes": 34,
+      "traceable_changes": 34,
+      "coverage": 1.0
+    },
+    "paired_cost_changes": [
+      {
+        "scenario_id": "sunny_default",
+        "control_final_total": 1550.0,
+        "treatment_final_total": 1550.0,
+        "delta": 0.0,
+        "control_state": "completed",
+        "treatment_state": "completed"
+      },
+      {
+        "scenario_id": "normal_rain_default",
+        "control_final_total": 1550.0,
+        "treatment_final_total": 1910.0,
+        "delta": 360.0,
+        "control_state": "completed",
+        "treatment_state": "completed"
+      },
+      {
+        "scenario_id": "heavy_rain_default",
+        "control_final_total": 1550.0,
+        "treatment_final_total": 1910.0,
+        "delta": 360.0,
+        "control_state": "completed",
+        "treatment_state": "completed"
+      },
+      {
+        "scenario_id": "mixed_tokyo_four_days",
+        "control_final_total": 4200.0,
+        "treatment_final_total": 4900.0,
+        "delta": 700.0,
+        "control_state": "completed",
+        "treatment_state": "completed"
+      },
+      {
+        "scenario_id": "daily_sequence_bangkok",
+        "control_final_total": 6240.0,
+        "treatment_final_total": 6200.0,
+        "delta": -40.0,
+        "control_state": "completed",
+        "treatment_state": "completed"
+      },
+      {
+        "scenario_id": "unavailable_default",
+        "control_final_total": 2100.0,
+        "treatment_final_total": 2100.0,
+        "delta": 0.0,
+        "control_state": "completed",
+        "treatment_state": "completed"
+      },
+      {
+        "scenario_id": "rainy_bangkok_interest",
+        "control_final_total": 1615.0,
+        "treatment_final_total": 1770.0,
+        "delta": 155.0,
+        "control_state": "completed",
+        "treatment_state": "completed"
+      },
+      {
+        "scenario_id": "higher_cost_indoor",
+        "control_final_total": 1500.0,
+        "treatment_final_total": 1800.0,
+        "delta": 300.0,
+        "control_state": "completed",
+        "treatment_state": "completed"
+      },
+      {
+        "scenario_id": "budget_reselect_indoor",
+        "control_final_total": 1503.0,
+        "treatment_final_total": 1530.0,
+        "delta": 27.0,
+        "control_state": "completed",
+        "treatment_state": "completed"
+      },
+      {
+        "scenario_id": "no_cheaper_weather_compliant",
+        "control_final_total": 1503.0,
+        "treatment_final_total": 1440.0,
+        "delta": -63.0,
+        "control_state": "completed",
+        "treatment_state": "completed"
+      },
+      {
+        "scenario_id": "no_feasible_outdoor_only",
+        "control_final_total": 1503.0,
+        "treatment_final_total": null,
+        "delta": null,
+        "control_state": "completed",
+        "treatment_state": "activity_constraints_unsatisfied"
+      },
+      {
+        "scenario_id": "multi_traveler_four_days",
+        "control_final_total": 14800.0,
+        "treatment_final_total": 15100.0,
+        "delta": 300.0,
+        "control_state": "completed",
+        "treatment_state": "completed"
+      },
+      {
+        "scenario_id": "extreme_budget_infeasible",
+        "control_final_total": 1400.0,
+        "treatment_final_total": 2000.0,
+        "delta": 600.0,
+        "control_state": "budget_infeasible",
+        "treatment_state": "budget_infeasible"
+      }
+    ]
+  },
+  "stage_c0_pace": {
+    "scenario_count": 11,
+    "by_pace": {
+      "balanced": {
+        "scenario_count": 2,
+        "average_daily_activity_count": 2.5,
+        "rest_count": 0,
+        "known_high_intensity_rate": 0.0,
+        "interest_match_rate": 1.0,
+        "weather_hard_pass_rate": 1.0,
+        "states": {
+          "activity_constraints_unsatisfied": 1,
+          "completed": 1
+        }
+      },
+      "packed": {
+        "scenario_count": 2,
+        "average_daily_activity_count": 3.0,
+        "rest_count": 0,
+        "known_high_intensity_rate": 0.5,
+        "interest_match_rate": 1.0,
+        "weather_hard_pass_rate": 1.0,
+        "states": {
+          "completed": 2
+        }
+      },
+      "relaxed": {
+        "scenario_count": 6,
+        "average_daily_activity_count": 1.3333333333333333,
+        "rest_count": 20,
+        "known_high_intensity_rate": 0.0,
+        "interest_match_rate": 1.0,
+        "weather_hard_pass_rate": 1.0,
+        "states": {
+          "budget_infeasible": 1,
+          "completed": 3,
+          "pace_constraints_unsatisfied": 2
+        }
+      },
+      "unspecified": {
+        "scenario_count": 1,
+        "average_daily_activity_count": 3.0,
+        "rest_count": 0,
+        "known_high_intensity_rate": 0.0,
+        "interest_match_rate": 1.0,
+        "weather_hard_pass_rate": 1.0,
+        "states": {
+          "completed": 1
+        }
+      }
+    }
+  },
+  "stage_c": {
+    "c2_decisions": {
+      "A_two_completed_tradeoff": "recommended",
+      "B_one_completed_one_budget_infeasible": "only_feasible",
+      "C_missing_weather_and_unspecified_preferences": "no_recommendation"
+    },
+    "weight_sensitivity": {
+      "default_decision": "recommended",
+      "shifted_decision": "tie"
+    },
+    "c3_scenario_count": 7,
+    "two_completed_plans": {
+      "scenarios": 3,
+      "total": 7,
+      "rate": 0.42857142857142855
+    },
+    "evaluation_evidence": {
+      "evidenced": 30,
+      "evaluated": 30,
+      "rate": 1.0
+    },
+    "explanation_consistency": {
+      "consistent": 7,
+      "total": 7,
+      "rate": 1.0
+    },
+    "comparison_state_accuracy": {
+      "correct": 7,
+      "total": 7,
+      "rate": 1.0
+    },
+    "difference_information": {
+      "reported": 24,
+      "defined": 24,
+      "rate": 1.0
+    },
+    "timing_ms": {
+      "control_total": 19.9512,
+      "treatment_total": 113.849,
+      "additional_by_scenario": {
+        "recommended_tradeoff": 13.145,
+        "tie_equal_metrics": 15.6449,
+        "only_feasible_budget": 17.2678,
+        "no_recommendation_missing_weather": 14.7819,
+        "no_recommendation_both_infeasible": 17.7747,
+        "only_feasible_agent_failure": 8.7509,
+        "one_destination_no_fabrication": 6.5326
+      }
+    }
+  },
+  "source_files": {
+    "stage_a": {
+      "path": "experiments\\results\\preference_clarification_results.json",
+      "sha256": "50ecae7ac26cd3e48c0eeadc16e80dddfaf799bd8f43053eff08e81787fe8a8f"
+    },
+    "stage_b": {
+      "path": "experiments\\results\\weather_awareness_results.json",
+      "sha256": "2ad18eb6f989eaea92381c2ba3d7ebd4405b162461bf5097de3041a590e1a60c"
+    },
+    "stage_c0": {
+      "path": "experiments\\results\\pace_planning_results.json",
+      "sha256": "e6089627194bb2b196bb2d66bbc0883185bb51a4d2ec5b54dc183e8fead96719"
+    },
+    "stage_c2": {
+      "path": "experiments\\results\\plan_comparison_c2_results.json",
+      "sha256": "6a2e0a79a9db097846421e3b1a450e79a0a736227769b4dac2298698f9ab0837"
+    },
+    "stage_c3": {
+      "path": "experiments\\results\\comparison_product_c3_results.json",
+      "sha256": "16ea4f4aeb7d0416fec7e4c71164ee8ebb21b6d2950ff6bdbcc879e8b2335a11"
+    }
+  },
+  "claim_boundaries": [
+    "固定 Mock 自动化实验，不等同于真实 LLM 泛化能力。",
+    "HTTP/浏览器功能验收与真人可用性测试是不同证据层级。",
+    "没有真实参与者记录时，不能报告用户满意度、任务耗时或可用性成功率。",
+    "候选、价格、天气和库存均不是实时市场数据。"
+  ]
+}

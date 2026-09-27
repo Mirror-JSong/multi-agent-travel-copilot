@@ -1,0 +1,3475 @@
+{
+  "experiment": "stage-a-structured-vs-clarification",
+  "method": "automated interaction simulation with deterministic Mock Parser and Providers",
+  "reference_date": "2026-09-24",
+  "parser_config": {
+    "provider": "mock",
+    "locale": "zh-CN",
+    "version": "mock-preference-parser-v1"
+  },
+  "scenario_count": 8,
+  "scenario_results": [
+    {
+      "id": "partial_holiday",
+      "information_extraction": {
+        "labeled_fields": 5,
+        "correct": 5,
+        "missing": 0,
+        "incorrect": 0,
+        "false_positive_fields": [],
+        "expected_ambiguous": [
+          "end_date",
+          "start_date"
+        ],
+        "recognized_ambiguous": [
+          "end_date",
+          "start_date"
+        ],
+        "missed_ambiguous": [],
+        "unexpected_ambiguous": [],
+        "comparisons": {
+          "departure_city": {
+            "expected": "上海",
+            "actual": "上海",
+            "correct": true
+          },
+          "budget": {
+            "expected": 15000.0,
+            "actual": 15000.0,
+            "correct": true
+          },
+          "duration_days": {
+            "expected": 5,
+            "actual": 5,
+            "correct": true
+          },
+          "pace": {
+            "expected": "relaxed",
+            "actual": "relaxed",
+            "correct": true
+          },
+          "interests": {
+            "expected": [
+              "摄影",
+              "美食"
+            ],
+            "actual": [
+              "摄影",
+              "美食"
+            ],
+            "correct": true
+          }
+        }
+      },
+      "information_collection": {
+        "initial_complete": false,
+        "final_complete": true,
+        "clarification_rounds": 1,
+        "initial_missing_fields": [
+          "start_date",
+          "end_date",
+          "num_travelers",
+          "travel_style"
+        ],
+        "final_missing_fields": [],
+        "final_fields_match_annotation": true,
+        "natural_interaction_steps": 5,
+        "structured_interaction_steps": 8
+      },
+      "planning": {
+        "natural_http_status": 200,
+        "structured_http_status": 200,
+        "natural_signature": {
+          "status": "completed",
+          "destination": "首尔",
+          "outbound_candidate_id": "flight_379bb9ea43c35b93",
+          "return_candidate_id": "flight_491807211fdf7c75",
+          "hotel_candidate_id": "hotel_38285e9b121ade56",
+          "activity_candidate_ids": [
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62"
+          ],
+          "activity_weather_compatibility": [
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            }
+          ],
+          "weather": {
+            "scenario": "generated",
+            "source": "mock",
+            "source_version": "2026.09-v1",
+            "availability_status": "available",
+            "daily_weather": [
+              {
+                "date": "2026-10-01",
+                "weather_condition": "cloudy",
+                "rain_probability": 36,
+                "temperature": 23.2,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-02",
+                "weather_condition": "sunny",
+                "rain_probability": 38,
+                "temperature": 23.9,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-03",
+                "weather_condition": "cloudy",
+                "rain_probability": 32,
+                "temperature": 22.0,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-04",
+                "weather_condition": "rain",
+                "rain_probability": 30,
+                "temperature": 21.5,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-05",
+                "weather_condition": "rain",
+                "rain_probability": 30,
+                "temperature": 21.3,
+                "severe_weather": false,
+                "availability_status": "available"
+              }
+            ],
+            "planning": {
+              "status": "ready",
+              "fallback_used": false,
+              "issue_code": "",
+              "reason": "确定性 Mock 天气情景 generated；仅用于测试与演示，不是实时天气预报。"
+            },
+            "activity_weather_optimized": true,
+            "activity_weather_fallback_reason": ""
+          },
+          "final_total_cost": 12351.0,
+          "budget_breakdown": {
+            "flight_cost": 5481.0,
+            "hotel_cost": 720.0,
+            "activity_cost": 6150.0,
+            "total_cost": 12351.0,
+            "budget": 15000.0,
+            "remaining": 2649.0,
+            "is_within_budget": true,
+            "over_budget_amount": 0.0,
+            "suggestions": []
+          },
+          "adjustment_history": [
+            {
+              "round_number": 1,
+              "target": "activities",
+              "policy_version": "budget-policy-v1",
+              "before_candidate_ids": [
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62"
+              ],
+              "after_candidate_ids": [
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62"
+              ],
+              "before_cost": 6150.0,
+              "after_cost": 6150.0,
+              "saved_amount": 0.0,
+              "current_total": 17161.0,
+              "budget_remaining": -2161.0,
+              "improved": false,
+              "activity_replacements": []
+            },
+            {
+              "round_number": 2,
+              "target": "hotel",
+              "policy_version": "budget-policy-v1",
+              "before_candidate_ids": [
+                "hotel_57a56b4b90bbecc4"
+              ],
+              "after_candidate_ids": [
+                "hotel_38285e9b121ade56"
+              ],
+              "before_cost": 5530.0,
+              "after_cost": 720.0,
+              "saved_amount": 4810.0,
+              "current_total": 12351.0,
+              "budget_remaining": 2649.0,
+              "improved": true,
+              "activity_replacements": []
+            }
+          ]
+        },
+        "structured_signature": {
+          "status": "completed",
+          "destination": "首尔",
+          "outbound_candidate_id": "flight_379bb9ea43c35b93",
+          "return_candidate_id": "flight_491807211fdf7c75",
+          "hotel_candidate_id": "hotel_38285e9b121ade56",
+          "activity_candidate_ids": [
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62"
+          ],
+          "activity_weather_compatibility": [
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            }
+          ],
+          "weather": {
+            "scenario": "generated",
+            "source": "mock",
+            "source_version": "2026.09-v1",
+            "availability_status": "available",
+            "daily_weather": [
+              {
+                "date": "2026-10-01",
+                "weather_condition": "cloudy",
+                "rain_probability": 36,
+                "temperature": 23.2,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-02",
+                "weather_condition": "sunny",
+                "rain_probability": 38,
+                "temperature": 23.9,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-03",
+                "weather_condition": "cloudy",
+                "rain_probability": 32,
+                "temperature": 22.0,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-04",
+                "weather_condition": "rain",
+                "rain_probability": 30,
+                "temperature": 21.5,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-05",
+                "weather_condition": "rain",
+                "rain_probability": 30,
+                "temperature": 21.3,
+                "severe_weather": false,
+                "availability_status": "available"
+              }
+            ],
+            "planning": {
+              "status": "ready",
+              "fallback_used": false,
+              "issue_code": "",
+              "reason": "确定性 Mock 天气情景 generated；仅用于测试与演示，不是实时天气预报。"
+            },
+            "activity_weather_optimized": true,
+            "activity_weather_fallback_reason": ""
+          },
+          "final_total_cost": 12351.0,
+          "budget_breakdown": {
+            "flight_cost": 5481.0,
+            "hotel_cost": 720.0,
+            "activity_cost": 6150.0,
+            "total_cost": 12351.0,
+            "budget": 15000.0,
+            "remaining": 2649.0,
+            "is_within_budget": true,
+            "over_budget_amount": 0.0,
+            "suggestions": []
+          },
+          "adjustment_history": [
+            {
+              "round_number": 1,
+              "target": "activities",
+              "policy_version": "budget-policy-v1",
+              "before_candidate_ids": [
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62"
+              ],
+              "after_candidate_ids": [
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62"
+              ],
+              "before_cost": 6150.0,
+              "after_cost": 6150.0,
+              "saved_amount": 0.0,
+              "current_total": 17161.0,
+              "budget_remaining": -2161.0,
+              "improved": false,
+              "activity_replacements": []
+            },
+            {
+              "round_number": 2,
+              "target": "hotel",
+              "policy_version": "budget-policy-v1",
+              "before_candidate_ids": [
+                "hotel_57a56b4b90bbecc4"
+              ],
+              "after_candidate_ids": [
+                "hotel_38285e9b121ade56"
+              ],
+              "before_cost": 5530.0,
+              "after_cost": 720.0,
+              "saved_amount": 4810.0,
+              "current_total": 12351.0,
+              "budget_remaining": 2649.0,
+              "improved": true,
+              "activity_replacements": []
+            }
+          ]
+        },
+        "consistent": true
+      },
+      "recovery": {
+        "type": "missing_fields",
+        "success": true
+      }
+    },
+    {
+      "id": "complete_request",
+      "information_extraction": {
+        "labeled_fields": 8,
+        "correct": 8,
+        "missing": 0,
+        "incorrect": 0,
+        "false_positive_fields": [],
+        "expected_ambiguous": [],
+        "recognized_ambiguous": [],
+        "missed_ambiguous": [],
+        "unexpected_ambiguous": [],
+        "comparisons": {
+          "departure_city": {
+            "expected": "北京",
+            "actual": "北京",
+            "correct": true
+          },
+          "budget": {
+            "expected": 50000.0,
+            "actual": 50000.0,
+            "correct": true
+          },
+          "start_date": {
+            "expected": "2026-10-01",
+            "actual": "2026-10-01",
+            "correct": true
+          },
+          "end_date": {
+            "expected": "2026-10-05",
+            "actual": "2026-10-05",
+            "correct": true
+          },
+          "duration_days": {
+            "expected": 4,
+            "actual": 4,
+            "correct": true
+          },
+          "num_travelers": {
+            "expected": 2,
+            "actual": 2,
+            "correct": true
+          },
+          "travel_style": {
+            "expected": "comfort",
+            "actual": "comfort",
+            "correct": true
+          },
+          "interests": {
+            "expected": [
+              "历史"
+            ],
+            "actual": [
+              "历史"
+            ],
+            "correct": true
+          }
+        }
+      },
+      "information_collection": {
+        "initial_complete": true,
+        "final_complete": true,
+        "clarification_rounds": 0,
+        "initial_missing_fields": [],
+        "final_missing_fields": [],
+        "final_fields_match_annotation": true,
+        "natural_interaction_steps": 3,
+        "structured_interaction_steps": 8
+      },
+      "planning": {
+        "natural_http_status": 200,
+        "structured_http_status": 200,
+        "natural_signature": {
+          "status": "completed",
+          "destination": "首尔",
+          "outbound_candidate_id": "flight_d9b90820767f32b6",
+          "return_candidate_id": "flight_abf33f3d44670fe7",
+          "hotel_candidate_id": "hotel_57a56b4b90bbecc4",
+          "activity_candidate_ids": [
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62"
+          ],
+          "activity_weather_compatibility": [
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            }
+          ],
+          "weather": {
+            "scenario": "generated",
+            "source": "mock",
+            "source_version": "2026.09-v1",
+            "availability_status": "available",
+            "daily_weather": [
+              {
+                "date": "2026-10-01",
+                "weather_condition": "cloudy",
+                "rain_probability": 36,
+                "temperature": 23.2,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-02",
+                "weather_condition": "sunny",
+                "rain_probability": 38,
+                "temperature": 23.9,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-03",
+                "weather_condition": "cloudy",
+                "rain_probability": 32,
+                "temperature": 22.0,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-04",
+                "weather_condition": "rain",
+                "rain_probability": 30,
+                "temperature": 21.5,
+                "severe_weather": false,
+                "availability_status": "available"
+              }
+            ],
+            "planning": {
+              "status": "ready",
+              "fallback_used": false,
+              "issue_code": "",
+              "reason": "确定性 Mock 天气情景 generated；仅用于测试与演示，不是实时天气预报。"
+            },
+            "activity_weather_optimized": true,
+            "activity_weather_fallback_reason": ""
+          },
+          "final_total_cost": 8896.0,
+          "budget_breakdown": {
+            "flight_cost": 3576.0,
+            "hotel_cost": 2040.0,
+            "activity_cost": 3280.0,
+            "total_cost": 8896.0,
+            "budget": 50000.0,
+            "remaining": 41104.0,
+            "is_within_budget": true,
+            "over_budget_amount": 0.0,
+            "suggestions": []
+          },
+          "adjustment_history": []
+        },
+        "structured_signature": {
+          "status": "completed",
+          "destination": "首尔",
+          "outbound_candidate_id": "flight_d9b90820767f32b6",
+          "return_candidate_id": "flight_abf33f3d44670fe7",
+          "hotel_candidate_id": "hotel_57a56b4b90bbecc4",
+          "activity_candidate_ids": [
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62"
+          ],
+          "activity_weather_compatibility": [
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            }
+          ],
+          "weather": {
+            "scenario": "generated",
+            "source": "mock",
+            "source_version": "2026.09-v1",
+            "availability_status": "available",
+            "daily_weather": [
+              {
+                "date": "2026-10-01",
+                "weather_condition": "cloudy",
+                "rain_probability": 36,
+                "temperature": 23.2,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-02",
+                "weather_condition": "sunny",
+                "rain_probability": 38,
+                "temperature": 23.9,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-03",
+                "weather_condition": "cloudy",
+                "rain_probability": 32,
+                "temperature": 22.0,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-04",
+                "weather_condition": "rain",
+                "rain_probability": 30,
+                "temperature": 21.5,
+                "severe_weather": false,
+                "availability_status": "available"
+              }
+            ],
+            "planning": {
+              "status": "ready",
+              "fallback_used": false,
+              "issue_code": "",
+              "reason": "确定性 Mock 天气情景 generated；仅用于测试与演示，不是实时天气预报。"
+            },
+            "activity_weather_optimized": true,
+            "activity_weather_fallback_reason": ""
+          },
+          "final_total_cost": 8896.0,
+          "budget_breakdown": {
+            "flight_cost": 3576.0,
+            "hotel_cost": 2040.0,
+            "activity_cost": 3280.0,
+            "total_cost": 8896.0,
+            "budget": 50000.0,
+            "remaining": 41104.0,
+            "is_within_budget": true,
+            "over_budget_amount": 0.0,
+            "suggestions": []
+          },
+          "adjustment_history": []
+        },
+        "consistent": true
+      },
+      "recovery": {
+        "type": "none",
+        "success": true
+      }
+    },
+    {
+      "id": "range_ambiguity",
+      "information_extraction": {
+        "labeled_fields": 2,
+        "correct": 2,
+        "missing": 0,
+        "incorrect": 0,
+        "false_positive_fields": [],
+        "expected_ambiguous": [
+          "budget",
+          "end_date",
+          "num_travelers",
+          "start_date"
+        ],
+        "recognized_ambiguous": [
+          "budget",
+          "end_date",
+          "num_travelers",
+          "start_date"
+        ],
+        "missed_ambiguous": [],
+        "unexpected_ambiguous": [],
+        "comparisons": {
+          "departure_city": {
+            "expected": "北京",
+            "actual": "北京",
+            "correct": true
+          },
+          "interests": {
+            "expected": [
+              "博物馆"
+            ],
+            "actual": [
+              "博物馆"
+            ],
+            "correct": true
+          }
+        }
+      },
+      "information_collection": {
+        "initial_complete": false,
+        "final_complete": true,
+        "clarification_rounds": 1,
+        "initial_missing_fields": [
+          "budget",
+          "start_date",
+          "end_date",
+          "num_travelers",
+          "travel_style"
+        ],
+        "final_missing_fields": [],
+        "final_fields_match_annotation": true,
+        "natural_interaction_steps": 5,
+        "structured_interaction_steps": 8
+      },
+      "planning": {
+        "natural_http_status": 200,
+        "structured_http_status": 200,
+        "natural_signature": {
+          "status": "completed",
+          "destination": "首尔",
+          "outbound_candidate_id": "flight_a67621d1e7ff8c4a",
+          "return_candidate_id": "flight_87ac5a2d0100732a",
+          "hotel_candidate_id": "hotel_57a56b4b90bbecc4",
+          "activity_candidate_ids": [
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62"
+          ],
+          "activity_weather_compatibility": [
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            }
+          ],
+          "weather": {
+            "scenario": "generated",
+            "source": "mock",
+            "source_version": "2026.09-v1",
+            "availability_status": "available",
+            "daily_weather": [
+              {
+                "date": "2026-10-02",
+                "weather_condition": "sunny",
+                "rain_probability": 38,
+                "temperature": 23.9,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-03",
+                "weather_condition": "cloudy",
+                "rain_probability": 32,
+                "temperature": 22.0,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-04",
+                "weather_condition": "rain",
+                "rain_probability": 30,
+                "temperature": 21.5,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-05",
+                "weather_condition": "rain",
+                "rain_probability": 30,
+                "temperature": 21.3,
+                "severe_weather": false,
+                "availability_status": "available"
+              }
+            ],
+            "planning": {
+              "status": "ready",
+              "fallback_used": false,
+              "issue_code": "",
+              "reason": "确定性 Mock 天气情景 generated；仅用于测试与演示，不是实时天气预报。"
+            },
+            "activity_weather_optimized": true,
+            "activity_weather_fallback_reason": ""
+          },
+          "final_total_cost": 8282.0,
+          "budget_breakdown": {
+            "flight_cost": 3222.0,
+            "hotel_cost": 1780.0,
+            "activity_cost": 3280.0,
+            "total_cost": 8282.0,
+            "budget": 18000.0,
+            "remaining": 9718.0,
+            "is_within_budget": true,
+            "over_budget_amount": 0.0,
+            "suggestions": []
+          },
+          "adjustment_history": []
+        },
+        "structured_signature": {
+          "status": "completed",
+          "destination": "首尔",
+          "outbound_candidate_id": "flight_a67621d1e7ff8c4a",
+          "return_candidate_id": "flight_87ac5a2d0100732a",
+          "hotel_candidate_id": "hotel_57a56b4b90bbecc4",
+          "activity_candidate_ids": [
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62"
+          ],
+          "activity_weather_compatibility": [
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            }
+          ],
+          "weather": {
+            "scenario": "generated",
+            "source": "mock",
+            "source_version": "2026.09-v1",
+            "availability_status": "available",
+            "daily_weather": [
+              {
+                "date": "2026-10-02",
+                "weather_condition": "sunny",
+                "rain_probability": 38,
+                "temperature": 23.9,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-03",
+                "weather_condition": "cloudy",
+                "rain_probability": 32,
+                "temperature": 22.0,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-04",
+                "weather_condition": "rain",
+                "rain_probability": 30,
+                "temperature": 21.5,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-05",
+                "weather_condition": "rain",
+                "rain_probability": 30,
+                "temperature": 21.3,
+                "severe_weather": false,
+                "availability_status": "available"
+              }
+            ],
+            "planning": {
+              "status": "ready",
+              "fallback_used": false,
+              "issue_code": "",
+              "reason": "确定性 Mock 天气情景 generated；仅用于测试与演示，不是实时天气预报。"
+            },
+            "activity_weather_optimized": true,
+            "activity_weather_fallback_reason": ""
+          },
+          "final_total_cost": 8282.0,
+          "budget_breakdown": {
+            "flight_cost": 3222.0,
+            "hotel_cost": 1780.0,
+            "activity_cost": 3280.0,
+            "total_cost": 8282.0,
+            "budget": 18000.0,
+            "remaining": 9718.0,
+            "is_within_budget": true,
+            "over_budget_amount": 0.0,
+            "suggestions": []
+          },
+          "adjustment_history": []
+        },
+        "consistent": true
+      },
+      "recovery": {
+        "type": "ambiguity",
+        "success": true
+      }
+    },
+    {
+      "id": "date_conflict",
+      "information_extraction": {
+        "labeled_fields": 7,
+        "correct": 7,
+        "missing": 0,
+        "incorrect": 0,
+        "false_positive_fields": [],
+        "expected_ambiguous": [
+          "duration_days"
+        ],
+        "recognized_ambiguous": [
+          "duration_days"
+        ],
+        "missed_ambiguous": [],
+        "unexpected_ambiguous": [],
+        "comparisons": {
+          "departure_city": {
+            "expected": "上海",
+            "actual": "上海",
+            "correct": true
+          },
+          "budget": {
+            "expected": 10000.0,
+            "actual": 10000.0,
+            "correct": true
+          },
+          "start_date": {
+            "expected": "2026-10-01",
+            "actual": "2026-10-01",
+            "correct": true
+          },
+          "end_date": {
+            "expected": "2026-10-06",
+            "actual": "2026-10-06",
+            "correct": true
+          },
+          "duration_days": {
+            "expected": 3,
+            "actual": 3,
+            "correct": true
+          },
+          "num_travelers": {
+            "expected": 2,
+            "actual": 2,
+            "correct": true
+          },
+          "travel_style": {
+            "expected": "comfort",
+            "actual": "comfort",
+            "correct": true
+          }
+        }
+      },
+      "information_collection": {
+        "initial_complete": false,
+        "final_complete": true,
+        "clarification_rounds": 1,
+        "initial_missing_fields": [],
+        "final_missing_fields": [],
+        "final_fields_match_annotation": true,
+        "natural_interaction_steps": 5,
+        "structured_interaction_steps": 7
+      },
+      "planning": {
+        "natural_http_status": 200,
+        "structured_http_status": 200,
+        "natural_signature": {
+          "status": "completed",
+          "destination": "首尔",
+          "outbound_candidate_id": "flight_379bb9ea43c35b93",
+          "return_candidate_id": "flight_491807211fdf7c75",
+          "hotel_candidate_id": "hotel_38285e9b121ade56",
+          "activity_candidate_ids": [
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62"
+          ],
+          "activity_weather_compatibility": [
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            }
+          ],
+          "weather": {
+            "scenario": "generated",
+            "source": "mock",
+            "source_version": "2026.09-v1",
+            "availability_status": "available",
+            "daily_weather": [
+              {
+                "date": "2026-10-01",
+                "weather_condition": "cloudy",
+                "rain_probability": 36,
+                "temperature": 23.2,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-02",
+                "weather_condition": "sunny",
+                "rain_probability": 38,
+                "temperature": 23.9,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-03",
+                "weather_condition": "cloudy",
+                "rain_probability": 32,
+                "temperature": 22.0,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-04",
+                "weather_condition": "rain",
+                "rain_probability": 30,
+                "temperature": 21.5,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-05",
+                "weather_condition": "rain",
+                "rain_probability": 30,
+                "temperature": 21.3,
+                "severe_weather": false,
+                "availability_status": "available"
+              }
+            ],
+            "planning": {
+              "status": "ready",
+              "fallback_used": false,
+              "issue_code": "",
+              "reason": "确定性 Mock 天气情景 generated；仅用于测试与演示，不是实时天气预报。"
+            },
+            "activity_weather_optimized": true,
+            "activity_weather_fallback_reason": ""
+          },
+          "final_total_cost": 8114.0,
+          "budget_breakdown": {
+            "flight_cost": 3654.0,
+            "hotel_cost": 360.0,
+            "activity_cost": 4100.0,
+            "total_cost": 8114.0,
+            "budget": 10000.0,
+            "remaining": 1886.0,
+            "is_within_budget": true,
+            "over_budget_amount": 0.0,
+            "suggestions": []
+          },
+          "adjustment_history": [
+            {
+              "round_number": 1,
+              "target": "activities",
+              "policy_version": "budget-policy-v1",
+              "before_candidate_ids": [
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62"
+              ],
+              "after_candidate_ids": [
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62"
+              ],
+              "before_cost": 4100.0,
+              "after_cost": 4100.0,
+              "saved_amount": 0.0,
+              "current_total": 10519.0,
+              "budget_remaining": -519.0,
+              "improved": false,
+              "activity_replacements": []
+            },
+            {
+              "round_number": 2,
+              "target": "hotel",
+              "policy_version": "budget-policy-v1",
+              "before_candidate_ids": [
+                "hotel_57a56b4b90bbecc4"
+              ],
+              "after_candidate_ids": [
+                "hotel_38285e9b121ade56"
+              ],
+              "before_cost": 2765.0,
+              "after_cost": 360.0,
+              "saved_amount": 2405.0,
+              "current_total": 8114.0,
+              "budget_remaining": 1886.0,
+              "improved": true,
+              "activity_replacements": []
+            }
+          ]
+        },
+        "structured_signature": {
+          "status": "completed",
+          "destination": "首尔",
+          "outbound_candidate_id": "flight_379bb9ea43c35b93",
+          "return_candidate_id": "flight_491807211fdf7c75",
+          "hotel_candidate_id": "hotel_38285e9b121ade56",
+          "activity_candidate_ids": [
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62"
+          ],
+          "activity_weather_compatibility": [
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            }
+          ],
+          "weather": {
+            "scenario": "generated",
+            "source": "mock",
+            "source_version": "2026.09-v1",
+            "availability_status": "available",
+            "daily_weather": [
+              {
+                "date": "2026-10-01",
+                "weather_condition": "cloudy",
+                "rain_probability": 36,
+                "temperature": 23.2,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-02",
+                "weather_condition": "sunny",
+                "rain_probability": 38,
+                "temperature": 23.9,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-03",
+                "weather_condition": "cloudy",
+                "rain_probability": 32,
+                "temperature": 22.0,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-04",
+                "weather_condition": "rain",
+                "rain_probability": 30,
+                "temperature": 21.5,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-10-05",
+                "weather_condition": "rain",
+                "rain_probability": 30,
+                "temperature": 21.3,
+                "severe_weather": false,
+                "availability_status": "available"
+              }
+            ],
+            "planning": {
+              "status": "ready",
+              "fallback_used": false,
+              "issue_code": "",
+              "reason": "确定性 Mock 天气情景 generated；仅用于测试与演示，不是实时天气预报。"
+            },
+            "activity_weather_optimized": true,
+            "activity_weather_fallback_reason": ""
+          },
+          "final_total_cost": 8114.0,
+          "budget_breakdown": {
+            "flight_cost": 3654.0,
+            "hotel_cost": 360.0,
+            "activity_cost": 4100.0,
+            "total_cost": 8114.0,
+            "budget": 10000.0,
+            "remaining": 1886.0,
+            "is_within_budget": true,
+            "over_budget_amount": 0.0,
+            "suggestions": []
+          },
+          "adjustment_history": [
+            {
+              "round_number": 1,
+              "target": "activities",
+              "policy_version": "budget-policy-v1",
+              "before_candidate_ids": [
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62"
+              ],
+              "after_candidate_ids": [
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62",
+                "activity_c00fc07e17c81247",
+                "activity_29e41a4dc2f97fe4",
+                "activity_59bf9bf2ce8c8d62"
+              ],
+              "before_cost": 4100.0,
+              "after_cost": 4100.0,
+              "saved_amount": 0.0,
+              "current_total": 10519.0,
+              "budget_remaining": -519.0,
+              "improved": false,
+              "activity_replacements": []
+            },
+            {
+              "round_number": 2,
+              "target": "hotel",
+              "policy_version": "budget-policy-v1",
+              "before_candidate_ids": [
+                "hotel_57a56b4b90bbecc4"
+              ],
+              "after_candidate_ids": [
+                "hotel_38285e9b121ade56"
+              ],
+              "before_cost": 2765.0,
+              "after_cost": 360.0,
+              "saved_amount": 2405.0,
+              "current_total": 8114.0,
+              "budget_remaining": 1886.0,
+              "improved": true,
+              "activity_replacements": []
+            }
+          ]
+        },
+        "consistent": true
+      },
+      "recovery": {
+        "type": "date_conflict",
+        "success": true
+      }
+    },
+    {
+      "id": "budget_change",
+      "information_extraction": {
+        "labeled_fields": 8,
+        "correct": 8,
+        "missing": 0,
+        "incorrect": 0,
+        "false_positive_fields": [],
+        "expected_ambiguous": [],
+        "recognized_ambiguous": [],
+        "missed_ambiguous": [],
+        "unexpected_ambiguous": [],
+        "comparisons": {
+          "departure_city": {
+            "expected": "北京",
+            "actual": "北京",
+            "correct": true
+          },
+          "budget": {
+            "expected": 20000.0,
+            "actual": 20000.0,
+            "correct": true
+          },
+          "start_date": {
+            "expected": "2026-11-01",
+            "actual": "2026-11-01",
+            "correct": true
+          },
+          "end_date": {
+            "expected": "2026-11-05",
+            "actual": "2026-11-05",
+            "correct": true
+          },
+          "duration_days": {
+            "expected": 4,
+            "actual": 4,
+            "correct": true
+          },
+          "num_travelers": {
+            "expected": 2,
+            "actual": 2,
+            "correct": true
+          },
+          "travel_style": {
+            "expected": "comfort",
+            "actual": "comfort",
+            "correct": true
+          },
+          "interests": {
+            "expected": [
+              "美食"
+            ],
+            "actual": [
+              "美食"
+            ],
+            "correct": true
+          }
+        }
+      },
+      "information_collection": {
+        "initial_complete": true,
+        "final_complete": true,
+        "clarification_rounds": 1,
+        "initial_missing_fields": [],
+        "final_missing_fields": [],
+        "final_fields_match_annotation": true,
+        "natural_interaction_steps": 5,
+        "structured_interaction_steps": 8
+      },
+      "planning": {
+        "natural_http_status": 200,
+        "structured_http_status": 200,
+        "natural_signature": {
+          "status": "completed",
+          "destination": "首尔",
+          "outbound_candidate_id": "flight_e137801070c67df2",
+          "return_candidate_id": "flight_a4d57eb26235376b",
+          "hotel_candidate_id": "hotel_8bb30c5b40fa6a1c",
+          "activity_candidate_ids": [
+            "activity_b7ef1a8a0a753e19",
+            "activity_20391fe699730db7",
+            "activity_dae2a82d65b3bea5",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_b7ef1a8a0a753e19",
+            "activity_20391fe699730db7",
+            "activity_dae2a82d65b3bea5",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62"
+          ],
+          "activity_weather_compatibility": [
+            {
+              "candidate_id": "activity_b7ef1a8a0a753e19",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_20391fe699730db7",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_dae2a82d65b3bea5",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_b7ef1a8a0a753e19",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_20391fe699730db7",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_dae2a82d65b3bea5",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            }
+          ],
+          "weather": {
+            "scenario": "generated",
+            "source": "mock",
+            "source_version": "2026.09-v1",
+            "availability_status": "available",
+            "daily_weather": [
+              {
+                "date": "2026-11-01",
+                "weather_condition": "cloudy",
+                "rain_probability": 14,
+                "temperature": 16.5,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-11-02",
+                "weather_condition": "rain",
+                "rain_probability": 25,
+                "temperature": 19.7,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-11-03",
+                "weather_condition": "cloudy",
+                "rain_probability": 10,
+                "temperature": 15.2,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-11-04",
+                "weather_condition": "sunny",
+                "rain_probability": 37,
+                "temperature": 24.9,
+                "severe_weather": false,
+                "availability_status": "available"
+              }
+            ],
+            "planning": {
+              "status": "ready",
+              "fallback_used": false,
+              "issue_code": "",
+              "reason": "确定性 Mock 天气情景 generated；仅用于测试与演示，不是实时天气预报。"
+            },
+            "activity_weather_optimized": true,
+            "activity_weather_fallback_reason": ""
+          },
+          "final_total_cost": 7648.0,
+          "budget_breakdown": {
+            "flight_cost": 4924.0,
+            "hotel_cost": 684.0,
+            "activity_cost": 2040.0,
+            "total_cost": 7648.0,
+            "budget": 10000.0,
+            "remaining": 2352.0,
+            "is_within_budget": true,
+            "over_budget_amount": 0.0,
+            "suggestions": []
+          },
+          "adjustment_history": []
+        },
+        "structured_signature": {
+          "status": "completed",
+          "destination": "首尔",
+          "outbound_candidate_id": "flight_e137801070c67df2",
+          "return_candidate_id": "flight_a4d57eb26235376b",
+          "hotel_candidate_id": "hotel_8bb30c5b40fa6a1c",
+          "activity_candidate_ids": [
+            "activity_b7ef1a8a0a753e19",
+            "activity_20391fe699730db7",
+            "activity_dae2a82d65b3bea5",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_b7ef1a8a0a753e19",
+            "activity_20391fe699730db7",
+            "activity_dae2a82d65b3bea5",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62"
+          ],
+          "activity_weather_compatibility": [
+            {
+              "candidate_id": "activity_b7ef1a8a0a753e19",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_20391fe699730db7",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_dae2a82d65b3bea5",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_b7ef1a8a0a753e19",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_20391fe699730db7",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_dae2a82d65b3bea5",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            }
+          ],
+          "weather": {
+            "scenario": "generated",
+            "source": "mock",
+            "source_version": "2026.09-v1",
+            "availability_status": "available",
+            "daily_weather": [
+              {
+                "date": "2026-11-01",
+                "weather_condition": "cloudy",
+                "rain_probability": 14,
+                "temperature": 16.5,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-11-02",
+                "weather_condition": "rain",
+                "rain_probability": 25,
+                "temperature": 19.7,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-11-03",
+                "weather_condition": "cloudy",
+                "rain_probability": 10,
+                "temperature": 15.2,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-11-04",
+                "weather_condition": "sunny",
+                "rain_probability": 37,
+                "temperature": 24.9,
+                "severe_weather": false,
+                "availability_status": "available"
+              }
+            ],
+            "planning": {
+              "status": "ready",
+              "fallback_used": false,
+              "issue_code": "",
+              "reason": "确定性 Mock 天气情景 generated；仅用于测试与演示，不是实时天气预报。"
+            },
+            "activity_weather_optimized": true,
+            "activity_weather_fallback_reason": ""
+          },
+          "final_total_cost": 7648.0,
+          "budget_breakdown": {
+            "flight_cost": 4924.0,
+            "hotel_cost": 684.0,
+            "activity_cost": 2040.0,
+            "total_cost": 7648.0,
+            "budget": 10000.0,
+            "remaining": 2352.0,
+            "is_within_budget": true,
+            "over_budget_amount": 0.0,
+            "suggestions": []
+          },
+          "adjustment_history": []
+        },
+        "consistent": true
+      },
+      "recovery": {
+        "type": "preference_change",
+        "success": true
+      }
+    },
+    {
+      "id": "invalid_values_recovery",
+      "information_extraction": {
+        "labeled_fields": 6,
+        "correct": 6,
+        "missing": 0,
+        "incorrect": 0,
+        "false_positive_fields": [],
+        "expected_ambiguous": [],
+        "recognized_ambiguous": [],
+        "missed_ambiguous": [],
+        "unexpected_ambiguous": [],
+        "comparisons": {
+          "departure_city": {
+            "expected": "广州",
+            "actual": "广州",
+            "correct": true
+          },
+          "budget": {
+            "expected": -100.0,
+            "actual": -100.0,
+            "correct": true
+          },
+          "start_date": {
+            "expected": "2026-02-30",
+            "actual": "2026-02-30",
+            "correct": true
+          },
+          "end_date": {
+            "expected": "2026-03-03",
+            "actual": "2026-03-03",
+            "correct": true
+          },
+          "num_travelers": {
+            "expected": 0,
+            "actual": 0,
+            "correct": true
+          },
+          "travel_style": {
+            "expected": "comfort",
+            "actual": "comfort",
+            "correct": true
+          }
+        }
+      },
+      "information_collection": {
+        "initial_complete": false,
+        "final_complete": true,
+        "clarification_rounds": 1,
+        "initial_missing_fields": [
+          "budget",
+          "start_date",
+          "num_travelers"
+        ],
+        "final_missing_fields": [],
+        "final_fields_match_annotation": true,
+        "natural_interaction_steps": 5,
+        "structured_interaction_steps": 7
+      },
+      "planning": {
+        "natural_http_status": 200,
+        "structured_http_status": 200,
+        "natural_signature": {
+          "status": "completed",
+          "destination": "首尔",
+          "outbound_candidate_id": "flight_ff4000d78fb6dab3",
+          "return_candidate_id": "flight_5c11b327b057b30e",
+          "hotel_candidate_id": "hotel_8bb30c5b40fa6a1c",
+          "activity_candidate_ids": [
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62"
+          ],
+          "activity_weather_compatibility": [
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            }
+          ],
+          "weather": {
+            "scenario": "generated",
+            "source": "mock",
+            "source_version": "2026.09-v1",
+            "availability_status": "available",
+            "daily_weather": [
+              {
+                "date": "2026-03-01",
+                "weather_condition": "cloudy",
+                "rain_probability": 30,
+                "temperature": 16.3,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-03-02",
+                "weather_condition": "rain",
+                "rain_probability": 41,
+                "temperature": 22.8,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-03-03",
+                "weather_condition": "cloudy",
+                "rain_probability": 49,
+                "temperature": 22.2,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-03-04",
+                "weather_condition": "cloudy",
+                "rain_probability": 32,
+                "temperature": 16.9,
+                "severe_weather": false,
+                "availability_status": "available"
+              }
+            ],
+            "planning": {
+              "status": "ready",
+              "fallback_used": false,
+              "issue_code": "",
+              "reason": "确定性 Mock 天气情景 generated；仅用于测试与演示，不是实时天气预报。"
+            },
+            "activity_weather_optimized": true,
+            "activity_weather_fallback_reason": ""
+          },
+          "final_total_cost": 9516.0,
+          "budget_breakdown": {
+            "flight_cost": 5324.0,
+            "hotel_cost": 912.0,
+            "activity_cost": 3280.0,
+            "total_cost": 9516.0,
+            "budget": 20000.0,
+            "remaining": 10484.0,
+            "is_within_budget": true,
+            "over_budget_amount": 0.0,
+            "suggestions": []
+          },
+          "adjustment_history": []
+        },
+        "structured_signature": {
+          "status": "completed",
+          "destination": "首尔",
+          "outbound_candidate_id": "flight_ff4000d78fb6dab3",
+          "return_candidate_id": "flight_5c11b327b057b30e",
+          "hotel_candidate_id": "hotel_8bb30c5b40fa6a1c",
+          "activity_candidate_ids": [
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62"
+          ],
+          "activity_weather_compatibility": [
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            }
+          ],
+          "weather": {
+            "scenario": "generated",
+            "source": "mock",
+            "source_version": "2026.09-v1",
+            "availability_status": "available",
+            "daily_weather": [
+              {
+                "date": "2026-03-01",
+                "weather_condition": "cloudy",
+                "rain_probability": 30,
+                "temperature": 16.3,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-03-02",
+                "weather_condition": "rain",
+                "rain_probability": 41,
+                "temperature": 22.8,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-03-03",
+                "weather_condition": "cloudy",
+                "rain_probability": 49,
+                "temperature": 22.2,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-03-04",
+                "weather_condition": "cloudy",
+                "rain_probability": 32,
+                "temperature": 16.9,
+                "severe_weather": false,
+                "availability_status": "available"
+              }
+            ],
+            "planning": {
+              "status": "ready",
+              "fallback_used": false,
+              "issue_code": "",
+              "reason": "确定性 Mock 天气情景 generated；仅用于测试与演示，不是实时天气预报。"
+            },
+            "activity_weather_optimized": true,
+            "activity_weather_fallback_reason": ""
+          },
+          "final_total_cost": 9516.0,
+          "budget_breakdown": {
+            "flight_cost": 5324.0,
+            "hotel_cost": 912.0,
+            "activity_cost": 3280.0,
+            "total_cost": 9516.0,
+            "budget": 20000.0,
+            "remaining": 10484.0,
+            "is_within_budget": true,
+            "over_budget_amount": 0.0,
+            "suggestions": []
+          },
+          "adjustment_history": []
+        },
+        "consistent": true
+      },
+      "recovery": {
+        "type": "invalid_values",
+        "success": true
+      }
+    },
+    {
+      "id": "extreme_budget",
+      "information_extraction": {
+        "labeled_fields": 7,
+        "correct": 7,
+        "missing": 0,
+        "incorrect": 0,
+        "false_positive_fields": [],
+        "expected_ambiguous": [],
+        "recognized_ambiguous": [],
+        "missed_ambiguous": [],
+        "unexpected_ambiguous": [],
+        "comparisons": {
+          "departure_city": {
+            "expected": "北京",
+            "actual": "北京",
+            "correct": true
+          },
+          "budget": {
+            "expected": 100.0,
+            "actual": 100.0,
+            "correct": true
+          },
+          "start_date": {
+            "expected": "2026-12-01",
+            "actual": "2026-12-01",
+            "correct": true
+          },
+          "end_date": {
+            "expected": "2026-12-05",
+            "actual": "2026-12-05",
+            "correct": true
+          },
+          "duration_days": {
+            "expected": 4,
+            "actual": 4,
+            "correct": true
+          },
+          "num_travelers": {
+            "expected": 2,
+            "actual": 2,
+            "correct": true
+          },
+          "travel_style": {
+            "expected": "budget",
+            "actual": "budget",
+            "correct": true
+          }
+        }
+      },
+      "information_collection": {
+        "initial_complete": true,
+        "final_complete": true,
+        "clarification_rounds": 0,
+        "initial_missing_fields": [],
+        "final_missing_fields": [],
+        "final_fields_match_annotation": true,
+        "natural_interaction_steps": 3,
+        "structured_interaction_steps": 7
+      },
+      "planning": {
+        "natural_http_status": 200,
+        "structured_http_status": 200,
+        "natural_signature": {
+          "status": "budget_infeasible",
+          "destination": "清迈",
+          "outbound_candidate_id": "flight_c2399bd5a43f2452",
+          "return_candidate_id": "flight_53394435c60b655e",
+          "hotel_candidate_id": "hotel_8468d9565f9a4121",
+          "activity_candidate_ids": [
+            "activity_346c9d30dc10bdfa",
+            "activity_59430b628374ea18",
+            "activity_009b7b1153b32670",
+            "activity_346c9d30dc10bdfa",
+            "activity_59430b628374ea18",
+            "activity_009b7b1153b32670",
+            "activity_346c9d30dc10bdfa",
+            "activity_59430b628374ea18",
+            "activity_009b7b1153b32670",
+            "activity_346c9d30dc10bdfa",
+            "activity_59430b628374ea18",
+            "activity_009b7b1153b32670"
+          ],
+          "activity_weather_compatibility": [
+            {
+              "candidate_id": "activity_346c9d30dc10bdfa",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_59430b628374ea18",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_009b7b1153b32670",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_346c9d30dc10bdfa",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_59430b628374ea18",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_009b7b1153b32670",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_346c9d30dc10bdfa",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_59430b628374ea18",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_009b7b1153b32670",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_346c9d30dc10bdfa",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_59430b628374ea18",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_009b7b1153b32670",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            }
+          ],
+          "weather": {
+            "scenario": "generated",
+            "source": "mock",
+            "source_version": "2026.09-v1",
+            "availability_status": "available",
+            "daily_weather": [
+              {
+                "date": "2026-12-01",
+                "weather_condition": "sunny",
+                "rain_probability": 14,
+                "temperature": 5.6,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-12-02",
+                "weather_condition": "sunny",
+                "rain_probability": 3,
+                "temperature": 2.2,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-12-03",
+                "weather_condition": "sunny",
+                "rain_probability": 14,
+                "temperature": 5.7,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-12-04",
+                "weather_condition": "sunny",
+                "rain_probability": 5,
+                "temperature": 2.7,
+                "severe_weather": false,
+                "availability_status": "available"
+              }
+            ],
+            "planning": {
+              "status": "ready",
+              "fallback_used": false,
+              "issue_code": "",
+              "reason": "确定性 Mock 天气情景 generated；仅用于测试与演示，不是实时天气预报。"
+            },
+            "activity_weather_optimized": true,
+            "activity_weather_fallback_reason": ""
+          },
+          "final_total_cost": 7336.0,
+          "budget_breakdown": {
+            "flight_cost": 6316.0,
+            "hotel_cost": 220.0,
+            "activity_cost": 800.0,
+            "total_cost": 7336.0,
+            "budget": 100.0,
+            "remaining": -7236.0,
+            "is_within_budget": false,
+            "over_budget_amount": 7236.0,
+            "suggestions": [
+              "Reselect lower-cost eligible flights to cover up to 6316.00."
+            ]
+          },
+          "adjustment_history": [
+            {
+              "round_number": 1,
+              "target": "activities",
+              "policy_version": "budget-policy-v1",
+              "before_candidate_ids": [
+                "activity_346c9d30dc10bdfa",
+                "activity_59430b628374ea18",
+                "activity_009b7b1153b32670",
+                "activity_346c9d30dc10bdfa",
+                "activity_59430b628374ea18",
+                "activity_009b7b1153b32670",
+                "activity_346c9d30dc10bdfa",
+                "activity_59430b628374ea18",
+                "activity_009b7b1153b32670",
+                "activity_346c9d30dc10bdfa",
+                "activity_59430b628374ea18",
+                "activity_009b7b1153b32670"
+              ],
+              "after_candidate_ids": [
+                "activity_346c9d30dc10bdfa",
+                "activity_59430b628374ea18",
+                "activity_009b7b1153b32670",
+                "activity_346c9d30dc10bdfa",
+                "activity_59430b628374ea18",
+                "activity_009b7b1153b32670",
+                "activity_346c9d30dc10bdfa",
+                "activity_59430b628374ea18",
+                "activity_009b7b1153b32670",
+                "activity_346c9d30dc10bdfa",
+                "activity_59430b628374ea18",
+                "activity_009b7b1153b32670"
+              ],
+              "before_cost": 800.0,
+              "after_cost": 800.0,
+              "saved_amount": 0.0,
+              "current_total": 7336.0,
+              "budget_remaining": -7236.0,
+              "improved": false,
+              "activity_replacements": []
+            },
+            {
+              "round_number": 2,
+              "target": "hotel",
+              "policy_version": "budget-policy-v1",
+              "before_candidate_ids": [
+                "hotel_8468d9565f9a4121"
+              ],
+              "after_candidate_ids": [
+                "hotel_8468d9565f9a4121"
+              ],
+              "before_cost": 220.0,
+              "after_cost": 220.0,
+              "saved_amount": 0.0,
+              "current_total": 7336.0,
+              "budget_remaining": -7236.0,
+              "improved": false,
+              "activity_replacements": []
+            },
+            {
+              "round_number": 3,
+              "target": "flights",
+              "policy_version": "budget-policy-v1",
+              "before_candidate_ids": [
+                "flight_c2399bd5a43f2452",
+                "flight_53394435c60b655e"
+              ],
+              "after_candidate_ids": [
+                "flight_c2399bd5a43f2452",
+                "flight_53394435c60b655e"
+              ],
+              "before_cost": 6316.0,
+              "after_cost": 6316.0,
+              "saved_amount": 0.0,
+              "current_total": 7336.0,
+              "budget_remaining": -7236.0,
+              "improved": false,
+              "activity_replacements": []
+            }
+          ]
+        },
+        "structured_signature": {
+          "status": "budget_infeasible",
+          "destination": "清迈",
+          "outbound_candidate_id": "flight_c2399bd5a43f2452",
+          "return_candidate_id": "flight_53394435c60b655e",
+          "hotel_candidate_id": "hotel_8468d9565f9a4121",
+          "activity_candidate_ids": [
+            "activity_346c9d30dc10bdfa",
+            "activity_59430b628374ea18",
+            "activity_009b7b1153b32670",
+            "activity_346c9d30dc10bdfa",
+            "activity_59430b628374ea18",
+            "activity_009b7b1153b32670",
+            "activity_346c9d30dc10bdfa",
+            "activity_59430b628374ea18",
+            "activity_009b7b1153b32670",
+            "activity_346c9d30dc10bdfa",
+            "activity_59430b628374ea18",
+            "activity_009b7b1153b32670"
+          ],
+          "activity_weather_compatibility": [
+            {
+              "candidate_id": "activity_346c9d30dc10bdfa",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_59430b628374ea18",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_009b7b1153b32670",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_346c9d30dc10bdfa",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_59430b628374ea18",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_009b7b1153b32670",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_346c9d30dc10bdfa",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_59430b628374ea18",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_009b7b1153b32670",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_346c9d30dc10bdfa",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_59430b628374ea18",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            },
+            {
+              "candidate_id": "activity_009b7b1153b32670",
+              "weather_compatible": true,
+              "recommendation_reason": "低降雨风险，按室外/混合/室内场地给予确定性适配分。"
+            }
+          ],
+          "weather": {
+            "scenario": "generated",
+            "source": "mock",
+            "source_version": "2026.09-v1",
+            "availability_status": "available",
+            "daily_weather": [
+              {
+                "date": "2026-12-01",
+                "weather_condition": "sunny",
+                "rain_probability": 14,
+                "temperature": 5.6,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-12-02",
+                "weather_condition": "sunny",
+                "rain_probability": 3,
+                "temperature": 2.2,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-12-03",
+                "weather_condition": "sunny",
+                "rain_probability": 14,
+                "temperature": 5.7,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-12-04",
+                "weather_condition": "sunny",
+                "rain_probability": 5,
+                "temperature": 2.7,
+                "severe_weather": false,
+                "availability_status": "available"
+              }
+            ],
+            "planning": {
+              "status": "ready",
+              "fallback_used": false,
+              "issue_code": "",
+              "reason": "确定性 Mock 天气情景 generated；仅用于测试与演示，不是实时天气预报。"
+            },
+            "activity_weather_optimized": true,
+            "activity_weather_fallback_reason": ""
+          },
+          "final_total_cost": 7336.0,
+          "budget_breakdown": {
+            "flight_cost": 6316.0,
+            "hotel_cost": 220.0,
+            "activity_cost": 800.0,
+            "total_cost": 7336.0,
+            "budget": 100.0,
+            "remaining": -7236.0,
+            "is_within_budget": false,
+            "over_budget_amount": 7236.0,
+            "suggestions": [
+              "Reselect lower-cost eligible flights to cover up to 6316.00."
+            ]
+          },
+          "adjustment_history": [
+            {
+              "round_number": 1,
+              "target": "activities",
+              "policy_version": "budget-policy-v1",
+              "before_candidate_ids": [
+                "activity_346c9d30dc10bdfa",
+                "activity_59430b628374ea18",
+                "activity_009b7b1153b32670",
+                "activity_346c9d30dc10bdfa",
+                "activity_59430b628374ea18",
+                "activity_009b7b1153b32670",
+                "activity_346c9d30dc10bdfa",
+                "activity_59430b628374ea18",
+                "activity_009b7b1153b32670",
+                "activity_346c9d30dc10bdfa",
+                "activity_59430b628374ea18",
+                "activity_009b7b1153b32670"
+              ],
+              "after_candidate_ids": [
+                "activity_346c9d30dc10bdfa",
+                "activity_59430b628374ea18",
+                "activity_009b7b1153b32670",
+                "activity_346c9d30dc10bdfa",
+                "activity_59430b628374ea18",
+                "activity_009b7b1153b32670",
+                "activity_346c9d30dc10bdfa",
+                "activity_59430b628374ea18",
+                "activity_009b7b1153b32670",
+                "activity_346c9d30dc10bdfa",
+                "activity_59430b628374ea18",
+                "activity_009b7b1153b32670"
+              ],
+              "before_cost": 800.0,
+              "after_cost": 800.0,
+              "saved_amount": 0.0,
+              "current_total": 7336.0,
+              "budget_remaining": -7236.0,
+              "improved": false,
+              "activity_replacements": []
+            },
+            {
+              "round_number": 2,
+              "target": "hotel",
+              "policy_version": "budget-policy-v1",
+              "before_candidate_ids": [
+                "hotel_8468d9565f9a4121"
+              ],
+              "after_candidate_ids": [
+                "hotel_8468d9565f9a4121"
+              ],
+              "before_cost": 220.0,
+              "after_cost": 220.0,
+              "saved_amount": 0.0,
+              "current_total": 7336.0,
+              "budget_remaining": -7236.0,
+              "improved": false,
+              "activity_replacements": []
+            },
+            {
+              "round_number": 3,
+              "target": "flights",
+              "policy_version": "budget-policy-v1",
+              "before_candidate_ids": [
+                "flight_c2399bd5a43f2452",
+                "flight_53394435c60b655e"
+              ],
+              "after_candidate_ids": [
+                "flight_c2399bd5a43f2452",
+                "flight_53394435c60b655e"
+              ],
+              "before_cost": 6316.0,
+              "after_cost": 6316.0,
+              "saved_amount": 0.0,
+              "current_total": 7336.0,
+              "budget_remaining": -7236.0,
+              "improved": false,
+              "activity_replacements": []
+            }
+          ]
+        },
+        "consistent": true
+      },
+      "recovery": {
+        "type": "none",
+        "success": true
+      }
+    },
+    {
+      "id": "fixed_relative_date",
+      "information_extraction": {
+        "labeled_fields": 8,
+        "correct": 8,
+        "missing": 0,
+        "incorrect": 0,
+        "false_positive_fields": [],
+        "expected_ambiguous": [],
+        "recognized_ambiguous": [],
+        "missed_ambiguous": [],
+        "unexpected_ambiguous": [],
+        "comparisons": {
+          "departure_city": {
+            "expected": "深圳",
+            "actual": "深圳",
+            "correct": true
+          },
+          "budget": {
+            "expected": 15000.0,
+            "actual": 15000.0,
+            "correct": true
+          },
+          "start_date": {
+            "expected": "2026-09-25",
+            "actual": "2026-09-25",
+            "correct": true
+          },
+          "end_date": {
+            "expected": "2026-09-28",
+            "actual": "2026-09-28",
+            "correct": true
+          },
+          "duration_days": {
+            "expected": 3,
+            "actual": 3,
+            "correct": true
+          },
+          "num_travelers": {
+            "expected": 2,
+            "actual": 2,
+            "correct": true
+          },
+          "travel_style": {
+            "expected": "relaxation",
+            "actual": "relaxation",
+            "correct": true
+          },
+          "interests": {
+            "expected": [
+              "海滩"
+            ],
+            "actual": [
+              "海滩"
+            ],
+            "correct": true
+          }
+        }
+      },
+      "information_collection": {
+        "initial_complete": true,
+        "final_complete": true,
+        "clarification_rounds": 0,
+        "initial_missing_fields": [],
+        "final_missing_fields": [],
+        "final_fields_match_annotation": true,
+        "natural_interaction_steps": 3,
+        "structured_interaction_steps": 8
+      },
+      "planning": {
+        "natural_http_status": 200,
+        "structured_http_status": 200,
+        "natural_signature": {
+          "status": "completed",
+          "destination": "首尔",
+          "outbound_candidate_id": "flight_1af1eda2a227a408",
+          "return_candidate_id": "flight_c95daa6c3eaf053b",
+          "hotel_candidate_id": "hotel_57a56b4b90bbecc4",
+          "activity_candidate_ids": [
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62"
+          ],
+          "activity_weather_compatibility": [
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            }
+          ],
+          "weather": {
+            "scenario": "generated",
+            "source": "mock",
+            "source_version": "2026.09-v1",
+            "availability_status": "available",
+            "daily_weather": [
+              {
+                "date": "2026-09-25",
+                "weather_condition": "rain",
+                "rain_probability": 11,
+                "temperature": 15.6,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-09-26",
+                "weather_condition": "sunny",
+                "rain_probability": 31,
+                "temperature": 21.7,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-09-27",
+                "weather_condition": "rain",
+                "rain_probability": 38,
+                "temperature": 23.8,
+                "severe_weather": false,
+                "availability_status": "available"
+              }
+            ],
+            "planning": {
+              "status": "ready",
+              "fallback_used": false,
+              "issue_code": "",
+              "reason": "确定性 Mock 天气情景 generated；仅用于测试与演示，不是实时天气预报。"
+            },
+            "activity_weather_optimized": true,
+            "activity_weather_fallback_reason": ""
+          },
+          "final_total_cost": 12113.0,
+          "budget_breakdown": {
+            "flight_cost": 7976.0,
+            "hotel_cost": 1677.0,
+            "activity_cost": 2460.0,
+            "total_cost": 12113.0,
+            "budget": 15000.0,
+            "remaining": 2887.0,
+            "is_within_budget": true,
+            "over_budget_amount": 0.0,
+            "suggestions": []
+          },
+          "adjustment_history": []
+        },
+        "structured_signature": {
+          "status": "completed",
+          "destination": "首尔",
+          "outbound_candidate_id": "flight_1af1eda2a227a408",
+          "return_candidate_id": "flight_c95daa6c3eaf053b",
+          "hotel_candidate_id": "hotel_57a56b4b90bbecc4",
+          "activity_candidate_ids": [
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62",
+            "activity_c00fc07e17c81247",
+            "activity_29e41a4dc2f97fe4",
+            "activity_59bf9bf2ce8c8d62"
+          ],
+          "activity_weather_compatibility": [
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "存在一般降雨风险，未触发硬过滤，按场地类型软评分。"
+            },
+            {
+              "candidate_id": "activity_c00fc07e17c81247",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_29e41a4dc2f97fe4",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            },
+            {
+              "candidate_id": "activity_59bf9bf2ce8c8d62",
+              "weather_compatible": true,
+              "recommendation_reason": "降雨条件下室内活动天气适配良好。"
+            }
+          ],
+          "weather": {
+            "scenario": "generated",
+            "source": "mock",
+            "source_version": "2026.09-v1",
+            "availability_status": "available",
+            "daily_weather": [
+              {
+                "date": "2026-09-25",
+                "weather_condition": "rain",
+                "rain_probability": 11,
+                "temperature": 15.6,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-09-26",
+                "weather_condition": "sunny",
+                "rain_probability": 31,
+                "temperature": 21.7,
+                "severe_weather": false,
+                "availability_status": "available"
+              },
+              {
+                "date": "2026-09-27",
+                "weather_condition": "rain",
+                "rain_probability": 38,
+                "temperature": 23.8,
+                "severe_weather": false,
+                "availability_status": "available"
+              }
+            ],
+            "planning": {
+              "status": "ready",
+              "fallback_used": false,
+              "issue_code": "",
+              "reason": "确定性 Mock 天气情景 generated；仅用于测试与演示，不是实时天气预报。"
+            },
+            "activity_weather_optimized": true,
+            "activity_weather_fallback_reason": ""
+          },
+          "final_total_cost": 12113.0,
+          "budget_breakdown": {
+            "flight_cost": 7976.0,
+            "hotel_cost": 1677.0,
+            "activity_cost": 2460.0,
+            "total_cost": 12113.0,
+            "budget": 15000.0,
+            "remaining": 2887.0,
+            "is_within_budget": true,
+            "over_budget_amount": 0.0,
+            "suggestions": []
+          },
+          "adjustment_history": []
+        },
+        "consistent": true
+      },
+      "recovery": {
+        "type": "none",
+        "success": true
+      }
+    }
+  ],
+  "metrics": {
+    "M1_required_field_collection_completion_rate": {
+      "completed": 8,
+      "total": 8,
+      "rate": 1.0
+    },
+    "M2_supported_field_extraction_accuracy": {
+      "correct": 51,
+      "labeled": 51,
+      "missing": 0,
+      "incorrect": 0,
+      "accuracy": 1.0,
+      "false_positive_count": 0,
+      "ambiguities_recognized": 7,
+      "ambiguities_expected": 7,
+      "ambiguity_recognition_rate": 1.0
+    },
+    "M3_clarification_rounds": {
+      "per_scenario": {
+        "partial_holiday": 1,
+        "complete_request": 0,
+        "range_ambiguity": 1,
+        "date_conflict": 1,
+        "budget_change": 1,
+        "invalid_values_recovery": 1,
+        "extreme_budget": 0,
+        "fixed_relative_date": 0
+      },
+      "average": 0.625
+    },
+    "M4_interaction_steps": {
+      "definition": {
+        "natural": "输入文本+点击解析=2；每轮补充为输入+提交=2；确认规划=1",
+        "structured": "6个必要字段各1次；非空兴趣1次；提交规划1次"
+      },
+      "natural_total": 34,
+      "structured_total": 61,
+      "natural_average": 4.25,
+      "structured_average": 7.625
+    },
+    "M5_planning_consistency": {
+      "consistent": 8,
+      "total": 8,
+      "rate": 1.0
+    },
+    "M6_exception_recovery_success_rate": {
+      "successful": 7,
+      "total": 7,
+      "rate": 1.0,
+      "cases": [
+        {
+          "type": "missing_fields",
+          "success": true
+        },
+        {
+          "type": "ambiguity",
+          "success": true
+        },
+        {
+          "type": "date_conflict",
+          "success": true
+        },
+        {
+          "type": "preference_change",
+          "success": true
+        },
+        {
+          "type": "invalid_values",
+          "success": true
+        },
+        {
+          "type": "tampered_receipt_then_valid_retry",
+          "success": true,
+          "first_status": 422,
+          "retry_status": 200
+        },
+        {
+          "type": "transport_failure_state_preservation_then_retry",
+          "success": true,
+          "transport_failed": true,
+          "state_preserved": true,
+          "retry_status": 200
+        }
+      ]
+    }
+  },
+  "limitations": [
+    "固定规则语料结果不能外推为真实 LLM 或开放域自然语言准确率。",
+    "交互步骤是按预先定义的自动化原子操作计数，不是用户耗时。",
+    "实验没有真人参与，不能推导用户满意度、学习成本或真实任务效率。",
+    "价格、候选和规划结果来自确定性 Mock Provider，不代表真实市场。"
+  ]
+}

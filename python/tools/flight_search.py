@@ -7,10 +7,10 @@ Mock 模式下返回随机但合理的航班数据，保证系统可以零成本
 
 from __future__ import annotations
 
-import random
-from datetime import datetime, timedelta
+from config.settings import settings
+from models.schemas import DataSource, Flight, FlightSearchRequest
 
-from models.schemas import Flight
+from .deterministic import stable_candidate_id, stable_rng
 
 
 AIRLINES = {
@@ -36,6 +36,83 @@ ROUTE_DURATIONS = {
 }
 
 
+class MockFlightProvider:
+    """基于稳定请求摘要生成候选；不包含航班推荐评分。"""
+
+    def __init__(self, dataset_version: str | None = None):
+        self.dataset_version = dataset_version or settings.MOCK_DATA_VERSION
+
+    async def search(self, request: FlightSearchRequest) -> list[Flight]:
+        return _generate_flights(request, self.dataset_version)
+
+
+def _generate_flights(
+    request: FlightSearchRequest,
+    dataset_version: str,
+) -> list[Flight]:
+    key = (request.departure_city, request.arrival_city)
+    rev_key = (request.arrival_city, request.departure_city)
+    dur_range = ROUTE_DURATIONS.get(key) or ROUTE_DURATIONS.get(rev_key) or (3.0, 8.0)
+
+    international_cities = {"东京", "首尔", "曼谷", "巴黎", "大阪", "清迈"}
+    is_international = bool(
+        {request.departure_city, request.arrival_city} & international_cities
+    )
+    airline_pool = AIRLINES["国际"] if is_international else AIRLINES["国内"]
+
+    cabin_multiplier = {"economy": 1.0, "business": 2.5, "first": 5.0}
+    multiplier = cabin_multiplier[request.cabin_class]
+    rng = stable_rng(
+        "flight",
+        request.model_dump(mode="json"),
+        dataset_version,
+    )
+
+    results: list[Flight] = []
+    for i in range(request.count):
+        airline_name, airline_code = airline_pool[i % len(airline_pool)]
+        duration = round(rng.uniform(*dur_range), 1)
+        stops = rng.choices([0, 1, 2], weights=[60, 30, 10])[0]
+        base_price = 500 + duration * rng.randint(200, 500) + stops * (-300)
+        price = max(300, round(base_price * multiplier))
+
+        dep_hour = rng.randint(6, 20)
+        dep_time = (
+            f"{request.travel_date}T{dep_hour:02d}:"
+            f"{rng.choice(['00', '30'])}:00"
+        )
+        candidate_id = stable_candidate_id(
+            "flight",
+            {
+                "departure_city": request.departure_city,
+                "arrival_city": request.arrival_city,
+                "travel_date": request.travel_date,
+                "cabin_class": request.cabin_class,
+                "airline_code": airline_code,
+                "index": i,
+            },
+            dataset_version,
+        )
+
+        results.append(Flight(
+            candidate_id=candidate_id,
+            source=DataSource.MOCK,
+            source_version=dataset_version,
+            airline=airline_name,
+            flight_no=f"{airline_code}{rng.randint(100, 9999)}",
+            departure_city=request.departure_city,
+            arrival_city=request.arrival_city,
+            departure_time=dep_time,
+            arrival_time=f"(+{duration}h)",
+            price=float(price),
+            duration_hours=duration,
+            stops=stops,
+            cabin_class=request.cabin_class,
+        ))
+
+    return sorted(results, key=lambda flight: (flight.price, flight.candidate_id))
+
+
 def search_flights(
     departure_city: str,
     arrival_city: str,
@@ -43,40 +120,12 @@ def search_flights(
     cabin_class: str = "economy",
     count: int = 6,
 ) -> list[Flight]:
-    """搜索航班（Mock 实现）。"""
-    key = (departure_city, arrival_city)
-    rev_key = (arrival_city, departure_city)
-    dur_range = ROUTE_DURATIONS.get(key) or ROUTE_DURATIONS.get(rev_key) or (3.0, 8.0)
-
-    is_international = arrival_city in ("东京", "首尔", "曼谷", "巴黎", "大阪", "清迈")
-    airline_pool = AIRLINES["国际"] if is_international else AIRLINES["国内"]
-
-    cabin_multiplier = {"economy": 1.0, "business": 2.5, "first": 5.0}
-    multiplier = cabin_multiplier.get(cabin_class, 1.0)
-
-    results: list[Flight] = []
-    for i in range(count):
-        airline_name, airline_code = airline_pool[i % len(airline_pool)]
-        duration = round(random.uniform(*dur_range), 1)
-        stops = random.choices([0, 1, 2], weights=[60, 30, 10])[0]
-        base_price = 500 + duration * random.randint(200, 500) + stops * (-300)
-        price = max(300, round(base_price * multiplier))
-
-        dep_hour = random.randint(6, 20)
-        arr_offset = timedelta(hours=duration)
-        dep_time = f"{date}T{dep_hour:02d}:{random.choice(['00', '30'])}:00"
-
-        results.append(Flight(
-            airline=airline_name,
-            flight_no=f"{airline_code}{random.randint(100, 9999)}",
-            departure_city=departure_city,
-            arrival_city=arrival_city,
-            departure_time=dep_time,
-            arrival_time=f"(+{duration}h)",
-            price=float(price),
-            duration_hours=duration,
-            stops=stops,
-            cabin_class=cabin_class,
-        ))
-
-    return sorted(results, key=lambda f: f.price)
+    """兼容原同步工具入口；Agent 使用 MockFlightProvider。"""
+    request = FlightSearchRequest(
+        departure_city=departure_city,
+        arrival_city=arrival_city,
+        travel_date=date,
+        cabin_class=cabin_class,
+        count=count,
+    )
+    return _generate_flights(request, settings.MOCK_DATA_VERSION)

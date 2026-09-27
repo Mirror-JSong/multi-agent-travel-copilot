@@ -23,7 +23,15 @@ class Settings:
     LLM_MAX_TOKENS: int = int(os.getenv("LLM_MAX_TOKENS", "4096"))
 
     BUDGET_MAX_RETRIES: int = int(os.getenv("BUDGET_MAX_RETRIES", "3"))
+    BUDGET_POLICY_VERSION: str = os.getenv("BUDGET_POLICY_VERSION", "budget-policy-v1")
+    BUDGET_MIN_HOTEL_RATING: float = float(os.getenv("BUDGET_MIN_HOTEL_RATING", "7.0"))
     PARALLEL_TIMEOUT: int = int(os.getenv("PARALLEL_TIMEOUT", "30"))
+    MOCK_DATA_VERSION: str = os.getenv("MOCK_DATA_VERSION", "2026.09-v1")
+    MOCK_ACTIVITY_DATA_VERSION: str = os.getenv(
+        "MOCK_ACTIVITY_DATA_VERSION",
+        "2026.09-activity-weather-pace-v3",
+    )
+    WEATHER_PROVIDER_TIMEOUT: float = float(os.getenv("WEATHER_PROVIDER_TIMEOUT", "5"))
 
     API_HOST: str = os.getenv("API_HOST", "0.0.0.0")
     API_PORT: int = int(os.getenv("API_PORT", "8000"))

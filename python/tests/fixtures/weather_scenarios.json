@@ -1,0 +1,19 @@
+{
+  "destination": "东京",
+  "start_date": "2026-10-01",
+  "end_date": "2026-10-05",
+  "scenarios": {
+    "sunny": {
+      "expected_conditions": ["sunny"]
+    },
+    "rainy": {
+      "expected_conditions": ["rain", "heavy_rain"]
+    },
+    "mixed": {
+      "minimum_condition_count": 3
+    },
+    "unavailable": {
+      "expected_status": "unavailable"
+    }
+  }
+}

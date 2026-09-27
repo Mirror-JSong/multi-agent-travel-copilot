@@ -1,0 +1,20 @@
+{
+  "http_status": 200,
+  "request_status": "completed_with_issues",
+  "plan_statuses": [
+    "completed",
+    "failed"
+  ],
+  "failure_records": [
+    {
+      "agent": "FlightAgent",
+      "code": "agent_execution_error",
+      "error_type": "RuntimeError",
+      "reason": "C1 controlled flight failure for 山城",
+      "required": true
+    }
+  ],
+  "decision": "only_feasible",
+  "passed": true,
+  "scope_note": "固定测试注入；未修改普通生产入口。"
+}

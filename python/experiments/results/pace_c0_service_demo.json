@@ -1,0 +1,49 @@
+{
+  "demo": "stage-c0-real-service",
+  "mock_notice": "All travel, weather, duration, intensity, and price data are deterministic Mock data.",
+  "api_health": {
+    "status_code": 200,
+    "body": {
+      "status": "ok",
+      "service": "travel-planner",
+      "agents": 7
+    }
+  },
+  "streamlit_health": {
+    "status_code": 200,
+    "body": "ok"
+  },
+  "natural_language_flow": {
+    "parse_http_status": 200,
+    "plan_http_status": 200,
+    "draft_complete": true,
+    "confirmed_pace": "relaxed",
+    "planning_state": "completed",
+    "daily_activity_counts": [
+      2,
+      2
+    ],
+    "rest_slots": [
+      {
+        "date": "2026-10-01",
+        "time_slot": "evening"
+      },
+      {
+        "date": "2026-10-02",
+        "time_slot": "evening"
+      }
+    ],
+    "pace_policy_version": "pace-policy-v1"
+  },
+  "structured_flow": {
+    "http_status": 200,
+    "confirmed_pace": "relaxed",
+    "planning_state": "completed",
+    "daily_activity_counts": [
+      2,
+      2
+    ],
+    "rest_count": 2
+  },
+  "ui_interaction_evidence": "Streamlit process served its health endpoint; the relaxed selection, planning click, pace caption, and explicit rest rendering are verified by test_c0_structured_relaxed_pace_renders_explicit_rest."
+}

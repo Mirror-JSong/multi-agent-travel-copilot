@@ -1,0 +1,87 @@
+{
+  "experiment_version": "weather-awareness-b3-v1",
+  "activity_dataset_version": "2026.09-activity-weather-v2",
+  "weather_source_version": "weather-experiment-v1",
+  "business_fixture_version": "weather-experiment-business-v1",
+  "time_semantics": "DailyWeather is day-level; no scenario claims different weather within one day.",
+  "future_extensions": [
+    "Intraday weather such as rainy morning and clear afternoon requires a separately designed time-slot weather contract and is not simulated here."
+  ],
+  "weather_profiles": {
+    "sunny": {
+      "repeat": {"condition": "sunny", "rain_probability": 5, "temperature": 27, "severe": false}
+    },
+    "normal_rain": {
+      "repeat": {"condition": "rain", "rain_probability": 45, "temperature": 23, "severe": false}
+    },
+    "heavy_rain": {
+      "repeat": {"condition": "heavy_rain", "rain_probability": 95, "temperature": 21, "severe": true}
+    },
+    "mixed_four_days": {
+      "days": [
+        {"condition": "sunny", "rain_probability": 5, "temperature": 27, "severe": false},
+        {"condition": "rain", "rain_probability": 55, "temperature": 23, "severe": false},
+        {"condition": "heavy_rain", "rain_probability": 92, "temperature": 20, "severe": true},
+        {"condition": "cloudy", "rain_probability": 25, "temperature": 24, "severe": false}
+      ]
+    },
+    "daily_sequence_four_days": {
+      "days": [
+        {"condition": "heavy_rain", "rain_probability": 94, "temperature": 22, "severe": true},
+        {"condition": "sunny", "rain_probability": 4, "temperature": 29, "severe": false},
+        {"condition": "cloudy", "rain_probability": 28, "temperature": 27, "severe": false},
+        {"condition": "rain", "rain_probability": 60, "temperature": 24, "severe": false}
+      ]
+    },
+    "unavailable": {"unavailable": true}
+  },
+  "activity_fixtures": {
+    "high_cost_indoor": [
+      {"id": "high-morning-outdoor", "name": "History Outdoor Morning", "slot": "morning", "price": 0, "rating": 9.8, "environment": "outdoor", "sensitivity": "high"},
+      {"id": "high-morning-indoor", "name": "History Indoor Morning", "slot": "morning", "price": 100, "rating": 9.0, "environment": "indoor", "sensitivity": "none"},
+      {"id": "high-afternoon-outdoor", "name": "History Outdoor Afternoon", "slot": "afternoon", "price": 0, "rating": 9.8, "environment": "outdoor", "sensitivity": "high"},
+      {"id": "high-afternoon-indoor", "name": "History Indoor Afternoon", "slot": "afternoon", "price": 100, "rating": 9.0, "environment": "indoor", "sensitivity": "none"},
+      {"id": "high-evening-outdoor", "name": "History Outdoor Evening", "slot": "evening", "price": 0, "rating": 9.8, "environment": "outdoor", "sensitivity": "high"},
+      {"id": "high-evening-indoor", "name": "History Indoor Evening", "slot": "evening", "price": 100, "rating": 9.0, "environment": "indoor", "sensitivity": "none"}
+    ],
+    "budget_reselect": [
+      {"id": "budget-morning-outdoor", "name": "History Outdoor Morning", "slot": "morning", "price": 1, "rating": 9.9, "environment": "outdoor", "sensitivity": "high"},
+      {"id": "budget-morning-premium", "name": "History Indoor Premium Morning", "slot": "morning", "price": 100, "rating": 9.5, "environment": "indoor", "sensitivity": "none"},
+      {"id": "budget-morning-economy", "name": "History Indoor Economy Morning", "slot": "morning", "price": 10, "rating": 7.5, "environment": "indoor", "sensitivity": "none"},
+      {"id": "budget-afternoon-outdoor", "name": "History Outdoor Afternoon", "slot": "afternoon", "price": 1, "rating": 9.9, "environment": "outdoor", "sensitivity": "high"},
+      {"id": "budget-afternoon-premium", "name": "History Indoor Premium Afternoon", "slot": "afternoon", "price": 100, "rating": 9.5, "environment": "indoor", "sensitivity": "none"},
+      {"id": "budget-afternoon-economy", "name": "History Indoor Economy Afternoon", "slot": "afternoon", "price": 10, "rating": 7.5, "environment": "indoor", "sensitivity": "none"},
+      {"id": "budget-evening-outdoor", "name": "History Outdoor Evening", "slot": "evening", "price": 1, "rating": 9.9, "environment": "outdoor", "sensitivity": "high"},
+      {"id": "budget-evening-premium", "name": "History Indoor Premium Evening", "slot": "evening", "price": 100, "rating": 9.5, "environment": "indoor", "sensitivity": "none"},
+      {"id": "budget-evening-economy", "name": "History Indoor Economy Evening", "slot": "evening", "price": 10, "rating": 7.5, "environment": "indoor", "sensitivity": "none"}
+    ],
+    "no_cheaper_compliant": [
+      {"id": "no-cheap-morning-outdoor", "name": "History Outdoor Morning", "slot": "morning", "price": 1, "rating": 9.9, "environment": "outdoor", "sensitivity": "high"},
+      {"id": "no-cheap-morning-indoor", "name": "History Indoor Morning", "slot": "morning", "price": 80, "rating": 9.5, "environment": "indoor", "sensitivity": "none"},
+      {"id": "no-cheap-afternoon-outdoor", "name": "History Outdoor Afternoon", "slot": "afternoon", "price": 1, "rating": 9.9, "environment": "outdoor", "sensitivity": "high"},
+      {"id": "no-cheap-afternoon-indoor", "name": "History Indoor Afternoon", "slot": "afternoon", "price": 80, "rating": 9.5, "environment": "indoor", "sensitivity": "none"},
+      {"id": "no-cheap-evening-outdoor", "name": "History Outdoor Evening", "slot": "evening", "price": 1, "rating": 9.9, "environment": "outdoor", "sensitivity": "high"},
+      {"id": "no-cheap-evening-indoor", "name": "History Indoor Evening", "slot": "evening", "price": 80, "rating": 9.5, "environment": "indoor", "sensitivity": "none"}
+    ],
+    "outdoor_only": [
+      {"id": "outdoor-only-morning", "name": "History Outdoor Morning", "slot": "morning", "price": 1, "rating": 9.0, "environment": "outdoor", "sensitivity": "high"},
+      {"id": "outdoor-only-afternoon", "name": "History Outdoor Afternoon", "slot": "afternoon", "price": 1, "rating": 9.0, "environment": "outdoor", "sensitivity": "high"},
+      {"id": "outdoor-only-evening", "name": "History Outdoor Evening", "slot": "evening", "price": 1, "rating": 9.0, "environment": "outdoor", "sensitivity": "high"}
+    ]
+  },
+  "scenarios": [
+    {"id": "sunny_default", "destination": "首尔", "start_date": "2026-10-01", "end_date": "2026-10-02", "travelers": 1, "budget": 5000, "interests": ["sightseeing"], "weather_profile": "sunny", "activity_fixture": "provider", "expected_control": "completed", "expected_treatment": "completed"},
+    {"id": "normal_rain_default", "destination": "首尔", "start_date": "2026-10-01", "end_date": "2026-10-02", "travelers": 1, "budget": 5000, "interests": ["sightseeing"], "weather_profile": "normal_rain", "activity_fixture": "provider", "expected_control": "completed", "expected_treatment": "completed"},
+    {"id": "heavy_rain_default", "destination": "首尔", "start_date": "2026-10-01", "end_date": "2026-10-02", "travelers": 1, "budget": 5000, "interests": ["sightseeing"], "weather_profile": "heavy_rain", "activity_fixture": "provider", "expected_control": "completed", "expected_treatment": "completed"},
+    {"id": "mixed_tokyo_four_days", "destination": "东京", "start_date": "2026-10-01", "end_date": "2026-10-05", "travelers": 1, "budget": 12000, "interests": ["sightseeing"], "weather_profile": "mixed_four_days", "activity_fixture": "provider", "expected_control": "completed", "expected_treatment": "completed"},
+    {"id": "daily_sequence_bangkok", "destination": "曼谷", "start_date": "2026-10-01", "end_date": "2026-10-05", "travelers": 2, "budget": 18000, "interests": ["experience"], "weather_profile": "daily_sequence_four_days", "activity_fixture": "provider", "expected_control": "completed", "expected_treatment": "completed"},
+    {"id": "unavailable_default", "destination": "首尔", "start_date": "2026-10-01", "end_date": "2026-10-03", "travelers": 1, "budget": 6000, "interests": ["sightseeing"], "weather_profile": "unavailable", "activity_fixture": "provider", "expected_control": "completed", "expected_treatment": "completed"},
+    {"id": "rainy_bangkok_interest", "destination": "曼谷", "start_date": "2026-10-01", "end_date": "2026-10-02", "travelers": 1, "budget": 5000, "interests": ["sightseeing"], "weather_profile": "heavy_rain", "activity_fixture": "provider", "expected_control": "completed", "expected_treatment": "completed"},
+    {"id": "higher_cost_indoor", "destination": "首尔", "start_date": "2026-10-01", "end_date": "2026-10-02", "travelers": 1, "budget": 5000, "interests": ["history"], "weather_profile": "heavy_rain", "activity_fixture": "high_cost_indoor", "expected_control": "completed", "expected_treatment": "completed"},
+    {"id": "budget_reselect_indoor", "destination": "首尔", "start_date": "2026-10-01", "end_date": "2026-10-02", "travelers": 1, "budget": 1550, "interests": ["history"], "weather_profile": "heavy_rain", "activity_fixture": "budget_reselect", "expected_control": "completed", "expected_treatment": "completed"},
+    {"id": "no_cheaper_weather_compliant", "destination": "首尔", "start_date": "2026-10-01", "end_date": "2026-10-02", "travelers": 1, "budget": 1550, "interests": ["history"], "weather_profile": "heavy_rain", "activity_fixture": "no_cheaper_compliant", "expected_control": "completed", "expected_treatment": "completed"},
+    {"id": "no_feasible_outdoor_only", "destination": "首尔", "start_date": "2026-10-01", "end_date": "2026-10-02", "travelers": 1, "budget": 5000, "interests": ["history"], "weather_profile": "heavy_rain", "activity_fixture": "outdoor_only", "expected_control": "completed", "expected_treatment": "activity_constraints_unsatisfied"},
+    {"id": "multi_traveler_four_days", "destination": "东京", "start_date": "2026-10-01", "end_date": "2026-10-05", "travelers": 3, "budget": 20000, "interests": ["experience"], "weather_profile": "mixed_four_days", "activity_fixture": "provider", "expected_control": "completed", "expected_treatment": "completed"},
+    {"id": "extreme_budget_infeasible", "destination": "曼谷", "start_date": "2026-10-01", "end_date": "2026-10-02", "travelers": 2, "budget": 100, "interests": ["history"], "weather_profile": "heavy_rain", "activity_fixture": "high_cost_indoor", "expected_control": "budget_infeasible", "expected_treatment": "budget_infeasible"}
+  ]
+}

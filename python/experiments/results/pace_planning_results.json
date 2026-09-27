@@ -1,0 +1,938 @@
+{
+  "experiment": "stage-c0-pace-planning",
+  "experiment_version": "pace-c0-v1",
+  "activity_dataset_version": "pace-activity-fixture-v1",
+  "weather_source_version": "pace-weather-fixture-v1",
+  "scenario_count": 11,
+  "scenario_results": [
+    {
+      "id": "legacy_unspecified_sunny",
+      "pace": null,
+      "weather": "sunny",
+      "fixture_variant": "standard",
+      "state": "completed",
+      "selected_candidate_ids": [
+        "pace_morning_medium",
+        "pace_afternoon_medium",
+        "pace_evening_medium",
+        "pace_morning_medium",
+        "pace_afternoon_medium",
+        "pace_evening_medium"
+      ],
+      "daily_activity_counts": [
+        3,
+        3
+      ],
+      "activity_count": 6,
+      "rest_count": 0,
+      "rest_slots": [],
+      "known_high_intensity_count": 0,
+      "known_intensity_count": 6,
+      "interest_match_count": 6,
+      "weather_hard_pass_count": 6,
+      "weather_evaluable_count": 6,
+      "activity_cost": 600.0,
+      "total_cost": 3169.0,
+      "budget": 50000.0,
+      "adjustment_round": 0,
+      "adjustment_history": [],
+      "constraint_issues": [],
+      "candidate_signature": [
+        [
+          "pace_afternoon_high",
+          60.0
+        ],
+        [
+          "pace_afternoon_low",
+          140.0
+        ],
+        [
+          "pace_afternoon_medium",
+          100.0
+        ],
+        [
+          "pace_evening_high",
+          60.0
+        ],
+        [
+          "pace_evening_low",
+          140.0
+        ],
+        [
+          "pace_evening_medium",
+          100.0
+        ],
+        [
+          "pace_morning_high",
+          60.0
+        ],
+        [
+          "pace_morning_low",
+          140.0
+        ],
+        [
+          "pace_morning_medium",
+          100.0
+        ]
+      ],
+      "candidate_prices_unchanged": true,
+      "pace_policy_version": "pace-policy-v1"
+    },
+    {
+      "id": "relaxed_sunny",
+      "pace": "relaxed",
+      "weather": "sunny",
+      "fixture_variant": "standard",
+      "state": "completed",
+      "selected_candidate_ids": [
+        "pace_morning_low",
+        "pace_afternoon_low",
+        "pace_morning_low",
+        "pace_afternoon_low"
+      ],
+      "daily_activity_counts": [
+        2,
+        2
+      ],
+      "activity_count": 4,
+      "rest_count": 2,
+      "rest_slots": [
+        "evening",
+        "evening"
+      ],
+      "known_high_intensity_count": 0,
+      "known_intensity_count": 4,
+      "interest_match_count": 4,
+      "weather_hard_pass_count": 4,
+      "weather_evaluable_count": 4,
+      "activity_cost": 560.0,
+      "total_cost": 3129.0,
+      "budget": 50000.0,
+      "adjustment_round": 0,
+      "adjustment_history": [],
+      "constraint_issues": [],
+      "candidate_signature": [
+        [
+          "pace_afternoon_high",
+          60.0
+        ],
+        [
+          "pace_afternoon_low",
+          140.0
+        ],
+        [
+          "pace_afternoon_medium",
+          100.0
+        ],
+        [
+          "pace_evening_high",
+          60.0
+        ],
+        [
+          "pace_evening_low",
+          140.0
+        ],
+        [
+          "pace_evening_medium",
+          100.0
+        ],
+        [
+          "pace_morning_high",
+          60.0
+        ],
+        [
+          "pace_morning_low",
+          140.0
+        ],
+        [
+          "pace_morning_medium",
+          100.0
+        ]
+      ],
+      "candidate_prices_unchanged": true,
+      "pace_policy_version": "pace-policy-v1"
+    },
+    {
+      "id": "balanced_sunny",
+      "pace": "balanced",
+      "weather": "sunny",
+      "fixture_variant": "standard",
+      "state": "completed",
+      "selected_candidate_ids": [
+        "pace_morning_medium",
+        "pace_afternoon_medium",
+        "pace_evening_medium",
+        "pace_morning_medium",
+        "pace_afternoon_medium",
+        "pace_evening_medium"
+      ],
+      "daily_activity_counts": [
+        3,
+        3
+      ],
+      "activity_count": 6,
+      "rest_count": 0,
+      "rest_slots": [],
+      "known_high_intensity_count": 0,
+      "known_intensity_count": 6,
+      "interest_match_count": 6,
+      "weather_hard_pass_count": 6,
+      "weather_evaluable_count": 6,
+      "activity_cost": 600.0,
+      "total_cost": 3169.0,
+      "budget": 50000.0,
+      "adjustment_round": 0,
+      "adjustment_history": [],
+      "constraint_issues": [],
+      "candidate_signature": [
+        [
+          "pace_afternoon_high",
+          60.0
+        ],
+        [
+          "pace_afternoon_low",
+          140.0
+        ],
+        [
+          "pace_afternoon_medium",
+          100.0
+        ],
+        [
+          "pace_evening_high",
+          60.0
+        ],
+        [
+          "pace_evening_low",
+          140.0
+        ],
+        [
+          "pace_evening_medium",
+          100.0
+        ],
+        [
+          "pace_morning_high",
+          60.0
+        ],
+        [
+          "pace_morning_low",
+          140.0
+        ],
+        [
+          "pace_morning_medium",
+          100.0
+        ]
+      ],
+      "candidate_prices_unchanged": true,
+      "pace_policy_version": "pace-policy-v1"
+    },
+    {
+      "id": "packed_sunny",
+      "pace": "packed",
+      "weather": "sunny",
+      "fixture_variant": "standard",
+      "state": "completed",
+      "selected_candidate_ids": [
+        "pace_morning_high",
+        "pace_afternoon_high",
+        "pace_evening_high",
+        "pace_morning_high",
+        "pace_afternoon_high",
+        "pace_evening_high"
+      ],
+      "daily_activity_counts": [
+        3,
+        3
+      ],
+      "activity_count": 6,
+      "rest_count": 0,
+      "rest_slots": [],
+      "known_high_intensity_count": 6,
+      "known_intensity_count": 6,
+      "interest_match_count": 6,
+      "weather_hard_pass_count": 6,
+      "weather_evaluable_count": 6,
+      "activity_cost": 360.0,
+      "total_cost": 2929.0,
+      "budget": 50000.0,
+      "adjustment_round": 0,
+      "adjustment_history": [],
+      "constraint_issues": [],
+      "candidate_signature": [
+        [
+          "pace_afternoon_high",
+          60.0
+        ],
+        [
+          "pace_afternoon_low",
+          140.0
+        ],
+        [
+          "pace_afternoon_medium",
+          100.0
+        ],
+        [
+          "pace_evening_high",
+          60.0
+        ],
+        [
+          "pace_evening_low",
+          140.0
+        ],
+        [
+          "pace_evening_medium",
+          100.0
+        ],
+        [
+          "pace_morning_high",
+          60.0
+        ],
+        [
+          "pace_morning_low",
+          140.0
+        ],
+        [
+          "pace_morning_medium",
+          100.0
+        ]
+      ],
+      "candidate_prices_unchanged": true,
+      "pace_policy_version": "pace-policy-v1"
+    },
+    {
+      "id": "relaxed_rainy",
+      "pace": "relaxed",
+      "weather": "rainy",
+      "fixture_variant": "standard",
+      "state": "completed",
+      "selected_candidate_ids": [
+        "pace_morning_low",
+        "pace_afternoon_low",
+        "pace_morning_low",
+        "pace_afternoon_low"
+      ],
+      "daily_activity_counts": [
+        2,
+        2
+      ],
+      "activity_count": 4,
+      "rest_count": 2,
+      "rest_slots": [
+        "evening",
+        "evening"
+      ],
+      "known_high_intensity_count": 0,
+      "known_intensity_count": 4,
+      "interest_match_count": 4,
+      "weather_hard_pass_count": 4,
+      "weather_evaluable_count": 4,
+      "activity_cost": 560.0,
+      "total_cost": 3129.0,
+      "budget": 50000.0,
+      "adjustment_round": 0,
+      "adjustment_history": [],
+      "constraint_issues": [],
+      "candidate_signature": [
+        [
+          "pace_afternoon_high",
+          60.0
+        ],
+        [
+          "pace_afternoon_low",
+          140.0
+        ],
+        [
+          "pace_afternoon_medium",
+          100.0
+        ],
+        [
+          "pace_evening_high",
+          60.0
+        ],
+        [
+          "pace_evening_low",
+          140.0
+        ],
+        [
+          "pace_evening_medium",
+          100.0
+        ],
+        [
+          "pace_morning_high",
+          60.0
+        ],
+        [
+          "pace_morning_low",
+          140.0
+        ],
+        [
+          "pace_morning_medium",
+          100.0
+        ]
+      ],
+      "candidate_prices_unchanged": true,
+      "pace_policy_version": "pace-policy-v1"
+    },
+    {
+      "id": "relaxed_rainy_low_budget",
+      "pace": "relaxed",
+      "weather": "rainy",
+      "fixture_variant": "standard",
+      "state": "budget_infeasible",
+      "selected_candidate_ids": [
+        "pace_morning_medium",
+        "pace_afternoon_medium",
+        "pace_morning_medium",
+        "pace_afternoon_medium"
+      ],
+      "daily_activity_counts": [
+        2,
+        2
+      ],
+      "activity_count": 4,
+      "rest_count": 2,
+      "rest_slots": [
+        "evening",
+        "evening"
+      ],
+      "known_high_intensity_count": 0,
+      "known_intensity_count": 4,
+      "interest_match_count": 4,
+      "weather_hard_pass_count": 4,
+      "weather_evaluable_count": 4,
+      "activity_cost": 400.0,
+      "total_cost": 2741.0,
+      "budget": 100.0,
+      "adjustment_round": 3,
+      "adjustment_history": [
+        {
+          "round_number": 1,
+          "target": "activities",
+          "policy_version": "budget-policy-v1",
+          "before_candidate_ids": [
+            "pace_morning_low",
+            "pace_afternoon_low",
+            "pace_morning_low",
+            "pace_afternoon_low"
+          ],
+          "after_candidate_ids": [
+            "pace_morning_medium",
+            "pace_afternoon_medium",
+            "pace_morning_medium",
+            "pace_afternoon_medium"
+          ],
+          "before_cost": 560.0,
+          "after_cost": 400.0,
+          "saved_amount": 160.0,
+          "current_total": 2969.0,
+          "budget_remaining": -2869.0,
+          "improved": true,
+          "activity_replacements": [
+            {
+              "date": "2026-10-01",
+              "time_slot": "morning",
+              "before_candidate_id": "pace_morning_low",
+              "after_candidate_id": "pace_morning_medium",
+              "before_cost": 140.0,
+              "after_cost": 100.0,
+              "selection_reason": "降雨条件下室内活动天气适配良好。 节奏约束：活动强度和预计时长符合 relaxed 规则。"
+            },
+            {
+              "date": "2026-10-01",
+              "time_slot": "afternoon",
+              "before_candidate_id": "pace_afternoon_low",
+              "after_candidate_id": "pace_afternoon_medium",
+              "before_cost": 140.0,
+              "after_cost": 100.0,
+              "selection_reason": "降雨条件下室内活动天气适配良好。 节奏约束：活动强度和预计时长符合 relaxed 规则。"
+            },
+            {
+              "date": "2026-10-02",
+              "time_slot": "morning",
+              "before_candidate_id": "pace_morning_low",
+              "after_candidate_id": "pace_morning_medium",
+              "before_cost": 140.0,
+              "after_cost": 100.0,
+              "selection_reason": "恶劣天气下选择低暴露室内活动。 节奏约束：活动强度和预计时长符合 relaxed 规则。"
+            },
+            {
+              "date": "2026-10-02",
+              "time_slot": "afternoon",
+              "before_candidate_id": "pace_afternoon_low",
+              "after_candidate_id": "pace_afternoon_medium",
+              "before_cost": 140.0,
+              "after_cost": 100.0,
+              "selection_reason": "恶劣天气下选择低暴露室内活动。 节奏约束：活动强度和预计时长符合 relaxed 规则。"
+            }
+          ]
+        },
+        {
+          "round_number": 2,
+          "target": "hotel",
+          "policy_version": "budget-policy-v1",
+          "before_candidate_ids": [
+            "hotel_8bb30c5b40fa6a1c"
+          ],
+          "after_candidate_ids": [
+            "hotel_38285e9b121ade56"
+          ],
+          "before_cost": 392.0,
+          "after_cost": 164.0,
+          "saved_amount": 228.0,
+          "current_total": 2741.0,
+          "budget_remaining": -2641.0,
+          "improved": true,
+          "activity_replacements": []
+        },
+        {
+          "round_number": 3,
+          "target": "flights",
+          "policy_version": "budget-policy-v1",
+          "before_candidate_ids": [
+            "flight_d9b90820767f32b6",
+            "flight_e063c25e2564bc83"
+          ],
+          "after_candidate_ids": [
+            "flight_d9b90820767f32b6",
+            "flight_e063c25e2564bc83"
+          ],
+          "before_cost": 2177.0,
+          "after_cost": 2177.0,
+          "saved_amount": 0.0,
+          "current_total": 2741.0,
+          "budget_remaining": -2641.0,
+          "improved": false,
+          "activity_replacements": []
+        }
+      ],
+      "constraint_issues": [],
+      "candidate_signature": [
+        [
+          "pace_afternoon_high",
+          60.0
+        ],
+        [
+          "pace_afternoon_low",
+          140.0
+        ],
+        [
+          "pace_afternoon_medium",
+          100.0
+        ],
+        [
+          "pace_evening_high",
+          60.0
+        ],
+        [
+          "pace_evening_low",
+          140.0
+        ],
+        [
+          "pace_evening_medium",
+          100.0
+        ],
+        [
+          "pace_morning_high",
+          60.0
+        ],
+        [
+          "pace_morning_low",
+          140.0
+        ],
+        [
+          "pace_morning_medium",
+          100.0
+        ]
+      ],
+      "candidate_prices_unchanged": true,
+      "pace_policy_version": "pace-policy-v1"
+    },
+    {
+      "id": "packed_rainy",
+      "pace": "packed",
+      "weather": "rainy",
+      "fixture_variant": "standard",
+      "state": "completed",
+      "selected_candidate_ids": [
+        "pace_morning_medium",
+        "pace_afternoon_medium",
+        "pace_evening_medium",
+        "pace_morning_medium",
+        "pace_afternoon_medium",
+        "pace_evening_medium"
+      ],
+      "daily_activity_counts": [
+        3,
+        3
+      ],
+      "activity_count": 6,
+      "rest_count": 0,
+      "rest_slots": [],
+      "known_high_intensity_count": 0,
+      "known_intensity_count": 6,
+      "interest_match_count": 6,
+      "weather_hard_pass_count": 6,
+      "weather_evaluable_count": 6,
+      "activity_cost": 600.0,
+      "total_cost": 3169.0,
+      "budget": 50000.0,
+      "adjustment_round": 0,
+      "adjustment_history": [],
+      "constraint_issues": [],
+      "candidate_signature": [
+        [
+          "pace_afternoon_high",
+          60.0
+        ],
+        [
+          "pace_afternoon_low",
+          140.0
+        ],
+        [
+          "pace_afternoon_medium",
+          100.0
+        ],
+        [
+          "pace_evening_high",
+          60.0
+        ],
+        [
+          "pace_evening_low",
+          140.0
+        ],
+        [
+          "pace_evening_medium",
+          100.0
+        ],
+        [
+          "pace_morning_high",
+          60.0
+        ],
+        [
+          "pace_morning_low",
+          140.0
+        ],
+        [
+          "pace_morning_medium",
+          100.0
+        ]
+      ],
+      "candidate_prices_unchanged": true,
+      "pace_policy_version": "pace-policy-v1"
+    },
+    {
+      "id": "relaxed_unknown_attributes",
+      "pace": "relaxed",
+      "weather": "sunny",
+      "fixture_variant": "unknown_only",
+      "state": "pace_constraints_unsatisfied",
+      "selected_candidate_ids": [],
+      "daily_activity_counts": [
+        0,
+        0
+      ],
+      "activity_count": 0,
+      "rest_count": 6,
+      "rest_slots": [
+        "morning",
+        "afternoon",
+        "evening",
+        "morning",
+        "afternoon",
+        "evening"
+      ],
+      "known_high_intensity_count": 0,
+      "known_intensity_count": 0,
+      "interest_match_count": 0,
+      "weather_hard_pass_count": 0,
+      "weather_evaluable_count": 0,
+      "activity_cost": null,
+      "total_cost": null,
+      "budget": 50000.0,
+      "adjustment_round": 0,
+      "adjustment_history": [],
+      "constraint_issues": [
+        {
+          "date": "2026-10-01",
+          "time_slot": "day",
+          "code": "pace_minimum_not_met",
+          "reason": "没有找到 relaxed 每日最低数量的 pace 与天气合规活动。"
+        },
+        {
+          "date": "2026-10-02",
+          "time_slot": "day",
+          "code": "pace_minimum_not_met",
+          "reason": "没有找到 relaxed 每日最低数量的 pace 与天气合规活动。"
+        }
+      ],
+      "candidate_signature": [],
+      "candidate_prices_unchanged": false,
+      "pace_policy_version": "pace-policy-v1"
+    },
+    {
+      "id": "balanced_missing_evening",
+      "pace": "balanced",
+      "weather": "sunny",
+      "fixture_variant": "missing_evening",
+      "state": "activity_constraints_unsatisfied",
+      "selected_candidate_ids": [
+        "pace_morning_medium",
+        "pace_afternoon_medium",
+        "pace_morning_medium",
+        "pace_afternoon_medium"
+      ],
+      "daily_activity_counts": [
+        2,
+        2
+      ],
+      "activity_count": 4,
+      "rest_count": 0,
+      "rest_slots": [],
+      "known_high_intensity_count": 0,
+      "known_intensity_count": 4,
+      "interest_match_count": 4,
+      "weather_hard_pass_count": 4,
+      "weather_evaluable_count": 4,
+      "activity_cost": null,
+      "total_cost": null,
+      "budget": 50000.0,
+      "adjustment_round": 0,
+      "adjustment_history": [],
+      "constraint_issues": [
+        {
+          "date": "2026-10-01",
+          "time_slot": "evening",
+          "code": "no_available_candidate",
+          "reason": "该日期和时间段没有可用活动候选。"
+        },
+        {
+          "date": "2026-10-02",
+          "time_slot": "evening",
+          "code": "no_available_candidate",
+          "reason": "该日期和时间段没有可用活动候选。"
+        }
+      ],
+      "candidate_signature": [],
+      "candidate_prices_unchanged": false,
+      "pace_policy_version": "pace-policy-v1"
+    },
+    {
+      "id": "relaxed_high_only",
+      "pace": "relaxed",
+      "weather": "sunny",
+      "fixture_variant": "high_only",
+      "state": "pace_constraints_unsatisfied",
+      "selected_candidate_ids": [],
+      "daily_activity_counts": [
+        0,
+        0
+      ],
+      "activity_count": 0,
+      "rest_count": 6,
+      "rest_slots": [
+        "morning",
+        "afternoon",
+        "evening",
+        "morning",
+        "afternoon",
+        "evening"
+      ],
+      "known_high_intensity_count": 0,
+      "known_intensity_count": 0,
+      "interest_match_count": 0,
+      "weather_hard_pass_count": 0,
+      "weather_evaluable_count": 0,
+      "activity_cost": null,
+      "total_cost": null,
+      "budget": 50000.0,
+      "adjustment_round": 0,
+      "adjustment_history": [],
+      "constraint_issues": [
+        {
+          "date": "2026-10-01",
+          "time_slot": "day",
+          "code": "pace_minimum_not_met",
+          "reason": "没有找到 relaxed 每日最低数量的 pace 与天气合规活动。"
+        },
+        {
+          "date": "2026-10-02",
+          "time_slot": "day",
+          "code": "pace_minimum_not_met",
+          "reason": "没有找到 relaxed 每日最低数量的 pace 与天气合规活动。"
+        }
+      ],
+      "candidate_signature": [],
+      "candidate_prices_unchanged": false,
+      "pace_policy_version": "pace-policy-v1"
+    },
+    {
+      "id": "relaxed_weather_unavailable",
+      "pace": "relaxed",
+      "weather": "unavailable",
+      "fixture_variant": "standard",
+      "state": "completed",
+      "selected_candidate_ids": [
+        "pace_morning_low",
+        "pace_afternoon_low",
+        "pace_morning_low",
+        "pace_afternoon_low"
+      ],
+      "daily_activity_counts": [
+        2,
+        2
+      ],
+      "activity_count": 4,
+      "rest_count": 2,
+      "rest_slots": [
+        "evening",
+        "evening"
+      ],
+      "known_high_intensity_count": 0,
+      "known_intensity_count": 4,
+      "interest_match_count": 4,
+      "weather_hard_pass_count": 0,
+      "weather_evaluable_count": 0,
+      "activity_cost": 560.0,
+      "total_cost": 3129.0,
+      "budget": 50000.0,
+      "adjustment_round": 0,
+      "adjustment_history": [],
+      "constraint_issues": [],
+      "candidate_signature": [
+        [
+          "pace_afternoon_high",
+          60.0
+        ],
+        [
+          "pace_afternoon_low",
+          140.0
+        ],
+        [
+          "pace_afternoon_medium",
+          100.0
+        ],
+        [
+          "pace_evening_high",
+          60.0
+        ],
+        [
+          "pace_evening_low",
+          140.0
+        ],
+        [
+          "pace_evening_medium",
+          100.0
+        ],
+        [
+          "pace_morning_high",
+          60.0
+        ],
+        [
+          "pace_morning_low",
+          140.0
+        ],
+        [
+          "pace_morning_medium",
+          100.0
+        ]
+      ],
+      "candidate_prices_unchanged": true,
+      "pace_policy_version": "pace-policy-v1"
+    }
+  ],
+  "metrics": {
+    "core_only_variable_is_pace": true,
+    "core_results": {
+      "unspecified": {
+        "daily_activity_counts": [
+          3,
+          3
+        ],
+        "rest_count": 0,
+        "known_high_intensity_count": 0,
+        "activity_cost": 600.0,
+        "total_cost": 3169.0,
+        "state": "completed"
+      },
+      "relaxed": {
+        "daily_activity_counts": [
+          2,
+          2
+        ],
+        "rest_count": 2,
+        "known_high_intensity_count": 0,
+        "activity_cost": 560.0,
+        "total_cost": 3129.0,
+        "state": "completed"
+      },
+      "balanced": {
+        "daily_activity_counts": [
+          3,
+          3
+        ],
+        "rest_count": 0,
+        "known_high_intensity_count": 0,
+        "activity_cost": 600.0,
+        "total_cost": 3169.0,
+        "state": "completed"
+      },
+      "packed": {
+        "daily_activity_counts": [
+          3,
+          3
+        ],
+        "rest_count": 0,
+        "known_high_intensity_count": 6,
+        "activity_cost": 360.0,
+        "total_cost": 2929.0,
+        "state": "completed"
+      }
+    },
+    "by_pace": {
+      "balanced": {
+        "scenario_count": 2,
+        "average_daily_activity_count": 2.5,
+        "known_high_intensity_rate": 0.0,
+        "interest_match_rate": 1.0,
+        "weather_hard_pass_rate": 1.0,
+        "completed_count": 1,
+        "budget_infeasible_count": 0,
+        "pace_infeasible_count": 0
+      },
+      "packed": {
+        "scenario_count": 2,
+        "average_daily_activity_count": 3.0,
+        "known_high_intensity_rate": 0.5,
+        "interest_match_rate": 1.0,
+        "weather_hard_pass_rate": 1.0,
+        "completed_count": 2,
+        "budget_infeasible_count": 0,
+        "pace_infeasible_count": 0
+      },
+      "relaxed": {
+        "scenario_count": 6,
+        "average_daily_activity_count": 1.3333,
+        "known_high_intensity_rate": 0.0,
+        "interest_match_rate": 1.0,
+        "weather_hard_pass_rate": 1.0,
+        "completed_count": 3,
+        "budget_infeasible_count": 1,
+        "pace_infeasible_count": 2
+      },
+      "unspecified": {
+        "scenario_count": 1,
+        "average_daily_activity_count": 3.0,
+        "known_high_intensity_rate": 0.0,
+        "interest_match_rate": 1.0,
+        "weather_hard_pass_rate": 1.0,
+        "completed_count": 1,
+        "budget_infeasible_count": 0,
+        "pace_infeasible_count": 0
+      }
+    }
+  },
+  "limitations": [
+    "这是确定性规则实验，不是用户舒适度测量。",
+    "活动时长和强度为明确标记的 Mock 属性，不代表真实景点实测数据。",
+    "packed 仅使用现有 morning/afternoon/evening 三时段容量，不宣称增加景点数量。"
+  ]
+}

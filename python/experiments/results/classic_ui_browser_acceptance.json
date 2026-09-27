@@ -1,0 +1,53 @@
+{
+  "demo": "classic_ui_real_edge_streamlit_acceptance",
+  "evidence": [
+    {
+      "state": "original_reference",
+      "screenshot": "E:/Files/Documents/002_Mirror/AI/multi-agent-travel-planner/docs/assets/classic-ui/01-original-reference.png"
+    },
+    {
+      "state": "d3_workbench_reference",
+      "screenshot": "E:/Files/Documents/002_Mirror/AI/multi-agent-travel-planner/docs/assets/classic-ui/02-d3-workbench-reference.png"
+    },
+    {
+      "state": "classic_initial_desktop",
+      "screenshot": "E:/Files/Documents/002_Mirror/AI/multi-agent-travel-planner/docs/assets/classic-ui/03-classic-initial-desktop.png"
+    },
+    {
+      "state": "classic_note_conflicts",
+      "screenshot": "E:/Files/Documents/002_Mirror/AI/multi-agent-travel-planner/docs/assets/classic-ui/04-classic-note-conflicts.png"
+    },
+    {
+      "state": "classic_confirmed_preferences",
+      "screenshot": "E:/Files/Documents/002_Mirror/AI/multi-agent-travel-planner/docs/assets/classic-ui/05-classic-confirmed-preferences.png"
+    },
+    {
+      "state": "classic_comparison_desktop",
+      "screenshot": "E:/Files/Documents/002_Mirror/AI/multi-agent-travel-planner/docs/assets/classic-ui/06-classic-comparison-desktop.png"
+    },
+    {
+      "state": "classic_itinerary_weather_desktop",
+      "screenshot": "E:/Files/Documents/002_Mirror/AI/multi-agent-travel-planner/docs/assets/classic-ui/07-classic-itinerary-weather-desktop.png"
+    },
+    {
+      "state": "classic_itinerary_narrow",
+      "screenshot": "E:/Files/Documents/002_Mirror/AI/multi-agent-travel-planner/docs/assets/classic-ui/08-classic-itinerary-narrow.png"
+    }
+  ],
+  "assertions": {
+    "original_reference_rendered": true,
+    "d3_workbench_rendered": true,
+    "classic_two_column_desktop_rendered": true,
+    "real_fastapi_natural_clarification_completed": true,
+    "dual_plan_comparison_rendered": true,
+    "destination_switch_without_replanning_checked_by_apptest": true,
+    "weather_itinerary_rendered": true,
+    "mock_notice_visible": true,
+    "narrow_viewport_checked": true
+  },
+  "limitations": [
+    "浏览器演示使用确定性 Mock Parser、天气和旅行 Provider，不是实时旅行服务。",
+    "原版参考页仅用于视觉对照，业务验收发生在 Classic UI 与当前正式 API。",
+    "浏览器自动化验收不是实际用户可用性研究。"
+  ]
+}

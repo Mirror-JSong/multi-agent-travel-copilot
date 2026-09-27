@@ -1,0 +1,219 @@
+{
+  "executed_at_utc": "2026-09-25T08:34:26.170781+00:00",
+  "services": {
+    "fastapi": {
+      "url": "http://127.0.0.1:8765",
+      "health": {
+        "status": "ok",
+        "service": "travel-planner",
+        "agents": 7
+      }
+    },
+    "streamlit": {
+      "url": "http://127.0.0.1:8766",
+      "health_status": 200,
+      "health_body": "ok"
+    }
+  },
+  "natural_language_flow": {
+    "initial_complete": false,
+    "initial_missing_fields": [
+      "start_date",
+      "end_date",
+      "num_travelers",
+      "travel_style"
+    ],
+    "clarified_complete": true,
+    "confirmed": true,
+    "plan_state": "completed",
+    "weather_status": "ready",
+    "weather_is_mock": true
+  },
+  "controlled_scenarios": [
+    {
+      "scenario_id": "sunny_default",
+      "planning_mode": "weather_aware",
+      "state": "completed",
+      "weather_status": "ready",
+      "weather_is_mock": true,
+      "weather_conditions": [
+        "sunny"
+      ],
+      "selected_activity_ids": [
+        "activity_b7ef1a8a0a753e19",
+        "activity_20391fe699730db7",
+        "activity_cb24da2b15fb727d"
+      ],
+      "initial_total_cost": 1550.0,
+      "final_total_cost": 1550.0,
+      "adjustment_round": 0,
+      "weather_change_count": 0,
+      "constraint_issue_count": 0,
+      "failure_codes": [],
+      "injection": null
+    },
+    {
+      "scenario_id": "normal_rain_default",
+      "planning_mode": "weather_aware",
+      "state": "completed",
+      "weather_status": "ready",
+      "weather_is_mock": true,
+      "weather_conditions": [
+        "rain"
+      ],
+      "selected_activity_ids": [
+        "activity_c00fc07e17c81247",
+        "activity_29e41a4dc2f97fe4",
+        "activity_59bf9bf2ce8c8d62"
+      ],
+      "initial_total_cost": 1910.0,
+      "final_total_cost": 1910.0,
+      "adjustment_round": 0,
+      "weather_change_count": 3,
+      "constraint_issue_count": 0,
+      "failure_codes": [],
+      "injection": null
+    },
+    {
+      "scenario_id": "higher_cost_indoor",
+      "planning_mode": "weather_aware",
+      "state": "completed",
+      "weather_status": "ready",
+      "weather_is_mock": true,
+      "weather_conditions": [
+        "heavy_rain"
+      ],
+      "selected_activity_ids": [
+        "high-morning-indoor",
+        "high-afternoon-indoor",
+        "high-evening-indoor"
+      ],
+      "initial_total_cost": 1800.0,
+      "final_total_cost": 1800.0,
+      "adjustment_round": 0,
+      "weather_change_count": 3,
+      "constraint_issue_count": 0,
+      "failure_codes": [],
+      "injection": null
+    },
+    {
+      "scenario_id": "unavailable_default",
+      "planning_mode": "weather_aware",
+      "state": "completed",
+      "weather_status": "unavailable",
+      "weather_is_mock": true,
+      "weather_conditions": [
+        null,
+        null
+      ],
+      "selected_activity_ids": [
+        "activity_b7ef1a8a0a753e19",
+        "activity_20391fe699730db7",
+        "activity_cb24da2b15fb727d",
+        "activity_b7ef1a8a0a753e19",
+        "activity_20391fe699730db7",
+        "activity_cb24da2b15fb727d"
+      ],
+      "initial_total_cost": 2100.0,
+      "final_total_cost": 2100.0,
+      "adjustment_round": 0,
+      "weather_change_count": 0,
+      "constraint_issue_count": 0,
+      "failure_codes": [],
+      "injection": null
+    },
+    {
+      "scenario_id": "no_feasible_outdoor_only",
+      "planning_mode": "weather_aware",
+      "state": "activity_constraints_unsatisfied",
+      "weather_status": "ready",
+      "weather_is_mock": true,
+      "weather_conditions": [
+        "heavy_rain"
+      ],
+      "selected_activity_ids": [],
+      "initial_total_cost": null,
+      "final_total_cost": null,
+      "adjustment_round": 0,
+      "weather_change_count": 0,
+      "constraint_issue_count": 3,
+      "failure_codes": [],
+      "injection": null
+    },
+    {
+      "scenario_id": "extreme_budget_infeasible",
+      "planning_mode": "weather_aware",
+      "state": "budget_infeasible",
+      "weather_status": "ready",
+      "weather_is_mock": true,
+      "weather_conditions": [
+        "heavy_rain"
+      ],
+      "selected_activity_ids": [
+        "high-morning-indoor",
+        "high-afternoon-indoor",
+        "high-evening-indoor"
+      ],
+      "initial_total_cost": 3100.0,
+      "final_total_cost": 2000.0,
+      "adjustment_round": 3,
+      "weather_change_count": 3,
+      "constraint_issue_count": 0,
+      "failure_codes": [],
+      "injection": null
+    },
+    {
+      "scenario_id": "sunny_default",
+      "planning_mode": "weather_aware",
+      "state": "completed",
+      "weather_status": "degraded_timeout",
+      "weather_is_mock": null,
+      "weather_conditions": [],
+      "selected_activity_ids": [
+        "activity_b7ef1a8a0a753e19",
+        "activity_20391fe699730db7",
+        "activity_cb24da2b15fb727d"
+      ],
+      "initial_total_cost": 1550.0,
+      "final_total_cost": 1550.0,
+      "adjustment_round": 0,
+      "weather_change_count": 0,
+      "constraint_issue_count": 0,
+      "failure_codes": [],
+      "injection": {
+        "inject_weather_timeout": true
+      }
+    },
+    {
+      "scenario_id": "sunny_default",
+      "planning_mode": "weather_aware",
+      "state": "failed",
+      "weather_status": "ready",
+      "weather_is_mock": true,
+      "weather_conditions": [
+        "sunny"
+      ],
+      "selected_activity_ids": [],
+      "initial_total_cost": null,
+      "final_total_cost": null,
+      "adjustment_round": 0,
+      "weather_change_count": 0,
+      "constraint_issue_count": 0,
+      "failure_codes": [
+        "agent_execution_error"
+      ],
+      "injection": {
+        "inject_agent_failure": true
+      }
+    }
+  ],
+  "sunny_rainy_verified_difference": {
+    "same_scenario_shape": true,
+    "activities_differ": true,
+    "cost_delta": 360.0
+  },
+  "notes": [
+    "All controlled weather, candidates, and prices are deterministic Mock fixtures.",
+    "The Streamlit service was started and its real health endpoint was reached; UI state rendering is additionally covered by Streamlit AppTest."
+  ]
+}

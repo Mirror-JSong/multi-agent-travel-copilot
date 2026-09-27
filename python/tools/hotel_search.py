@@ -7,9 +7,10 @@ Mock 模式下根据城市和旅行风格生成合理的酒店数据。
 
 from __future__ import annotations
 
-import random
+from config.settings import settings
+from models.schemas import DataSource, Hotel, HotelSearchRequest, TravelStyle
 
-from models.schemas import Hotel
+from .deterministic import stable_candidate_id, stable_rng
 
 
 CITY_HOTEL_DATA: dict[str, list[dict]] = {
@@ -35,25 +36,68 @@ CITY_HOTEL_DATA: dict[str, list[dict]] = {
 }
 
 
-def search_hotels(city: str, check_in: str, check_out: str, style: str = "comfort") -> list[Hotel]:
-    """搜索酒店（Mock 实现）。"""
-    templates = CITY_HOTEL_DATA.get(city, CITY_HOTEL_DATA["default"])
+class MockHotelProvider:
+    """生成确定性酒店候选；酒店推荐评分仍由 HotelAgent 负责。"""
+
+    def __init__(self, dataset_version: str | None = None):
+        self.dataset_version = dataset_version or settings.MOCK_DATA_VERSION
+
+    async def search(self, request: HotelSearchRequest) -> list[Hotel]:
+        return _generate_hotels(request, self.dataset_version)
+
+
+def _generate_hotels(
+    request: HotelSearchRequest,
+    dataset_version: str,
+) -> list[Hotel]:
+    templates = CITY_HOTEL_DATA.get(request.city, CITY_HOTEL_DATA["default"])
     style_mult = {"budget": 0.7, "comfort": 1.0, "luxury": 1.5,
                   "adventure": 0.6, "cultural": 0.9, "relaxation": 1.2}
-    mult = style_mult.get(style, 1.0)
+    mult = style_mult[request.travel_style.value]
+    rng = stable_rng(
+        "hotel",
+        request.model_dump(mode="json"),
+        dataset_version,
+    )
 
     results: list[Hotel] = []
-    for tmpl in templates:
-        noise = random.uniform(0.85, 1.15)
+    for index, tmpl in enumerate(templates):
+        noise = rng.uniform(0.85, 1.15)
+        candidate_id = stable_candidate_id(
+            "hotel",
+            {"city": request.city, "name": tmpl["name"], "index": index},
+            dataset_version,
+        )
         results.append(Hotel(
+            candidate_id=candidate_id,
+            source=DataSource.MOCK,
+            source_version=dataset_version,
             name=tmpl["name"],
-            city=city,
-            address=f"{city}市中心",
+            city=request.city,
+            check_in=request.check_in,
+            check_out=request.check_out,
+            address=f"{request.city}市中心",
             star_rating=tmpl["star"],
-            user_rating=round(random.uniform(7.0, 9.8), 1),
+            user_rating=round(rng.uniform(7.0, 9.8), 1),
             price_per_night=round(tmpl["base_price"] * mult * noise),
-            amenities=tmpl["amenities"],
-            distance_to_center_km=round(random.uniform(0.3, 5.0), 1),
+            amenities=list(tmpl["amenities"]),
+            distance_to_center_km=round(rng.uniform(0.3, 5.0), 1),
         ))
 
-    return sorted(results, key=lambda h: h.price_per_night)
+    return sorted(results, key=lambda hotel: (hotel.price_per_night, hotel.candidate_id))
+
+
+def search_hotels(
+    city: str,
+    check_in: str,
+    check_out: str,
+    style: str = "comfort",
+) -> list[Hotel]:
+    """兼容原同步工具入口；Agent 使用 MockHotelProvider。"""
+    request = HotelSearchRequest(
+        city=city,
+        check_in=check_in,
+        check_out=check_out,
+        travel_style=TravelStyle(style),
+    )
+    return _generate_hotels(request, settings.MOCK_DATA_VERSION)

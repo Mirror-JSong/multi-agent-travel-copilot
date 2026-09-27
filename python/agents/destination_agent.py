@@ -129,10 +129,7 @@ class DestinationAgent(BaseAgent):
 
         score += dest.safety_score * 3
 
-        try:
-            month = datetime.strptime(start_date, "%Y-%m-%d").month
-        except (ValueError, TypeError):
-            month = 6
+        month = datetime.strptime(start_date, "%Y-%m-%d").month
 
         season_map = {12: "winter", 1: "winter", 2: "winter",
                       3: "spring", 4: "spring", 5: "spring",

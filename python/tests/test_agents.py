@@ -10,7 +10,7 @@ import asyncio
 import sys
 from pathlib import Path
 
-import pytest
+import pytest   # Pytest是Python 里专门用来“自动检查代码对不对”的测试工具，是一个很常用的 Python 测试框架。
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
@@ -62,7 +62,7 @@ async def test_preference_agent_fills_interests():
 
 
 @pytest.mark.asyncio
-async def test_preference_agent_keeps_existing_interests():
+async def test_preference_agent_keeps_existing_interests():  #用户已经给的信息，Agent不能乱改。
     state = _make_state()
     state.preferences.interests = ["自定义兴趣"]
     agent = PreferenceAgent()
@@ -132,20 +132,21 @@ async def test_activity_agent_generates_plans():
     assert result.activity_result is not None
     assert len(result.activity_result.day_plans) > 0
 
+# 以上当前测试主要是“冒烟测试”，确保主要能力能跑通，而不是特别严格地验证每一个内部算法。
 
 # ━━━━━━ Budget Agent ━━━━━━
 
 
 @pytest.mark.asyncio
 async def test_budget_agent_passes():
-    state = await quick_plan(budget=50000)
+    state = await quick_plan(budget=50000)                #高预算不需要调整（正常情况）
     assert state.budget_breakdown is not None
     assert state.budget_breakdown.is_within_budget is True
 
 
 @pytest.mark.asyncio
 async def test_budget_agent_triggers_adjustment():
-    state = await quick_plan(budget=2000, travelers=2)
+    state = await quick_plan(budget=2000, travelers=2)    #低预算场景必须触发调整
     assert state.adjustment_round > 0
 
 
@@ -164,7 +165,7 @@ async def test_full_pipeline():
 
 
 @pytest.mark.asyncio
-async def test_pipeline_multiple_styles():
+async def test_pipeline_multiple_styles():    #参数覆盖测试，无论用户选择哪种常见 travel_style，Pipeline 都不能崩，最终都应该完成。
     for style in ["budget", "comfort", "luxury", "adventure"]:
         state = await quick_plan(budget=20000, style=style)
         assert state.state == PlanningState.COMPLETED

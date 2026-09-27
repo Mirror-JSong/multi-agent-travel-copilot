@@ -1,0 +1,45 @@
+{
+  "demo": "stage_d3_real_edge_streamlit_acceptance",
+  "evidence": [
+    {
+      "state": "intake_desktop",
+      "screenshot": "E:/Files/Documents/002_Mirror/AI/multi-agent-travel-planner/docs/assets/stage-d3/01-intake-desktop.png"
+    },
+    {
+      "state": "clarification_desktop",
+      "screenshot": "E:/Files/Documents/002_Mirror/AI/multi-agent-travel-planner/docs/assets/stage-d3/02-clarification-desktop.png"
+    },
+    {
+      "state": "confirmation_desktop",
+      "screenshot": "E:/Files/Documents/002_Mirror/AI/multi-agent-travel-planner/docs/assets/stage-d3/03-confirmation-desktop.png"
+    },
+    {
+      "state": "comparison_desktop",
+      "screenshot": "E:/Files/Documents/002_Mirror/AI/multi-agent-travel-planner/docs/assets/stage-d3/04-comparison-desktop.png"
+    },
+    {
+      "state": "detail_desktop",
+      "screenshot": "E:/Files/Documents/002_Mirror/AI/multi-agent-travel-planner/docs/assets/stage-d3/05-detail-desktop.png"
+    },
+    {
+      "state": "detail_narrow",
+      "screenshot": "E:/Files/Documents/002_Mirror/AI/multi-agent-travel-planner/docs/assets/stage-d3/06-detail-narrow.png"
+    },
+    {
+      "state": "comparison_narrow",
+      "screenshot": "E:/Files/Documents/002_Mirror/AI/multi-agent-travel-planner/docs/assets/stage-d3/07-comparison-narrow.png"
+    }
+  ],
+  "assertions": {
+    "actual_streamlit_dom": true,
+    "real_fastapi_flow": true,
+    "natural_multiturn_completed": true,
+    "dual_plan_comparison_rendered": true,
+    "mock_notice_visible": true,
+    "narrow_viewport_checked": true
+  },
+  "limitations": [
+    "浏览器流程使用确定性 Mock Parser 与 Provider，不是实时旅行服务。",
+    "自动化浏览器验收不是实际用户可用性研究。"
+  ]
+}

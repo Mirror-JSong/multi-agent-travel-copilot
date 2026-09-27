@@ -1,0 +1,23 @@
+{
+  "fixture_version": "weather-activity-b2-v1",
+  "activity_dataset_version": "2026.09-activity-weather-v2",
+  "preferences": {
+    "budget": 50000.0,
+    "travel_style": "comfort",
+    "departure_city": "北京",
+    "start_date": "2026-10-01",
+    "end_date": "2026-10-05",
+    "num_travelers": 1,
+    "interests": ["经典景点"]
+  },
+  "control_modes": {
+    "weather_enabled_sunny": "sunny",
+    "weather_enabled_rainy": "rainy",
+    "weather_unavailable_baseline": "unavailable"
+  },
+  "expected": {
+    "sunny_environments": ["outdoor"],
+    "rainy_environments": ["indoor"],
+    "slots": ["morning", "afternoon", "evening"]
+  }
+}

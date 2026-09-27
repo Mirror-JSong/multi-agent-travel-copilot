@@ -1,121 +1,147 @@
-"""
-Budget Agent —— 预算校验 Agent。
+"""Budget evaluator.
 
-职责: 实时追踪总花费，确保不超预算，超预算时生成调整建议。
-在 Pipeline 最后一个节点执行，决定是否触发调整循环。
-
-面试考点（高频!!!）:
-  - 预算循环如何避免无限循环？ → max_adjustments 限制（默认 3 轮）
-  - 渐进式降级策略: 先降活动 → 再降酒店 → 最后换航班
-  - 每轮调整的幅度: 按超预算比例动态计算
-  - 状态机转换: BUDGET_CHECKING → COMPLETED / ADJUSTING
+This agent validates required outputs and calculates totals. Candidate reselection
+belongs to the budget orchestrator; this class never mutates a candidate price.
 """
 
 from __future__ import annotations
 
 from loguru import logger
 
-from models.schemas import BudgetBreakdown, PlanningState, TravelPlanState
+from models.schemas import BudgetBreakdown, FailureCode, PlanningState, TravelPlanState
+from models.costing import recalculate_selected_costs
 
-from .base_agent import BaseAgent
+from .base_agent import BaseAgent, record_agent_failure
 
 
 class BudgetAgent(BaseAgent):
     name = "BudgetAgent"
 
     async def execute(self, state: TravelPlanState) -> TravelPlanState:
-        pref = state.preferences
-        if pref is None:
-            raise ValueError("缺少用户偏好")
+        if state.state in {
+            PlanningState.FAILED,
+            PlanningState.ACTIVITY_CONSTRAINTS_UNSATISFIED,
+            PlanningState.PACE_CONSTRAINTS_UNSATISFIED,
+        }:
+            logger.error(f"[{self.name}] upstream terminal state; skip budget evaluation")
+            return state
 
-        flight_cost = state.flight_result.total_flight_cost if state.flight_result else 0
-        hotel_cost = state.hotel_result.total_hotel_cost if state.hotel_result else 0
-        activity_cost = state.activity_result.total_activity_cost if state.activity_result else 0
+        if state.preferences is None:
+            raise ValueError("user preferences are required")
 
-        total = flight_cost + hotel_cost + activity_cost
-        remaining = pref.budget - total
+        required_results = (
+            ("FlightAgent", "flight_result"),
+            ("HotelAgent", "hotel_result"),
+            ("ActivityAgent", "activity_result"),
+        )
+        missing_results = [
+            (agent_name, field_name)
+            for agent_name, field_name in required_results
+            if getattr(state, field_name) is None
+        ]
+        if missing_results:
+            for agent_name, field_name in missing_results:
+                record_agent_failure(
+                    state,
+                    agent_name=agent_name,
+                    code=FailureCode.MISSING_REQUIRED_RESULT,
+                    error_type="MissingRequiredResult",
+                    reason=f"required result {field_name} is missing; budget cannot be calculated",
+                    required=True,
+                )
+            return state
+
+        assert state.flight_result is not None
+        assert state.hotel_result is not None
+        assert state.activity_result is not None
+        incomplete_selections: list[tuple[str, str]] = []
+        if (
+            state.flight_result.recommended_outbound is None
+            or state.flight_result.recommended_return is None
+        ):
+            incomplete_selections.append(("FlightAgent", "recommended outbound/return flight"))
+        if state.hotel_result.recommended is None:
+            incomplete_selections.append(("HotelAgent", "recommended hotel"))
+        if (
+            not state.activity_result.day_plans
+            or any(not day.activities for day in state.activity_result.day_plans)
+        ):
+            incomplete_selections.append(("ActivityAgent", "complete daily activities"))
+        if incomplete_selections:
+            for agent_name, selection_name in incomplete_selections:
+                record_agent_failure(
+                    state,
+                    agent_name=agent_name,
+                    code=FailureCode.MISSING_REQUIRED_RESULT,
+                    error_type="MissingRequiredResult",
+                    reason=f"required selection {selection_name} is missing",
+                    required=True,
+                )
+            return state
+
+        flight_cost, hotel_cost, activity_cost, total = recalculate_selected_costs(state)
+        remaining = round(state.preferences.budget - total, 2)
         within_budget = remaining >= 0
-        over_amount = max(0, -remaining)
+        over_amount = round(max(0.0, -remaining), 2)
 
-        suggestions: list[str] = []
+        suggestions = []
         if not within_budget:
             suggestions = self._generate_suggestions(
-                over_amount, flight_cost, hotel_cost, activity_cost, state.adjustment_round,
+                over_amount,
+                flight_cost,
+                hotel_cost,
+                activity_cost,
+                state.adjustment_round,
             )
 
-        breakdown = BudgetBreakdown(
+        state.budget_breakdown = BudgetBreakdown(
             flight_cost=flight_cost,
             hotel_cost=hotel_cost,
             activity_cost=activity_cost,
             total_cost=total,
-            budget=pref.budget,
+            budget=state.preferences.budget,
             remaining=remaining,
             is_within_budget=within_budget,
             over_budget_amount=over_amount,
             suggestions=suggestions,
         )
-        state.budget_breakdown = breakdown
+        state.final_total_cost = total
 
         if within_budget:
             state.state = PlanningState.COMPLETED
-            logger.info(f"[{self.name}] 预算通过! 总费用 ¥{total:.0f}, 剩余 ¥{remaining:.0f}")
-        elif state.adjustment_round < state.max_adjustments:
-            state.state = PlanningState.ADJUSTING
-            state.adjustment_round += 1
-            self._apply_adjustments(state)
-            logger.warning(
-                f"[{self.name}] 超预算 ¥{over_amount:.0f}, "
-                f"进入第 {state.adjustment_round} 轮调整"
+            state.status_message = (
+                "The selected plan satisfies the budget and required constraints."
+            )
+            logger.info(
+                f"[{self.name}] budget passed: total={total:.2f}, remaining={remaining:.2f}"
             )
         else:
-            state.state = PlanningState.COMPLETED
-            state.error_messages.append(
-                f"经过 {state.max_adjustments} 轮调整仍超预算 ¥{over_amount:.0f}，返回当前最优方案"
+            state.state = PlanningState.ADJUSTING
+            state.status_message = (
+                "The selected plan is over budget; candidate reselection is required."
             )
-            logger.warning(f"[{self.name}] 达到最大调整次数, 返回当前方案")
-
+            logger.warning(
+                f"[{self.name}] over budget by {over_amount:.2f} after round "
+                f"{state.adjustment_round}"
+            )
         return state
 
     @staticmethod
     def _generate_suggestions(
-        over: float, flight: float, hotel: float, activity: float, round_num: int,
+        over: float,
+        flight: float,
+        hotel: float,
+        activity: float,
+        round_num: int,
     ) -> list[str]:
-        suggestions = []
         if round_num == 0:
-            suggestions.append(f"减少活动开支约 ¥{min(over, activity * 0.3):.0f}（选择免费景点）")
-            suggestions.append("选择评分略低但更实惠的餐厅")
-        elif round_num == 1:
-            suggestions.append(f"降低酒店等级，节省约 ¥{min(over, hotel * 0.3):.0f}")
-            suggestions.append("考虑距离市中心稍远但性价比更高的酒店")
-        else:
-            suggestions.append(f"选择更经济的航班，节省约 ¥{min(over, flight * 0.2):.0f}")
-            suggestions.append("考虑中转航班替代直飞")
-            suggestions.append("缩短行程天数")
-        return suggestions
-
-    @staticmethod
-    def _apply_adjustments(state: TravelPlanState) -> None:
-        """根据当前调整轮次，渐进式降低花费。"""
-        round_num = state.adjustment_round
-        over = state.budget_breakdown.over_budget_amount if state.budget_breakdown else 0
-
-        if round_num == 1 and state.activity_result:
-            cut_ratio = min(0.4, over / max(state.activity_result.total_activity_cost, 1))
-            for day in state.activity_result.day_plans:
-                for act in day.activities:
-                    act.price *= (1 - cut_ratio)
-                day.day_cost *= (1 - cut_ratio)
-            state.activity_result.total_activity_cost *= (1 - cut_ratio)
-
-        elif round_num == 2 and state.hotel_result and state.hotel_result.recommended:
-            cut_ratio = min(0.35, over / max(state.hotel_result.total_hotel_cost, 1))
-            state.hotel_result.recommended.price_per_night *= (1 - cut_ratio)
-            state.hotel_result.total_hotel_cost *= (1 - cut_ratio)
-
-        elif round_num >= 3 and state.flight_result:
-            cut_ratio = min(0.25, over / max(state.flight_result.total_flight_cost, 1))
-            if state.flight_result.recommended_outbound:
-                state.flight_result.recommended_outbound.price *= (1 - cut_ratio)
-            if state.flight_result.recommended_return:
-                state.flight_result.recommended_return.price *= (1 - cut_ratio)
-            state.flight_result.total_flight_cost *= (1 - cut_ratio)
+            return [
+                f"Reselect lower-cost activities to cover up to {min(over, activity):.2f}."
+            ]
+        if round_num == 1:
+            return [
+                f"Reselect a lower-cost eligible hotel to cover up to {min(over, hotel):.2f}."
+            ]
+        return [
+            f"Reselect lower-cost eligible flights to cover up to {min(over, flight):.2f}."
+        ]

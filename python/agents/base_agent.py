@@ -16,13 +16,40 @@ from typing import Any, Optional
 from loguru import logger
 
 from config.settings import settings
-from models.schemas import TravelPlanState
+from models.schemas import AgentFailure, FailureCode, PlanningState, TravelPlanState
+
+
+def record_agent_failure(
+    state: TravelPlanState,
+    *,
+    agent_name: str,
+    code: FailureCode,
+    error_type: str,
+    reason: str,
+    required: bool,
+) -> None:
+    """同时记录结构化与兼容的文本错误，并维护终态。"""
+    failure = AgentFailure(
+        agent=agent_name,
+        code=code,
+        error_type=error_type,
+        reason=reason,
+        required=required,
+    )
+    state.agent_failures.append(failure)
+    state.error_messages.append(
+        f"{agent_name} [{code.value}/{error_type}]: {reason}"
+    )
+    if required:
+        state.state = PlanningState.FAILED
 
 
 class BaseAgent(ABC):
     """所有 Agent 的抽象基类。"""
 
     name: str = "BaseAgent"
+    required: bool = True
+    output_fields: tuple[str, ...] = ()
 
     def __init__(self) -> None:
         self._llm_provider = settings.LLM_PROVIDER
@@ -37,7 +64,14 @@ class BaseAgent(ABC):
             logger.info(f"[{self.name}] 执行完成")
         except Exception as exc:
             logger.error(f"[{self.name}] 执行失败: {exc}")
-            state.error_messages.append(f"{self.name}: {str(exc)}")
+            record_agent_failure(
+                state,
+                agent_name=self.name,
+                code=FailureCode.AGENT_EXECUTION_ERROR,
+                error_type=type(exc).__name__,
+                reason=str(exc) or "Agent 执行失败",
+                required=self.required,
+            )
         return state
 
     # ── 子类必须实现 ────────────────────────────

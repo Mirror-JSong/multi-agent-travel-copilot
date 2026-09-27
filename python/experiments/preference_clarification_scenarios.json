@@ -1,0 +1,205 @@
+{
+  "reference_date": "2026-09-24",
+  "parser_config": {
+    "provider": "mock",
+    "locale": "zh-CN",
+    "version": "mock-preference-parser-v1"
+  },
+  "scenarios": [
+    {
+      "id": "partial_holiday",
+      "initial_text": "国庆想和朋友从上海出去玩五天，预算一万五，不想太累，喜欢拍照和吃东西。",
+      "answers": ["我们一共3人，2026年10月1日出发，舒适游。"],
+      "initial_expected": {
+        "departure_city": "上海",
+        "budget": 15000.0,
+        "duration_days": 5,
+        "pace": "relaxed",
+        "interests": ["摄影", "美食"]
+      },
+      "expected_ambiguous": ["start_date", "end_date"],
+      "final_preferences": {
+        "departure_city": "上海",
+        "budget": 15000.0,
+        "start_date": "2026-10-01",
+        "end_date": "2026-10-06",
+        "num_travelers": 3,
+        "travel_style": "comfort",
+        "interests": ["摄影", "美食"]
+      },
+      "recovery_type": "missing_fields"
+    },
+    {
+      "id": "complete_request",
+      "initial_text": "从北京出发，预算五万，2人，舒适游，2026年10月1日到2026年10月5日，喜欢历史。",
+      "answers": [],
+      "initial_expected": {
+        "departure_city": "北京",
+        "budget": 50000.0,
+        "start_date": "2026-10-01",
+        "end_date": "2026-10-05",
+        "duration_days": 4,
+        "num_travelers": 2,
+        "travel_style": "comfort",
+        "interests": ["历史"]
+      },
+      "expected_ambiguous": [],
+      "final_preferences": {
+        "departure_city": "北京",
+        "budget": 50000.0,
+        "start_date": "2026-10-01",
+        "end_date": "2026-10-05",
+        "num_travelers": 2,
+        "travel_style": "comfort",
+        "interests": ["历史"]
+      },
+      "recovery_type": "none"
+    },
+    {
+      "id": "range_ambiguity",
+      "initial_text": "从北京出发，预算一万到两万，大概两三人，国庆出发，喜欢博物馆。",
+      "answers": ["预算改成18000元，共2人，2026年10月2日出发，玩四天，文化游。"],
+      "initial_expected": {
+        "departure_city": "北京",
+        "interests": ["博物馆"]
+      },
+      "expected_ambiguous": ["budget", "start_date", "end_date", "num_travelers"],
+      "final_preferences": {
+        "departure_city": "北京",
+        "budget": 18000.0,
+        "start_date": "2026-10-02",
+        "end_date": "2026-10-06",
+        "num_travelers": 2,
+        "travel_style": "cultural",
+        "interests": ["博物馆"]
+      },
+      "recovery_type": "ambiguity"
+    },
+    {
+      "id": "date_conflict",
+      "initial_text": "从上海出发，预算一万，2人，舒适游，2026年10月1日到2026年10月6日，玩三天。",
+      "answers": ["旅行天数改成五天。"],
+      "initial_expected": {
+        "departure_city": "上海",
+        "budget": 10000.0,
+        "start_date": "2026-10-01",
+        "end_date": "2026-10-06",
+        "duration_days": 3,
+        "num_travelers": 2,
+        "travel_style": "comfort"
+      },
+      "expected_ambiguous": ["duration_days"],
+      "final_preferences": {
+        "departure_city": "上海",
+        "budget": 10000.0,
+        "start_date": "2026-10-01",
+        "end_date": "2026-10-06",
+        "num_travelers": 2,
+        "travel_style": "comfort",
+        "interests": []
+      },
+      "recovery_type": "date_conflict"
+    },
+    {
+      "id": "budget_change",
+      "initial_text": "从北京出发，预算两万，2人，舒适游，2026年11月1日到2026年11月5日，喜欢美食。",
+      "answers": ["预算改成10000元。"],
+      "initial_expected": {
+        "departure_city": "北京",
+        "budget": 20000.0,
+        "start_date": "2026-11-01",
+        "end_date": "2026-11-05",
+        "duration_days": 4,
+        "num_travelers": 2,
+        "travel_style": "comfort",
+        "interests": ["美食"]
+      },
+      "expected_ambiguous": [],
+      "final_preferences": {
+        "departure_city": "北京",
+        "budget": 10000.0,
+        "start_date": "2026-11-01",
+        "end_date": "2026-11-05",
+        "num_travelers": 2,
+        "travel_style": "comfort",
+        "interests": ["美食"]
+      },
+      "recovery_type": "preference_change"
+    },
+    {
+      "id": "invalid_values_recovery",
+      "initial_text": "从广州出发，预算负一百，0人，舒适游，2026年2月30日到2026年3月3日。",
+      "answers": ["预算两万，共2人，2026年3月1日到2026年3月5日。"],
+      "initial_expected": {
+        "departure_city": "广州",
+        "budget": -100.0,
+        "start_date": "2026-02-30",
+        "end_date": "2026-03-03",
+        "num_travelers": 0,
+        "travel_style": "comfort"
+      },
+      "expected_ambiguous": [],
+      "final_preferences": {
+        "departure_city": "广州",
+        "budget": 20000.0,
+        "start_date": "2026-03-01",
+        "end_date": "2026-03-05",
+        "num_travelers": 2,
+        "travel_style": "comfort",
+        "interests": []
+      },
+      "recovery_type": "invalid_values"
+    },
+    {
+      "id": "extreme_budget",
+      "initial_text": "从北京出发，预算100元，2人，经济游，2026年12月1日到2026年12月5日。",
+      "answers": [],
+      "initial_expected": {
+        "departure_city": "北京",
+        "budget": 100.0,
+        "start_date": "2026-12-01",
+        "end_date": "2026-12-05",
+        "duration_days": 4,
+        "num_travelers": 2,
+        "travel_style": "budget"
+      },
+      "expected_ambiguous": [],
+      "final_preferences": {
+        "departure_city": "北京",
+        "budget": 100.0,
+        "start_date": "2026-12-01",
+        "end_date": "2026-12-05",
+        "num_travelers": 2,
+        "travel_style": "budget",
+        "interests": []
+      },
+      "recovery_type": "none"
+    },
+    {
+      "id": "fixed_relative_date",
+      "initial_text": "明天从深圳出发玩三天，预算一万五，两个人，休闲游，喜欢海边。",
+      "answers": [],
+      "initial_expected": {
+        "departure_city": "深圳",
+        "budget": 15000.0,
+        "start_date": "2026-09-25",
+        "end_date": "2026-09-28",
+        "duration_days": 3,
+        "num_travelers": 2,
+        "travel_style": "relaxation",
+        "interests": ["海滩"]
+      },
+      "expected_ambiguous": [],
+      "final_preferences": {
+        "departure_city": "深圳",
+        "budget": 15000.0,
+        "start_date": "2026-09-25",
+        "end_date": "2026-09-28",
+        "num_travelers": 2,
+        "travel_style": "relaxation",
+        "interests": ["海滩"]
+      },
+      "recovery_type": "none"
+    }
+  ]
+}
