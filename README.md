@@ -1,7 +1,5 @@
 # 多Agent智能旅游行程规划系统
 
-> **从零到面试** —— 企业级多Agent系统，Python + Java + Go 三语言实现，含八股文、STAR法则、面试QA全套资料。
-
 ---
 
 ## 这个项目是什么？
@@ -14,8 +12,6 @@ Python 主力版本当前是一个 **7 Agent、Mock First** 的智能旅游规�
 - `relaxed / balanced / packed / 未指定` 旅行节奏进入正式规划；未指定保持旧三时段行为
 - 超预算按活动、酒店、航班顺序从固定候选快照重选，不修改候选原价
 - 所有航班、酒店、活动、天气、时长、强度和价格均为明确标记的确定性 Mock 数据
-- **Python + Java + Go** 三语言完整实现
-- 配套 **面试全套资料**（八股文 + STAR法则 + 面试QA + 架构讲解）
 
 ---
 
@@ -24,19 +20,12 @@ Python 主力版本当前是一个 **7 Agent、Mock First** 的智能旅游规�
 | 内容 | 链接 | 说明 |
 |------|------|------|
 | **Python 实现** | [python/](python/) | 主力版本，FastAPI + Streamlit |
-| **Java 实现** | [java/](java/) | Spring Boot 3.3 版本 |
-| **Go 实现** | [golang/](golang/) | Gin + goroutine 版本 |
-| **八股文** | [docs/01-八股文.md](docs/01-八股文.md) | 15个核心知识点 |
-| **简历模板** | [docs/02-简历模板.md](docs/02-简历模板.md) | STAR法则 + 3种岗位模板 |
-| **面试QA** | [docs/03-面试QA.md](docs/03-面试QA.md) | 34道常见面试题 |
-| **架构设计** | [docs/04-架构设计详解.md](docs/04-架构设计详解.md) | 架构图 + 设计决策 |
-| **代码讲解** | [docs/05-代码讲解.md](docs/05-代码讲解.md) | 逐模块代码详解 |
-| **最终 PRD** | [docs/25-Multi-Agent-Travel-Copilot最终PRD.md](docs/25-Multi-Agent-Travel-Copilot最终PRD.md) | 已实现范围、状态与后续路线 |
-| **架构与复现** | [docs/26-最终系统架构API与复现指南.md](docs/26-最终系统架构API与复现指南.md) | API、数据流、启动与实验复现 |
-| **AI PM 作品集** | [docs/27-AI产品经理求职作品集.md](docs/27-AI产品经理求职作品集.md) | 产品决策、实验、边界与复盘 |
-| **简历与演示** | [docs/28-AI产品经理简历项目经历与演示脚本.md](docs/28-AI产品经理简历项目经历与演示脚本.md) | 精简经历和 3～5 分钟脚本 |
-| **D3 最终验收** | [docs/29-阶段D3最终产品验收报告.md](docs/29-阶段D3最终产品验收报告.md) | 技术、浏览器、实验与待办结论 |
-| **Classic UI 验收** | [docs/30-ClassicUI前端改造验收报告.md](docs/30-ClassicUI前端改造验收报告.md) | 原版布局复用、双方案、天气与备注澄清验收 |
+| **架构设计** | [docs/01-架构设计详解.md](docs/01-架构设计详解.md) | 架构图 + 设计决策 |
+| **代码讲解** | [docs/02-代码讲解.md](docs/02-代码讲解.md) | 逐模块代码详解 |
+| **最终 PRD** | [docs/22-Multi-Agent-Travel-Copilot最终PRD.md](docs/22-Multi-Agent-Travel-Copilot最终PRD.md) | 已实现范围、状态与后续路线 |
+| **架构与复现** | [docs/23-最终系统架构API与复现指南.md](docs/23-最终系统架构API与复现指南.md) | API、数据流、启动与实验复现 |
+| **D3 最终验收** | [docs/24-阶段D3最终产品验收报告.md](docs/24-阶段D3最终产品验收报告.md) | 技术、浏览器、实验与待办结论 |
+| **Classic UI 验收** | [docs/25-ClassicUI前端改造验收报告.md](docs/25-ClassicUI前端改造验收报告.md) | 原版布局复用、双方案、天气与备注澄清验收 |
 
 ---
 
@@ -88,16 +77,14 @@ Python 主力版本当前是一个 **7 Agent、Mock First** 的智能旅游规�
 
 ### 前置条件
 
-- Python 3.10+（运行 Python 版本）
-- Java 21+（运行 Java 版本，可选）
-- Go 1.22+（运行 Go 版本，可选）
+- Python 3.10+（已使用 Python 3.11.16 验证）
 
-### Python 版本（推荐先跑这个）
+### Python 版本
 
 ```bash
 # 1. 克隆项目
-git clone https://github.com/bcefghj/multi-agent-travel-planner.git
-cd multi-agent-travel-planner
+git clone https://github.com/Mirror-JSong/multi-agent-travel-copilot.git
+cd multi-agent-travel-copilot
 
 # 2. 安装依赖
 cd python
@@ -145,33 +132,7 @@ Classic UI 是正式默认网页，保留原版左右分栏、航班/酒店/行�
 作为备选界面保留。两套界面使用同一个正式 FastAPI 后端；当前 Parser、航班、酒店、活动和
 天气数据仍为确定性 Mock，不是实时 LLM、实时价格、库存或天气预报。
 
-### Java 版本
-
-```bash
-cd java
-# 如果有 Maven Wrapper
-./mvnw spring-boot:run
-# 或者用系统 Maven
-mvn spring-boot:run
-
-# 测试 API
-curl -X POST http://localhost:8080/api/plan \
-  -H "Content-Type: application/json" \
-  -d '{"budget": 10000, "departureCity": "北京", "startDate": "2026-05-01", "endDate": "2026-05-05"}'
-```
-
-### Go 版本
-
-```bash
-cd golang
-go mod tidy
-go run ./cmd/server
-
-# 测试 API
-curl -X POST http://localhost:8080/api/plan \
-  -H "Content-Type: application/json" \
-  -d '{"origin_city": "上海", "duration_days": 5, "budget_cny": 12000, "travel_style": "comfort"}'
-```
+# 终端 1 和终端 2 需要都开着哦！
 
 ---
 
@@ -224,64 +185,46 @@ curl -X POST http://localhost:8080/api/plan \
 .
 ├── README.md                    ← 你正在看的文件
 │
-├── docs/                        ← 面试准备资料（重点看！）
-│   ├── 01-八股文.md              ← 15个核心知识点
-│   ├── 02-简历模板.md            ← STAR法则 + 简历模板
-│   ├── 03-面试QA.md             ← 34道面试题 + 参考答案
-│   ├── 04-架构设计详解.md        ← 架构图 + 设计决策详解
-│   └── 05-代码讲解.md            ← 逐模块代码讲解
+├── docs/                        ← 项目文档（共 26 份）
+│   ├── 01-架构设计详解.md        ← 架构图与设计决策
+│   ├── 02-代码讲解.md            ← 逐模块代码讲解
+│   ├── 03～21                   ← 各阶段审计、设计、实验与验收文档
+│   ├── 22-Multi-Agent-Travel-Copilot最终PRD.md
+│   ├── 23-最终系统架构API与复现指南.md
+│   ├── 24-阶段D3最终产品验收报告.md
+│   ├── 25-ClassicUI前端改造验收报告.md
+│   └── Multi_Agent_Travel_Copilot_PRD_v1.md ← 初版 PRD
 │
-├── python/                      ← Python 实现（主力版本）
-│   ├── main.py                  ← CLI 入口
-│   ├── requirements.txt
-│   ├── config/settings.py       ← 配置管理
-│   ├── models/schemas.py        ← Pydantic 数据模型
-│   ├── agents/                  ← 7 个 Agent
-│   │   ├── base_agent.py        ← Agent 基类（模板方法模式）
-│   │   ├── preference_agent.py  ← 偏好收集
-│   │   ├── destination_agent.py ← 目的地推荐
-│   │   ├── flight_agent.py      ← 航班搜索
-│   │   ├── hotel_agent.py       ← 酒店搜索
-│   │   ├── activity_agent.py    ← 活动推荐
-│   │   ├── weather_agent.py     ← 天气获取与可用性契约
-│   │   └── budget_agent.py      ← 预算校验
-│   ├── orchestrator/            ← 编排层
-│   │   ├── pipeline.py          ← Pipeline 编排器
-│   │   ├── parallel.py          ← 并行执行器
-│   │   └── budget_loop.py       ← 预算循环控制
-│   ├── tools/                   ← Mock 搜索工具
-│   ├── api/app.py               ← FastAPI 后端
-│   ├── ui/streamlit_classic_app.py ← 正式默认 Classic UI
-│   ├── ui/streamlit_app.py      ← 备选 D2/D3 五步工作台
-│   └── tests/test_agents.py     ← 10个单元测试
-│
-├── java/                        ← Java Spring Boot 实现
-│   ├── pom.xml
-│   ├── README.md
-│   └── src/main/java/com/travel/
-│       ├── agent/               ← 6个 Agent
-│       ├── orchestrator/        ← CompletableFuture 并行
-│       ├── model/               ← 数据模型
-│       ├── controller/          ← REST API
-│       └── service/             ← 业务服务
-│
-└── golang/                      ← Go 实现
-    ├── go.mod
-    ├── README.md
-    ├── cmd/server/main.go       ← 入口
-    ├── internal/
-    │   ├── agent/               ← 6个 Agent
-    │   ├── orchestrator/        ← goroutine 并行
-    │   ├── model/               ← 数据结构
-    │   └── handler/             ← HTTP 处理器
-    └── pkg/llm/                 ← LLM 客户端
+└── python/                      ← Python 实现（主力版本）
+    ├── main.py                  ← CLI 入口
+    ├── requirements.txt
+    ├── config/settings.py       ← 配置管理
+    ├── models/schemas.py        ← Pydantic 数据模型
+    ├── agents/                  ← 7 个 Agent
+    │   ├── base_agent.py        ← Agent 基类（模板方法模式）
+    │   ├── preference_agent.py  ← 偏好收集
+    │   ├── destination_agent.py ← 目的地推荐
+    │   ├── flight_agent.py      ← 航班搜索
+    │   ├── hotel_agent.py       ← 酒店搜索
+    │   ├── activity_agent.py    ← 活动推荐
+    │   ├── weather_agent.py     ← 天气获取与可用性契约
+    │   └── budget_agent.py      ← 预算校验
+    ├── orchestrator/            ← 编排层
+    │   ├── pipeline.py          ← Pipeline 编排器
+    │   ├── parallel.py          ← 并行执行器
+    │   └── budget_loop.py       ← 预算循环控制
+    ├── tools/                   ← Mock 搜索工具
+    ├── api/app.py               ← FastAPI 后端
+    ├── ui/streamlit_classic_app.py ← 正式默认 Classic UI
+    ├── ui/streamlit_app.py      ← 备选 D2/D3 五步工作台
+    └── tests/test_agents.py     ← 10个单元测试
 ```
 
 ---
 
 ## 7 个 Agent 详解
 
-| # | Agent | 职责 | 输入 | 输出 | 面试重点 |
+| # | Agent | 职责 | 输入 | 输出 | 重点 |
 |---|-------|------|------|------|---------|
 | 1 | **Preference** | 收集/补充用户偏好 | UserPreferences | enriched UserPreferences | 为什么需要单独的偏好Agent？ |
 | 2 | **Destination** | 推荐目的地 | UserPreferences | Top3 城市 + 推荐理由 | 多维度评分算法设计 |
@@ -293,53 +236,16 @@ curl -X POST http://localhost:8080/api/plan \
 
 ---
 
-## 面试准备路线图
+## 技术栈
 
-如果你正在准备面试，建议按以下顺序学习：
-
-### 第一步：理解架构（1天）
-
-1. 阅读 [架构设计详解](docs/04-架构设计详解.md)
-2. 运行 Python 版本，观察日志输出
-3. 画出架构图，能口述整个流程
-
-### 第二步：读懂代码（1-2天）
-
-1. 阅读 [代码讲解](docs/05-代码讲解.md)
-2. 从 `main.py` 开始，F12 跳转阅读每个模块
-3. 重点理解：并行执行器 + 预算循环
-
-### 第三步：背八股文（2-3天）
-
-1. 阅读 [八股文](docs/01-八股文.md) 全部15个知识点
-2. 重点掌握：Agent vs Workflow、Pipeline vs DAG、LangGraph vs CrewAI
-3. 能用自己的话解释每个概念
-
-### 第四步：准备面试（1-2天）
-
-1. 阅读 [面试QA](docs/03-面试QA.md) 全部34道题
-2. 用 [STAR法则](docs/02-简历模板.md) 写好简历
-3. 对着镜子练习口述项目（控制在3分钟内）
-
-### 第五步：扩展加分（可选）
-
-1. 把 Mock 替换为真实 API（如 MiniMax M2.7）
-2. 添加新的 Agent（如 WeatherAgent）
-3. 接入 Langfuse 实现可观测性
-
----
-
-## 技术栈对比
-
-| 维度 | Python | Java | Go |
-|------|--------|------|----|
-| **框架** | FastAPI + asyncio | Spring Boot 3.3 | Gin |
-| **并行** | asyncio.gather | CompletableFuture.allOf | goroutine + WaitGroup |
-| **数据模型** | Pydantic v2 | Record / POJO | Struct |
-| **状态安全** | 不同字段无冲突 | synchronized | sync.Mutex |
-| **测试** | pytest | JUnit 5 | go test |
-| **部署** | uvicorn | JAR | 单二进制 |
-| **适合岗位** | AI工程师 | Java后端 | Go后端 |
+| 维度 | Python |
+|------|--------|
+| **框架** | FastAPI + asyncio |
+| **并行** | asyncio.gather |
+| **数据模型** | Pydantic v2 |
+| **状态安全** | 不同字段无冲突 |
+| **测试** | pytest |
+| **部署** | uvicorn |
 
 ---
 
@@ -416,19 +322,6 @@ export LLM_API_KEY=your-api-key
 ### Q: 数据是真实的吗？
 
 Mock 模式下的航班、酒店、活动、天气、活动时长和强度均为模拟数据。它们用于验证数据契约与规则，不代表真实市场价格、真实预报或景点实测属性。
-在面试中可以说："系统架构支持接入真实 API（Amadeus/Booking/Google Places），
-当前使用 Mock 数据方便演示和测试。"
-
-### Q: 这个项目能直接写进简历吗？
-
-当然可以！详见 [简历模板](docs/02-简历模板.md)。建议根据自己应聘的岗位选择合适的模板。
-
-### Q: 三种语言都要学吗？
-
-不需要。选择你面试使用的语言深入学习即可：
-- 面 AI 工程师 → 重点 Python
-- 面 Java 后端 → 重点 Java
-- 面 Go 后端 → 重点 Go
 
 ---
 
@@ -450,9 +343,3 @@ Mock 模式下的航班、酒店、活动、天气、活动时长和强度均为
 
 - [HiMAP-Travel](https://arxiv.org/html/2603.04750v1) - 分层多Agent旅行规划，52.78% 验证通过率
 - [ATLAS](https://arxiv.org/html/2509.25586v1) - 约束感知多Agent协作，84% 最终通过率
-
----
-
-## License
-
-MIT License - 自由使用、修改、分发。
