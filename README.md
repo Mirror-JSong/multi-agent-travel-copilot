@@ -109,22 +109,38 @@ python -m streamlit run ui/streamlit_app.py --server.address 127.0.0.1 --server.
 python -m pytest tests/ -v
 ```
 
-Windows PowerShell 如果系统 `python` 没有安装 Streamlit，可直接使用当前已验收的
-`travel-agent` 环境解释器，并分别在两个终端运行：
+Windows PowerShell 用户可以在项目内创建独立虚拟环境。以下命令均从仓库根目录执行。
+
+首次安装：
 
 ```powershell
-# 终端 1：FastAPI
-cd E:\Files\Documents\002_Mirror\AI\multi-agent-travel-planner\python
-$TravelPython = "D:\AUSTstudy\anaconda\envs\travel-agent\python.exe"
-& $TravelPython -m uvicorn api.app:app --host 127.0.0.1 --port 8000
+cd python
+python -m venv .venv
+
+$ProjectPython = '.\.venv\Scripts\python.exe'
+& $ProjectPython -m pip install --upgrade pip
+& $ProjectPython -m pip install -r requirements.txt
 ```
 
+启动 FastAPI：
+
 ```powershell
-# 终端 2：正式 Classic UI
-cd E:\Files\Documents\002_Mirror\AI\multi-agent-travel-planner\python
-$TravelPython = "D:\AUSTstudy\anaconda\envs\travel-agent\python.exe"
-$env:TRAVEL_API_BASE_URL = "http://127.0.0.1:8000"
-& $TravelPython -m streamlit run ui/streamlit_classic_app.py --server.address 127.0.0.1 --server.port 8785
+cd python
+
+$env:PYTHONUTF8 = '1'
+$ProjectPython = '.\.venv\Scripts\python.exe'
+& $ProjectPython -m uvicorn api.app:app --host 127.0.0.1 --port 8000
+```
+
+在另一个 PowerShell 终端启动 Classic UI：
+
+```powershell
+cd python
+
+$env:PYTHONUTF8 = '1'
+$env:TRAVEL_API_BASE_URL = 'http://127.0.0.1:8000'
+$ProjectPython = '.\.venv\Scripts\python.exe'
+& $ProjectPython -m streamlit run ui/streamlit_classic_app.py --server.address 127.0.0.1 --server.port 8785
 ```
 
 Classic UI 是正式默认网页，保留原版左右分栏、航班/酒店/行程/预算标签，并接入自然语言
@@ -343,3 +359,7 @@ Mock 模式下的航班、酒店、活动、天气、活动时长和强度均为
 
 - [HiMAP-Travel](https://arxiv.org/html/2603.04750v1) - 分层多Agent旅行规划，52.78% 验证通过率
 - [ATLAS](https://arxiv.org/html/2509.25586v1) - 约束感知多Agent协作，84% 最终通过率
+
+## License
+
+MIT License - 自由使用、修改、分发。
